@@ -1,4 +1,4 @@
-package com.swp391.Ebutler;
+package com.swp391.ebutler;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,4 +11,3 @@ public class EbutlerApplication {
 	}
 
 }
-//TEST

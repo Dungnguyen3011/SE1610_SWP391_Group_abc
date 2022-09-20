@@ -1,4 +1,4 @@
-package com.swp391.Ebutler;
+package com.swp391.ebutler;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
