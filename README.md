@@ -1,4 +1,4 @@
-# Ebutler
+# :man_technologist: eButler :woman_technologist:
 >$\text{\color{lightgreen}SWP391 \ Project}$ 
 * Class $\text{SE1610}$
 * Group $\mathfrak{\color{yellow}{abc}}$
