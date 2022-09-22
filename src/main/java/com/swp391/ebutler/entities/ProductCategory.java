@@ -22,7 +22,7 @@ public class ProductCategory {
 	private String productcategoryName;
 	
 	@Column(name="status")
-	private String status;
+	private boolean status;
 	
 	
 }
