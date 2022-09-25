@@ -3,11 +3,13 @@ package com.swp391.ebutler.service.imp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.swp391.ebutler.entities.Product;
 import com.swp391.ebutler.repositories.ProductRepository;
 import com.swp391.ebutler.service.ProductService;
 
+@Service
 public class ProductServiceImp implements ProductService{
 	@Autowired
 	ProductRepository repo;
@@ -23,12 +25,23 @@ public class ProductServiceImp implements ProductService{
 	}
 
 	@Override
-	public void delete(int id) {
-		repo.deleteById(id);;
+	public Product delete(int id) {
+		Product p = getById(id);
+		if(p != null) {
+			p.setStatus(false);
+			return repo.save(p);
+		}
+		return null;
 	}
 
 	@Override
-	public void update(Product p) {
-		repo.save(p);
+	public Product update(Product p) {
+		return repo.save(p);
 	}
+
+	@Override
+	public Product getById(int id) {
+		return repo.findById(id).get();
+	}
+	
 }

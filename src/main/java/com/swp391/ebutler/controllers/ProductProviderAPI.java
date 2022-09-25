@@ -13,36 +13,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.swp391.ebutler.entities.Manufacturer;
-import com.swp391.ebutler.service.ManufacturerService;
-
-
+import com.swp391.ebutler.entities.ProductProvider;
+import com.swp391.ebutler.service.ProductProviderService;
 
 @RestController
-@RequestMapping("/manufacturer")
-public class ManufacturerAPI {
+@RequestMapping("/pprovider")
+public class ProductProviderAPI {
 	@Autowired
-	ManufacturerService manuService;
+	ProductProviderService pproviderService;
 	
 	@GetMapping("/list")
 	public ResponseEntity<?> getList(){
-		List<Manufacturer> result = manuService.listAll();
+		List<ProductProvider> result = pproviderService.listAll();
 		return ResponseEntity.ok(result);
 	}
 	
 	@PostMapping("/list")
-	public ResponseEntity<?> save(@RequestBody Manufacturer manu){
-		return ResponseEntity.ok(manuService.save(manu));
+	public ResponseEntity<?> save(@RequestBody ProductProvider pprovider){
+		return ResponseEntity.ok(pproviderService.save(pprovider));
 	}
+	
 	
 	@DeleteMapping("/list/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") int id){
-		return ResponseEntity.ok(manuService.delete(id));
+		return ResponseEntity.ok(pproviderService.delete(id));
 	}
 	
 	@PutMapping("/list/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody Manufacturer manu) {
-		manu.setManufacturerId(id);
-		return ResponseEntity.ok(manuService.update(manu));
+	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody ProductProvider pprovider) {
+		pprovider.setProductcategoryId(id);
+		return ResponseEntity.ok(pproviderService.update(pprovider));
 	}
 }

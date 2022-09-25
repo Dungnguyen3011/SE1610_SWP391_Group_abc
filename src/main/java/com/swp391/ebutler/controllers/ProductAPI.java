@@ -33,19 +33,15 @@ public class ProductAPI {
 		return ResponseEntity.ok(pService.save(p));
 	}
 	
-//	@DeleteMapping("/list")
-//	public ResponseEntity<?> delete(@RequestBody ProductCategory procate){
-//		return ResponseEntity.ok(procateService.delete(procate));
-//	}
 	
 	@DeleteMapping("/list/{id}")
-	public void delete(@PathVariable("id") int id){
-		pService.delete(id);
+	public ResponseEntity<?> delete(@PathVariable("id") int id){
+		return ResponseEntity.ok(pService.delete(id));
 	}
 	
 	@PutMapping("/list/{id}")
-	public void update(@PathVariable("id") int id, @RequestBody Product p) {
+	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody Product p) {
 		p.setProductcategoryId(id);
-		pService.update(p);
+		return ResponseEntity.ok(pService.update(p));
 	}
 }

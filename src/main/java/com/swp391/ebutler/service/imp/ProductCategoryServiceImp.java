@@ -26,13 +26,23 @@ public class ProductCategoryServiceImp implements ProductCategoryService{
 	}
 
 	@Override
-	public void delete(int id) {
-		repo.deleteById(id);;
+	public ProductCategory delete(int id) {
+		ProductCategory procate = getById(id);
+		if(procate != null) {
+			procate.setStatus(false);
+			return repo.save(procate);
+		}
+		return null;
 	}
 
 	@Override
-	public void update(ProductCategory procate) {
-		repo.save(procate);
+	public ProductCategory update(ProductCategory procate) {
+		return repo.save(procate);
+	}
+
+	@Override
+	public ProductCategory getById(int id) {
+		return repo.findById(id).get();
 	}
 	
 	

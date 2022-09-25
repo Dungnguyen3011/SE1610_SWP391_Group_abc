@@ -10,7 +10,10 @@ public interface ProductCategoryService {
 	
 	public ProductCategory save(ProductCategory procate);
 	
-	public void delete(int id);
+	public ProductCategory delete(int id);
 	
-	public void update(ProductCategory procate);
+	public ProductCategory update(ProductCategory procate);
+	
+	public ProductCategory getById(int id);
+	
 }
