@@ -29,8 +29,8 @@ public class ProductProviderAPI {
 	}
 	
 	@PostMapping("/list")
-	public ResponseEntity<?> save(@RequestBody ProductProvider pprovider){
-		return ResponseEntity.ok(pproviderService.save(pprovider));
+	public ResponseEntity<?> save(@RequestBody ProductProvider pProvider){
+		return ResponseEntity.ok(pproviderService.save(pProvider));
 	}
 	
 	
@@ -40,8 +40,8 @@ public class ProductProviderAPI {
 	}
 	
 	@PutMapping("/list/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody ProductProvider pprovider) {
-		pprovider.setProductcategoryId(id);
-		return ResponseEntity.ok(pproviderService.update(pprovider));
+	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody ProductProvider pProvider) {
+		pProvider.setProductproviderId(id);
+		return ResponseEntity.ok(pproviderService.update(pProvider));
 	}
 }

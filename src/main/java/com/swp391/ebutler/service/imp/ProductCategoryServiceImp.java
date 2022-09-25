@@ -1,6 +1,8 @@
 package com.swp391.ebutler.service.imp;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,25 +21,26 @@ public class ProductCategoryServiceImp implements ProductCategoryService{
 	public List<ProductCategory> listAll(){
 		return repo.findAll();
 	}
+	
 
 	@Override
-	public ProductCategory save(ProductCategory procate) {
-		return repo.save(procate);	
+	public ProductCategory save(ProductCategory proCategory) {
+		return repo.save(proCategory);	
 	}
 
 	@Override
 	public ProductCategory delete(int id) {
-		ProductCategory procate = getById(id);
-		if(procate != null) {
-			procate.setStatus(false);
-			return repo.save(procate);
+		ProductCategory proCategory = getById(id);
+		if(proCategory != null) {
+			proCategory.setStatus(false);
+			return repo.save(proCategory);
 		}
 		return null;
 	}
 
 	@Override
-	public ProductCategory update(ProductCategory procate) {
-		return repo.save(procate);
+	public ProductCategory update(ProductCategory proCategory) {
+		return repo.save(proCategory);
 	}
 
 	@Override

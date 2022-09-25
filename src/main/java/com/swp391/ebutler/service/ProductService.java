@@ -9,11 +9,11 @@ public interface ProductService {
 	
 	public List<Product> listAll();
 
-	public Product save(Product p);
+	public Product save(Product product);
 
 	public Product delete(int id);
 
-	public Product update(Product p);
+	public Product update(Product product);
 
 	public Product getById(int id);
 

@@ -20,23 +20,23 @@ public class ProductProviderServiceImp implements ProductProviderService {
 	}
 
 	@Override
-	public ProductProvider save(ProductProvider pprovider) {
-		return repo.save(pprovider);	
+	public ProductProvider save(ProductProvider pProvider) {
+		return repo.save(pProvider);	
 	}
 
 	@Override
 	public ProductProvider delete(int id) {
-		ProductProvider pprovider = getById(id);
-		if(pprovider != null) {
-			pprovider.setStatus(false);
-			return repo.save(pprovider);
+		ProductProvider pProvider = getById(id);
+		if(pProvider != null) {
+			pProvider.setStatus(false);
+			return repo.save(pProvider);
 		}
 		return null;
 	}
 
 	@Override
-	public ProductProvider update(ProductProvider pprovider) {
-		return repo.save(pprovider);
+	public ProductProvider update(ProductProvider pProvider) {
+		return repo.save(pProvider);
 	}
 
 	@Override
