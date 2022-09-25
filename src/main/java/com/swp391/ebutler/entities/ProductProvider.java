@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -30,9 +32,18 @@ public class ProductProvider {
 	@Column(name="status")
 	private boolean status;
 	
-	@Column(name="provider_id")
-	private Integer productcategoryId;
+	@ManyToOne
+	@JoinColumn(name = "product_id")
+	private Product product;
 	
-	@Column(name="product_id")
-	private Integer manufacturerId;
+//	@ManyToOne
+//	@JoinColumn(name = "provider_id")
+//	private Provider provider;
+	
+	
+//	@Column(name="provider_id")
+//	private Integer productcategoryId;
+//	
+//	@Column(name="product_id")
+//	private Integer manufacturerId;
 }

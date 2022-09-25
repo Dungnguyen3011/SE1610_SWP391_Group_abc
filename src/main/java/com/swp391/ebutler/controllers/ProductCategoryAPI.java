@@ -29,8 +29,8 @@ public class ProductCategoryAPI {
 	}
 	
 	@PostMapping("/list")
-	public ResponseEntity<?> save(@RequestBody ProductCategory procate){
-		return ResponseEntity.ok(procateService.save(procate));
+	public ResponseEntity<?> save(@RequestBody ProductCategory proCategory){
+		return ResponseEntity.ok(procateService.save(proCategory));
 	}
 	
 	@DeleteMapping("/list/{id}")
@@ -39,8 +39,8 @@ public class ProductCategoryAPI {
 	}
 	
 	@PutMapping("/list/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody ProductCategory procate) {
-		procate.setProductcategoryId(id);
-		return ResponseEntity.ok(procateService.update(procate));
+	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody ProductCategory proCategory) {
+		proCategory.setProductcategoryId(id);
+		return ResponseEntity.ok(procateService.update(proCategory));
 	}
 }

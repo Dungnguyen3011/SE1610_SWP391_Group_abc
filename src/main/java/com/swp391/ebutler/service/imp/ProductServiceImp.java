@@ -20,23 +20,23 @@ public class ProductServiceImp implements ProductService{
 	}
 
 	@Override
-	public Product save(Product p) {
-		return repo.save(p);	
+	public Product save(Product product) {
+		return repo.save(product);	
 	}
 
 	@Override
 	public Product delete(int id) {
-		Product p = getById(id);
-		if(p != null) {
-			p.setStatus(false);
-			return repo.save(p);
+		Product product = getById(id);
+		if(product != null) {
+			product.setStatus(false);
+			return repo.save(product);
 		}
 		return null;
 	}
 
 	@Override
-	public Product update(Product p) {
-		return repo.save(p);
+	public Product update(Product product) {
+		return repo.save(product);
 	}
 
 	@Override

@@ -21,23 +21,23 @@ public class ProductCategoryServiceImp implements ProductCategoryService{
 	}
 
 	@Override
-	public ProductCategory save(ProductCategory procate) {
-		return repo.save(procate);	
+	public ProductCategory save(ProductCategory proCategory) {
+		return repo.save(proCategory);	
 	}
 
 	@Override
 	public ProductCategory delete(int id) {
-		ProductCategory procate = getById(id);
-		if(procate != null) {
-			procate.setStatus(false);
-			return repo.save(procate);
+		ProductCategory proCategory = getById(id);
+		if(proCategory != null) {
+			proCategory.setStatus(false);
+			return repo.save(proCategory);
 		}
 		return null;
 	}
 
 	@Override
-	public ProductCategory update(ProductCategory procate) {
-		return repo.save(procate);
+	public ProductCategory update(ProductCategory proCategory) {
+		return repo.save(proCategory);
 	}
 
 	@Override
