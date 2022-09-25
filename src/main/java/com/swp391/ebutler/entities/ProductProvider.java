@@ -1,5 +1,6 @@
 package com.swp391.ebutler.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -40,9 +42,12 @@ public class ProductProvider {
 //	@JoinColumn(name = "provider_id")
 //	private Provider provider;
 	
+//	@OneToMany(cascade = CascadeType.ALL, mappedBy = "")
+//	private List<OderDetail> oDetails;
 	
-//	@Column(name="provider_id")
-//	private Integer productcategoryId;
+	
+	@Column(name="provider_id")
+	private Integer productcategoryId;
 //	
 //	@Column(name="product_id")
 //	private Integer manufacturerId;

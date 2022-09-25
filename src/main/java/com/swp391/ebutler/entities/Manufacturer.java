@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Table(name = "tbl_manufacturer")
@@ -29,5 +31,6 @@ public class Manufacturer {
 	private boolean status;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "manu")
+	@JsonIgnore
 	private List<Product> products; 
 }

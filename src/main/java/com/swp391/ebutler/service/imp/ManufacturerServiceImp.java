@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.swp391.ebutler.entities.Manufacturer;
-import com.swp391.ebutler.entities.ProductCategory;
 import com.swp391.ebutler.repositories.ManufacturerRepository;
 import com.swp391.ebutler.service.ManufacturerService;
 
