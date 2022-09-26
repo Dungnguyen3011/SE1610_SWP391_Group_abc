@@ -3,11 +3,13 @@ package com.swp391.ebutler.service.imp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.swp391.ebutler.entities.ServiceCategory;
 import com.swp391.ebutler.repositories.ServiceCategoryRepository;
 import com.swp391.ebutler.service.ServiceCategoryService;
 
+@Service
 public class ServiceCategoryServiceImp implements ServiceCategoryService {
 
 	@Autowired

@@ -3,34 +3,36 @@ package com.swp391.ebutler.service.imp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.swp391.ebutler.entities.Service;
+import com.swp391.ebutler.entities.Services;
 import com.swp391.ebutler.repositories.ServiceRepository;
-import com.swp391.ebutler.service.ServiceService;
+import com.swp391.ebutler.service.ServicesService;
 
-public class ServiceServiceImp implements ServiceService {
+@Service
+public class ServicesServiceImp implements ServicesService {
 	
 	@Autowired
 	ServiceRepository repo;
 	
 	@Override
-	public List<Service> listAll() {
+	public List<Services> listAll() {
 		return repo.findAll();
 	}
 
 	@Override
-	public Service save(Service s) {
+	public Services save(Services s) {
 		return repo.save(s);	
 	}
 
 	@Override
-	public Service update(Service s) {
+	public Services update(Services s) {
 		return repo.save(s);
 	}
 	
 	@Override
-	public Service delete(int id) {
-		Service s = getById(id);
+	public Services delete(int id) {
+		Services s = getById(id);
 		if(s != null) {
 			s.setStatus(false);
 			return repo.save(s);
@@ -39,7 +41,7 @@ public class ServiceServiceImp implements ServiceService {
 	}
 
 	@Override
-	public Service getById(int id) {
+	public Services getById(int id) {
 		return repo.findById(id).get();
 	}
 }
