@@ -13,24 +13,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.swp391.ebutler.entities.Service;
-import com.swp391.ebutler.service.ServiceService;
+import com.swp391.ebutler.entities.Services;
+import com.swp391.ebutler.service.ServicesService;
 
 @RestController
 @RequestMapping("/service")
 public class ServiceAPI {
 
 	@Autowired
-	ServiceService ss;
+	ServicesService ss;
 	
 	@GetMapping("/list")
 	public ResponseEntity<?> getList() {
-		List<Service> result = ss.listAll();
+		List<Services> result = ss.listAll();
 		return ResponseEntity.ok(result);
 	}
 	
 	@PostMapping("/list")
-	public ResponseEntity<?> save(@RequestBody Service s) {
+	public ResponseEntity<?> save(@RequestBody Services s) {
 		return ResponseEntity.ok(ss.save(s));
 	}
 	
@@ -40,7 +40,7 @@ public class ServiceAPI {
 	}
 	
 	@PutMapping("/list/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody Service s) {
+	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody Services s) {
 		s.setServiceId(id);
 		return ResponseEntity.ok(ss.update(s));
 	}
