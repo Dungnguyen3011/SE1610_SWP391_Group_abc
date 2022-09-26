@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.swp391.ebutler.entities.Services;
-import com.swp391.ebutler.repositories.ServiceRepository;
+import com.swp391.ebutler.repositories.ServicesRepository;
 import com.swp391.ebutler.service.ServicesService;
 
 @Service
 public class ServicesServiceImp implements ServicesService {
 	
 	@Autowired
-	ServiceRepository repo;
+	ServicesRepository repo;
 	
 	@Override
 	public List<Services> listAll() {
