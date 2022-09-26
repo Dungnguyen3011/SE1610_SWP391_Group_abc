@@ -33,4 +33,9 @@ public class OrderDetail {
 	
 	@Column(name="quantity")
 	private Integer quantity;
+	
+	@ManyToOne
+	@JsonBackReference
+	@JoinColumn(name = "product_provider_id")
+	private ProductProvider pProvider1;
 }

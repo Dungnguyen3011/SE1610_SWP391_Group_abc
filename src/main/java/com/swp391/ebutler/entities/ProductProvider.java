@@ -1,8 +1,10 @@
 package com.swp391.ebutler.entities;
 
-import javax.persistence.CascadeType;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
@@ -36,19 +41,17 @@ public class ProductProvider {
 	
 	@ManyToOne
 	@JoinColumn(name = "product_id")
+	@JsonBackReference
 	private Product product;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "provider_id")
-//	private Provider provider;
+	@ManyToOne
+	@JoinColumn(name = "provider_id")
+	@JsonBackReference
+	private Provider provider;
 	
-//	@OneToMany(cascade = CascadeType.ALL, mappedBy = "")
-//	private List<OderDetail> oDetails;
+	@OneToMany(mappedBy = "pProvider1", fetch = FetchType.LAZY)
+	@JsonManagedReference
+	private Set<OrderDetail> orderDetails;
 	
-	
-	@Column(name="provider_id")
-	private Integer productcategoryId;
-//	
-//	@Column(name="product_id")
-//	private Integer manufacturerId;
+
 }
