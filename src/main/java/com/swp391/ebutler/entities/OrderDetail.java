@@ -37,5 +37,5 @@ public class OrderDetail {
 	@ManyToOne
 	@JsonBackReference
 	@JoinColumn(name = "product_provider_id")
-	private ProductProvider pProvider1;
+	private ProductProvider pProvider;
 }

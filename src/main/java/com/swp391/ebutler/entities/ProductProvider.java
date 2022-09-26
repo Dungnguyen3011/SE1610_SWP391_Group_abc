@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
-@Table(name = "tbl_product_category")
+@Table(name = "tbl_product_provider")
 @Entity
 @Data
 public class ProductProvider {
@@ -28,7 +28,7 @@ public class ProductProvider {
 	private Integer productproviderId;
 	
 	@Column(name="unit_price")
-	private float unitPrice;
+	private Float unitPrice;
 	
 	@Column(name="quantity")
 	private Integer quantity;
@@ -37,21 +37,32 @@ public class ProductProvider {
 	private Integer rating;
 	
 	@Column(name="status")
-	private boolean status;
-	
-	@ManyToOne
-	@JoinColumn(name = "product_id")
-	@JsonBackReference
-	private Product product;
+	private Boolean status;
 	
 	@ManyToOne
 	@JoinColumn(name = "provider_id")
 	@JsonBackReference
 	private Provider provider;
 	
-	@OneToMany(mappedBy = "pProvider1", fetch = FetchType.LAZY)
+	@ManyToOne
+	@JoinColumn(name = "product_id")
+	@JsonBackReference
+	private Product product;
+	
+	@OneToMany(mappedBy = "pProvider", fetch = FetchType.LAZY)
 	@JsonManagedReference
 	private Set<OrderDetail> orderDetails;
-	
+
+	public ProductProvider(Integer productproviderId, Float unitPrice, Integer quantity, Integer rating, Boolean status,
+			Product product, Provider provider) {
+		super();
+		this.productproviderId = productproviderId;
+		this.unitPrice = unitPrice;
+		this.quantity = quantity;
+		this.rating = rating;
+		this.status = status;
+		this.product = product;
+		this.provider = provider;
+	}
 
 }

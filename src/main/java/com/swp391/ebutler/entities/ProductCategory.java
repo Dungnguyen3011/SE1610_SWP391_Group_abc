@@ -28,7 +28,7 @@ public class ProductCategory {
 	private String productcategoryName;
 	
 	@Column(name="status")
-	private boolean status;
+	private Boolean status;
 	
 	@OneToMany( mappedBy = "proCategory", fetch = FetchType.LAZY)
 	@JsonManagedReference

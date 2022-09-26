@@ -37,7 +37,7 @@ public class Product {
 	private String image;
 	
 	@Column(name="status")
-	private boolean status;
+	private Boolean status;
 	
 	@ManyToOne
 	@JoinColumn(name = "product_category_id")
@@ -52,6 +52,5 @@ public class Product {
 	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
 	@JsonManagedReference
 	private Set<ProductProvider> pProvider;
-	
 	
 }

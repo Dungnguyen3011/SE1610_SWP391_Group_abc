@@ -1,5 +1,6 @@
 package com.swp391.ebutler.entities;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -28,7 +29,7 @@ public class Manufacturer {
 	private String productcategoryName;
 	
 	@Column(name="status")
-	private boolean status;
+	private Boolean status;
 	
 	@OneToMany(mappedBy = "manu", fetch = FetchType.LAZY)
 	@JsonManagedReference

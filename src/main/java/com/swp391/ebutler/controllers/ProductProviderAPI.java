@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.swp391.ebutler.entities.ProductProvider;
+import com.swp391.ebutler.model.dto.ProductProviderDTO;
 import com.swp391.ebutler.service.ProductProviderService;
 
 @RestController
@@ -24,14 +25,14 @@ public class ProductProviderAPI {
 	
 	@GetMapping("/list")
 	public ResponseEntity<?> getList(){
-		List<ProductProvider> result = pproviderService.listAll();
+		List<ProductProviderDTO> result = pproviderService.listAll();
 		return ResponseEntity.ok(result);
 	}
 	
-	@PostMapping("/list")
-	public ResponseEntity<?> save(@RequestBody ProductProvider pProvider){
-		return ResponseEntity.ok(pproviderService.save(pProvider));
-	}
+//	@PostMapping("/list")
+//	public ResponseEntity<?> save(@RequestBody ProductProviderDTO pProvider){
+//		return ResponseEntity.ok(pproviderService.save(pProvider));
+//	}
 	
 	
 	@DeleteMapping("/list/{id}")
@@ -39,9 +40,9 @@ public class ProductProviderAPI {
 		return ResponseEntity.ok(pproviderService.delete(id));
 	}
 	
-	@PutMapping("/list/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody ProductProvider pProvider) {
-		pProvider.setProductproviderId(id);
-		return ResponseEntity.ok(pproviderService.update(pProvider));
-	}
+//	@PutMapping("/list/{id}")
+//	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody ProductProviderDTO pProvider) {
+//		pProvider.setProductproviderId(id);
+//		return ResponseEntity.ok(pproviderService.update(pProvider));
+//	}
 }
