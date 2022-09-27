@@ -3,17 +3,18 @@ package com.swp391.ebutler.service;
 import java.util.List;
 
 import com.swp391.ebutler.entities.ServiceCategory;
+import com.swp391.ebutler.model.dto.ServiceCategoryDTO;
 
 
 public interface ServiceCategoryService {
 
-	public List<ServiceCategory> listAll();
+	public List<ServiceCategoryDTO> listAll();
 	
-	public ServiceCategory save(ServiceCategory sc);
+	public ServiceCategoryDTO save(ServiceCategoryDTO sc);
 
-	public ServiceCategory delete(int id);
-
-	public ServiceCategory update(ServiceCategory sc);
+	public ServiceCategoryDTO delete(int id);
 
 	public ServiceCategory getById(int id);
+	
+	public ServiceCategoryDTO getByIdDTO(int id);
 }

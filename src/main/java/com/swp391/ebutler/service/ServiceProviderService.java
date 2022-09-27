@@ -3,14 +3,15 @@ package com.swp391.ebutler.service;
 import java.util.List;
 
 import com.swp391.ebutler.entities.ServiceProvider;
+import com.swp391.ebutler.model.dto.ServiceProviderDTO;
 
 public interface ServiceProviderService {
 	
-	public List<ServiceProvider> listAll();
+	public List<ServiceProviderDTO> listAll();
 	
-	public ServiceProvider save(ServiceProvider sp);
-
-	public ServiceProvider update(ServiceProvider sp);
+	public ServiceProviderDTO save(ServiceProviderDTO sp);
 
 	public ServiceProvider getById(int id);
+	
+	public ServiceProviderDTO getByIdDTO(int id);
 }

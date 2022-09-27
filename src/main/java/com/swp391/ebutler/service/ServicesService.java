@@ -3,16 +3,17 @@ package com.swp391.ebutler.service;
 import java.util.List;
 
 import com.swp391.ebutler.entities.Services;
+import com.swp391.ebutler.model.dto.ServicesDTO;
 
 public interface ServicesService {
 	
-	public List<Services> listAll();
+	public List<ServicesDTO> listAll();
 	
-	public Services save(Services s);
+	public ServicesDTO save(ServicesDTO s);
 
-	public Services delete(int id);
-
-	public Services update(Services s);
+	public ServicesDTO delete(int id);
 
 	public Services getById(int id);
+	
+	public ServicesDTO getByIdDTO(int id);
 }
