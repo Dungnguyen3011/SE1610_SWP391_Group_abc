@@ -17,10 +17,12 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Table(name = "tbl_product")
 @Entity
 @Data
+@NoArgsConstructor
 public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -52,5 +54,19 @@ public class Product {
 	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
 	@JsonManagedReference
 	private Set<ProductProvider> pProvider;
+
+	public Product(Integer productId, String productName, String description, String image, Boolean status,
+			ProductCategory proCategory, Manufacturer manu) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+		this.description = description;
+		this.image = image;
+		this.status = status;
+		this.proCategory = proCategory;
+		this.manu = manu;
+	}
+	
+	
 	
 }

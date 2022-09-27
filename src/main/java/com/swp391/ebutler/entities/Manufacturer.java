@@ -1,6 +1,5 @@
 package com.swp391.ebutler.entities;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -15,10 +14,12 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Table(name = "tbl_manufacturer")
 @Entity
 @Data
+@NoArgsConstructor
 public class Manufacturer {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -26,7 +27,7 @@ public class Manufacturer {
 	private Integer manufacturerId;
 	
 	@Column(name="manufacturer_name")
-	private String productcategoryName;
+	private String manufacturerName;
 	
 	@Column(name="status")
 	private Boolean status;

@@ -3,17 +3,18 @@ package com.swp391.ebutler.service;
 import java.util.List;
 
 import com.swp391.ebutler.entities.ProductCategory;
+import com.swp391.ebutler.model.dto.ProductCategoryDTO;
 
 
 public interface ProductCategoryService {
-	public List<ProductCategory> listAll();
+	public List<ProductCategoryDTO> listAll();
 	
-	public ProductCategory save(ProductCategory procate);
+	public ProductCategoryDTO save(ProductCategoryDTO procate);
 	
-	public ProductCategory delete(int id);
-	
-	public ProductCategory update(ProductCategory procate);
+	public ProductCategoryDTO delete(int id);
 	
 	public ProductCategory getById(int id);
+	
+	public ProductCategoryDTO getByIdDTO(int id);
 	
 }

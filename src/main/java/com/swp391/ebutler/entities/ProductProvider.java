@@ -17,10 +17,12 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Table(name = "tbl_product_provider")
 @Entity
 @Data
+@NoArgsConstructor
 public class ProductProvider {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

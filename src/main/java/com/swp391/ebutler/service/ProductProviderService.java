@@ -8,11 +8,9 @@ import com.swp391.ebutler.model.dto.ProductProviderDTO;
 public interface ProductProviderService {
 	public List<ProductProviderDTO> listAll();
 
-	public ProductProvider save(ProductProvider pProvider);
+	public ProductProviderDTO save(ProductProviderDTO pProvider);
 
-	public ProductProvider delete(int id);
-
-	public ProductProvider update(ProductProvider pProvider);
+	public ProductProviderDTO delete(int id);
 
 	public ProductProviderDTO getByIdDTO(int id);
 	

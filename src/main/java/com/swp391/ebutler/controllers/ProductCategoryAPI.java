@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.swp391.ebutler.entities.ProductCategory;
+import com.swp391.ebutler.model.dto.ProductCategoryDTO;
 import com.swp391.ebutler.service.ProductCategoryService;
 
 @RestController
@@ -24,12 +24,12 @@ public class ProductCategoryAPI {
 	
 	@GetMapping("/list")
 	public ResponseEntity<?> getList(){
-		List<ProductCategory> result = procateService.listAll();
+		List<ProductCategoryDTO> result = procateService.listAll();
 		return ResponseEntity.ok(result);
 	}
 	
 	@PostMapping("/list")
-	public ResponseEntity<?> save(@RequestBody ProductCategory proCategory){
+	public ResponseEntity<?> save(@RequestBody ProductCategoryDTO proCategory){
 		return ResponseEntity.ok(procateService.save(proCategory));
 	}
 	
@@ -39,8 +39,8 @@ public class ProductCategoryAPI {
 	}
 	
 	@PutMapping("/list/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody ProductCategory proCategory) {
+	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody ProductCategoryDTO proCategory) {
 		proCategory.setProductcategoryId(id);
-		return ResponseEntity.ok(procateService.update(proCategory));
+		return ResponseEntity.ok(procateService.save(proCategory));
 	}
 }

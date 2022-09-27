@@ -14,10 +14,12 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Table(name = "tbl_product_category")
 @Entity
 @Data
+@NoArgsConstructor
 public class ProductCategory {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -32,6 +34,14 @@ public class ProductCategory {
 	
 	@OneToMany( mappedBy = "proCategory", fetch = FetchType.LAZY)
 	@JsonManagedReference
-	private Set<Product> products; 
+	private Set<Product> products;
+
+	public ProductCategory(Integer productcategoryId, String productcategoryName, Boolean status) {
+		super();
+		this.productcategoryId = productcategoryId;
+		this.productcategoryName = productcategoryName;
+		this.status = status;
+	} 
+	
 	
 }

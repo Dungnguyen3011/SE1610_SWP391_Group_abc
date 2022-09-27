@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.swp391.ebutler.entities.Manufacturer;
+import com.swp391.ebutler.model.dto.ManufacturerDTO;
 import com.swp391.ebutler.service.ManufacturerService;
 
 
@@ -26,12 +26,12 @@ public class ManufacturerAPI {
 	
 	@GetMapping("/list")
 	public ResponseEntity<?> getList(){
-		List<Manufacturer> result = manuService.listAll();
+		List<ManufacturerDTO> result = manuService.listAll();
 		return ResponseEntity.ok(result);
 	}
 	
 	@PostMapping("/list")
-	public ResponseEntity<?> save(@RequestBody Manufacturer manu){
+	public ResponseEntity<?> save(@RequestBody ManufacturerDTO manu){
 		return ResponseEntity.ok(manuService.save(manu));
 	}
 	
@@ -41,8 +41,8 @@ public class ManufacturerAPI {
 	}
 	
 	@PutMapping("/list/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody Manufacturer manu) {
+	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody ManufacturerDTO manu) {
 		manu.setManufacturerId(id);
-		return ResponseEntity.ok(manuService.update(manu));
+		return ResponseEntity.ok(manuService.save(manu));
 	}
 }
