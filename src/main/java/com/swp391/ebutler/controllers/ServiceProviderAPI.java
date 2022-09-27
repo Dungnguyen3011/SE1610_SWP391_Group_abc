@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.swp391.ebutler.entities.ServiceProvider;
+import com.swp391.ebutler.model.dto.ServiceProviderDTO;
 import com.swp391.ebutler.service.ServiceProviderService;
 
 @RestController
@@ -24,18 +24,18 @@ public class ServiceProviderAPI {
 	
 	@GetMapping("/list")
 	public ResponseEntity<?> getList() {
-		List<ServiceProvider> result = sps.listAll();
+		List<ServiceProviderDTO> result = sps.listAll();
 		return ResponseEntity.ok(result);
 	}
 	
 	@PostMapping("/list")
-	public ResponseEntity<?> save(@RequestBody ServiceProvider sp) {
+	public ResponseEntity<?> save(@RequestBody ServiceProviderDTO sp) {
 		return ResponseEntity.ok(sps.save(sp));
 	}
 	
 	@PutMapping("/list/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody ServiceProvider sp) {
+	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody ServiceProviderDTO sp) {
 		sp.setServiceproviderId(id);
-		return ResponseEntity.ok(sps.update(sp));
+		return ResponseEntity.ok(sps.save(sp));
 	}
 }

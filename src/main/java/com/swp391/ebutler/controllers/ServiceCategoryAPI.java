@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.swp391.ebutler.entities.ServiceCategory;
+import com.swp391.ebutler.model.dto.ServiceCategoryDTO;
 import com.swp391.ebutler.service.ServiceCategoryService;
 
 @RestController
@@ -25,12 +25,12 @@ public class ServiceCategoryAPI {
 	
 	@GetMapping("/list")
 	public ResponseEntity<?> getList() {
-		List<ServiceCategory> result = scs.listAll();
+		List<ServiceCategoryDTO> result = scs.listAll();
 		return ResponseEntity.ok(result);
 	}
 	
 	@PostMapping("/list")
-	public ResponseEntity<?> save(@RequestBody ServiceCategory sc) {
+	public ResponseEntity<?> save(@RequestBody ServiceCategoryDTO sc) {
 		return ResponseEntity.ok(scs.save(sc));
 	}
 	
@@ -40,8 +40,8 @@ public class ServiceCategoryAPI {
 	}
 	
 	@PutMapping("/list/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody ServiceCategory sc) {
+	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody ServiceCategoryDTO sc) {
 		sc.setServicecategoryId(id);
-		return ResponseEntity.ok(scs.update(sc));
+		return ResponseEntity.ok(scs.save(sc));
 	}
 }

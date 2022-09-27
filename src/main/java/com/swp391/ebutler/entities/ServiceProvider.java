@@ -5,13 +5,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Table(name = "tbl_service_provider")
 @Entity
 @Data
+@NoArgsConstructor
 public class ServiceProvider {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,10 +27,23 @@ public class ServiceProvider {
 	@Column(name = "rating")
 	private Integer rating;
 	
-	@Column(name = "provider_id")
-	private Integer providerId;
+	@ManyToOne
+	@JoinColumn(name = "provider_id")
+	@JsonBackReference
+	private Provider provider;
 	
-	@Column(name = "service_id")
-	private Integer serviceId;
+	@ManyToOne
+	@JoinColumn(name = "service_id")
+	@JsonBackReference
+	private Services service;
+
+	public ServiceProvider(Integer serviceproviderId, Integer rating, Provider provider, Services service) {
+		super();
+		this.serviceproviderId = serviceproviderId;
+		this.rating = rating;
+		this.provider = provider;
+		this.service = service;
+	}
+
 	
 }

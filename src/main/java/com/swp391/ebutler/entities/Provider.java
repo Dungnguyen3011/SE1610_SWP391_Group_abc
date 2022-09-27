@@ -48,4 +48,8 @@ public class Provider {
 	@OneToMany( mappedBy = "provider", fetch = FetchType.LAZY)
 	@JsonManagedReference
 	private Set<ProductProvider> pProvider;
+	
+	@OneToMany(mappedBy = "provider")
+	@JsonManagedReference
+	private Set<ServiceProvider> sProvider;
 }
