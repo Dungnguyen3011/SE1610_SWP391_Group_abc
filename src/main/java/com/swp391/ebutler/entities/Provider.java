@@ -52,4 +52,17 @@ public class Provider {
 	@OneToMany( mappedBy = "provider", fetch = FetchType.LAZY)
 	@JsonManagedReference
 	private Set<ServiceProvider> sProvider;
+
+	public Provider(Integer providerId, String email, String providerName, String phoneNumber, String address,
+			Account account) {
+		super();
+		this.providerId = providerId;
+		this.email = email;
+		this.providerName = providerName;
+		this.phoneNumber = phoneNumber;
+		this.address = address;
+		this.account = account;
+	}
+	
+	
 }

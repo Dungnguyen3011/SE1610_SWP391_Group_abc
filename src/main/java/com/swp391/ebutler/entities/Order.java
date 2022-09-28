@@ -2,6 +2,7 @@ package com.swp391.ebutler.entities;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,10 +44,23 @@ public class Order {
 	
 	@JsonManagedReference
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
-	private List<OrderDetail> orderDetailList;
+	private Set<OrderDetail> orderDetailList;
 	
 	@ManyToOne
 	@JsonBackReference
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
+
+	public Order(Integer orderId, Float totalPrice, Date orderDate, Boolean paymentType, Boolean shippingStatus,
+			Customer customer) {
+		super();
+		this.orderId = orderId;
+		this.totalPrice = totalPrice;
+		this.orderDate = orderDate;
+		this.paymentType = paymentType;
+		this.shippingStatus = shippingStatus;
+		this.customer = customer;
+	}
+	
+	
 }

@@ -39,4 +39,6 @@ public class Account {
 	@JsonManagedReference
 	@OneToOne(mappedBy = "account", fetch = FetchType.LAZY)
     private Customer customer;
+	
+	
 }
