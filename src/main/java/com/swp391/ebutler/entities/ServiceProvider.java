@@ -36,14 +36,25 @@ public class ServiceProvider {
 	@JoinColumn(name = "service_id")
 	@JsonBackReference
 	private Services service;
+	
+	@Column(name = "min_price")
+	private Float minPrice;
+	
+	@Column(name = "max_price")
+	private Float maxPrice;
 
-	public ServiceProvider(Integer serviceproviderId, Integer rating, Provider provider, Services service) {
+	public ServiceProvider(Integer serviceproviderId, Integer rating, Provider provider, Services service,
+			Float minPrice, Float maxPrice) {
 		super();
 		this.serviceproviderId = serviceproviderId;
 		this.rating = rating;
 		this.provider = provider;
 		this.service = service;
+		this.minPrice = minPrice;
+		this.maxPrice = maxPrice;
 	}
+
+
 
 	
 }

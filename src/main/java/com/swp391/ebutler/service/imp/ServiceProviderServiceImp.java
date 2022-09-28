@@ -61,6 +61,8 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 		sp.setRating(spDTO.getRating());
 		sp.setService(getServiceById(spDTO.getServiceId()));
 		sp.setProvider(getProviderById(spDTO.getProviderId()));
+		sp.setMinPrice(spDTO.getMinPrice());
+		sp.setMaxPrice(spDTO.getMaxPrice());
 		return sp;
 	}
 	

@@ -58,7 +58,7 @@ public class CustomerServiceImp implements CustomerService {
 		c.setPhoneNumber(cDTO.getPhoneNumber());
 		c.setAddress(cDTO.getAddress());
 		c.setAccount(getAccountById(cDTO.getAccountId()));
-		return null;
+		return c;
 	}
 
 	public Account getAccountById(int id) {

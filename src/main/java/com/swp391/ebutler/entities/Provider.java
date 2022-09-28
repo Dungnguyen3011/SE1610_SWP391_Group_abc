@@ -29,16 +29,16 @@ public class Provider {
 	private Integer providerId;
 	
 	@Column(name="email")
-	private Float email;
+	private String email;
 	
 	@Column(name="provider_name")
-	private Float providerName;
+	private String providerName;
 	
 	@Column(name="phone_number")
-	private Float phoneNumber;
+	private String phoneNumber;
 
 	@Column(name="address")
-	private Float address;
+	private String address;
 	
 	@OneToOne
 	@JsonBackReference
@@ -49,7 +49,7 @@ public class Provider {
 	@JsonManagedReference
 	private Set<ProductProvider> pProvider;
 	
-	@OneToMany(mappedBy = "provider")
+	@OneToMany( mappedBy = "provider", fetch = FetchType.LAZY)
 	@JsonManagedReference
 	private Set<ServiceProvider> sProvider;
 }

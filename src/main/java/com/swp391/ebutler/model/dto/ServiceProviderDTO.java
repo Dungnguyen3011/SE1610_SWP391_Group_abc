@@ -15,4 +15,6 @@ public class ServiceProviderDTO {
 	private Integer rating;
 	private Integer providerId;
 	private Integer serviceId;
+	private Float minPrice;
+	private Float maxPrice;
 }
