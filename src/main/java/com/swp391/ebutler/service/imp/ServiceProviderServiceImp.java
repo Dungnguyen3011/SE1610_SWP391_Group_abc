@@ -40,6 +40,15 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 		return ServiceProviderMapper.toServiceProviderDTO(spRepo.save(sp));	
 	}
 
+	@Override
+	public ServiceProviderDTO delete(int id) {
+		ServiceProvider sp = getById(id);
+		if(sp != null) {
+			sp.setStatus(false);
+			return ServiceProviderMapper.toServiceProviderDTO(spRepo.save(sp));
+		}
+		return null;
+	}
 
 	@Override
 	public ServiceProvider getById(int id) {
@@ -63,6 +72,7 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 		sp.setProvider(getProviderById(spDTO.getProviderId()));
 		sp.setMinPrice(spDTO.getMinPrice());
 		sp.setMaxPrice(spDTO.getMaxPrice());
+		sp.setStatus(spDTO.getStatus());
 		return sp;
 	}
 	

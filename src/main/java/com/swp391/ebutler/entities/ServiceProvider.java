@@ -42,9 +42,12 @@ public class ServiceProvider {
 	
 	@Column(name = "max_price")
 	private Float maxPrice;
+	
+	@Column(name = "status")
+	private Boolean status;
 
 	public ServiceProvider(Integer serviceproviderId, Integer rating, Provider provider, Services service,
-			Float minPrice, Float maxPrice) {
+			Float minPrice, Float maxPrice, Boolean status) {
 		super();
 		this.serviceproviderId = serviceproviderId;
 		this.rating = rating;
@@ -52,6 +55,7 @@ public class ServiceProvider {
 		this.service = service;
 		this.minPrice = minPrice;
 		this.maxPrice = maxPrice;
+		this.status = status;
 	}
 
 

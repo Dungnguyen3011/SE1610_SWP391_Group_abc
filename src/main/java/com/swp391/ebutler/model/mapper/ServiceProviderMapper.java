@@ -12,6 +12,7 @@ public class ServiceProviderMapper {
 		spDTO.setProviderId(sp.getProvider().getProviderId());
 		spDTO.setMinPrice(sp.getMinPrice());
 		spDTO.setMaxPrice(sp.getMaxPrice());
+		spDTO.setStatus(sp.getStatus());
 		return spDTO;
 	}
 }
