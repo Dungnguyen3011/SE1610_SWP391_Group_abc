@@ -1,5 +1,7 @@
 package com.swp391.ebutler.model.dto;
 
+import javax.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,9 +14,19 @@ import lombok.Setter;
 public class ServiceProviderDTO {
 
 	private Integer serviceproviderId;
+	
+	@NotNull
 	private Integer rating;
+	
+	@NotNull
 	private Integer providerId;
+	
+	@NotNull
 	private Integer serviceId;
+
+	@NotNull(message = "Specify price range for the service")
 	private Float minPrice;
+	
+	@NotNull(message = "Specify price range for the service")
 	private Float maxPrice;
 }
