@@ -66,7 +66,7 @@ public class ManufacturerServiceImp implements ManufacturerService{
 
 	@Override
 	public List<ManufacturerDTO> searchByName(String name) {
-		List<Manufacturer> result = repo.findByManufacturerName(name);
+		List<Manufacturer> result = repo.findByManufacturerNameContaining(name);
 		List<ManufacturerDTO> listDTO = new ArrayList<>();
 		result.forEach(v -> listDTO.add(ManufacturerMapper.toManufacturerDTO(v)));
 		return listDTO;

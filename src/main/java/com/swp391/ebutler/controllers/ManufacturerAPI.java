@@ -31,6 +31,7 @@ public class ManufacturerAPI {
 		return ResponseEntity.ok(result);
 	}
 	
+	@GetMapping("/list/getbyname")
 	public ResponseEntity<?> getListByName(@Param("name") String name){
 		List<ManufacturerDTO> result = manuService.searchByName(name);
 		return ResponseEntity.ok(result);

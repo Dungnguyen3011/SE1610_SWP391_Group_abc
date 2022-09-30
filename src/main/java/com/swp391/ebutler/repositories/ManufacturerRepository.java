@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.swp391.ebutler.entities.Manufacturer;
 
 public interface ManufacturerRepository extends JpaRepository<Manufacturer, Integer>{
-	List<Manufacturer> findByManufacturerName(String manufacturerName);
+	List<Manufacturer> findByManufacturerNameContaining(String manufacturerName);
 	
 }
