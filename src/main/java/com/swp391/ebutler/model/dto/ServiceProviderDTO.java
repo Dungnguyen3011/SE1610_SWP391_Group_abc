@@ -29,4 +29,7 @@ public class ServiceProviderDTO {
 	
 	@NotNull(message = "Specify price range for the service")
 	private Float maxPrice;
+	
+	@NotNull
+	private Boolean status;
 }
