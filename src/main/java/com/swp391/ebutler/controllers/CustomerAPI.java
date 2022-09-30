@@ -2,6 +2,8 @@ package com.swp391.ebutler.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,12 +31,12 @@ public class CustomerAPI {
 	}
 	
 	@PostMapping("/list")
-	public ResponseEntity<?> save(@RequestBody CustomerDTO c) {
+	public ResponseEntity<?> save(@Valid @RequestBody CustomerDTO c) {
 		return ResponseEntity.ok(cs.save(c));
 	}
 	
 	@PutMapping("/list/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody CustomerDTO c) {
+	public ResponseEntity<?> update(@PathVariable("id") int id, @Valid @RequestBody CustomerDTO c) {
 		c.setCustomerId(id);
 		return ResponseEntity.ok(cs.save(c));
 	}

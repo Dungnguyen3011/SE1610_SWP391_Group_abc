@@ -2,6 +2,8 @@ package com.swp391.ebutler.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,7 +32,7 @@ public class ServiceCategoryAPI {
 	}
 	
 	@PostMapping("/list")
-	public ResponseEntity<?> save(@RequestBody ServiceCategoryDTO sc) {
+	public ResponseEntity<?> save(@Valid @RequestBody ServiceCategoryDTO sc) {
 		return ResponseEntity.ok(scs.save(sc));
 	}
 	
@@ -40,7 +42,7 @@ public class ServiceCategoryAPI {
 	}
 	
 	@PutMapping("/list/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody ServiceCategoryDTO sc) {
+	public ResponseEntity<?> update(@PathVariable("id") int id, @Valid @RequestBody ServiceCategoryDTO sc) {
 		sc.setServicecategoryId(id);
 		return ResponseEntity.ok(scs.save(sc));
 	}
