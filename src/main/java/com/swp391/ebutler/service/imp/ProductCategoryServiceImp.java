@@ -65,5 +65,14 @@ public class ProductCategoryServiceImp implements ProductCategoryService{
 		procate.setStatus(procateDTO.getStatus());
 		return procate;
 	}
+
+
+	@Override
+	public List<ProductCategoryDTO> searchByName(String name) {
+		List<ProductCategory> result = repo.findByProductcategoryNameContaining(name);
+		List<ProductCategoryDTO> listDTO = new ArrayList<>();
+		result.forEach(v -> listDTO.add(ProductCategoryMapper.toProductCategoryDTO(v)));
+		return listDTO;
+	}
 	
 }

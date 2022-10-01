@@ -82,5 +82,13 @@ public class ProductServiceImp implements ProductService{
 	public ProductCategory getProCateId(int id) {
 		return procateRepo.findById(id).get();
 	}
+
+	@Override
+	public List<ProductDTO> searchByName(String name) {
+		List<Product> result = productRepo.findByProductNameContaining(name);
+		List<ProductDTO> listDTO = new ArrayList<>();
+		result.forEach(v -> listDTO.add(ProductMapper.toProductDTO(v)));
+		return listDTO;
+	}
 	
 }

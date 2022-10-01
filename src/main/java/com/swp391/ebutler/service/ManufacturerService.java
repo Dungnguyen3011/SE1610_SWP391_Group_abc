@@ -18,4 +18,6 @@ public interface ManufacturerService {
 	
 	public ManufacturerDTO getByIdDTO(int id);
 	
+	public List<ManufacturerDTO> searchByName(String name);
+	
 }

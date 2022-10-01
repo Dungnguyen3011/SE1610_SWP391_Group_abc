@@ -2,7 +2,10 @@ package com.swp391.ebutler.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,8 +31,14 @@ public class ProductCategoryAPI {
 		return ResponseEntity.ok(result);
 	}
 	
+	@GetMapping("/list/getbyname")
+	public ResponseEntity<?> getListByName(@Param("name") String name){
+		List<ProductCategoryDTO> result = procateService.searchByName(name);
+		return ResponseEntity.ok(result);
+	}
+	
 	@PostMapping("/list")
-	public ResponseEntity<?> save(@RequestBody ProductCategoryDTO proCategory){
+	public ResponseEntity<?> save(@Valid @RequestBody ProductCategoryDTO proCategory){
 		return ResponseEntity.ok(procateService.save(proCategory));
 	}
 	
@@ -39,7 +48,7 @@ public class ProductCategoryAPI {
 	}
 	
 	@PutMapping("/list/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody ProductCategoryDTO proCategory) {
+	public ResponseEntity<?> update(@Valid @PathVariable("id") int id, @RequestBody ProductCategoryDTO proCategory) {
 		proCategory.setProductcategoryId(id);
 		return ResponseEntity.ok(procateService.save(proCategory));
 	}
