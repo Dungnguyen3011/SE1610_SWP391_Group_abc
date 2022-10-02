@@ -19,4 +19,8 @@ public interface ProductService {
 	public ProductDTO getByIdDTO(int id);
 
 	public List<ProductDTO> searchByName(String name);
+	
+	public List<ProductDTO> listByCate(int cid);
+	
+	public List<ProductDTO> listByManu(int mid);
 }

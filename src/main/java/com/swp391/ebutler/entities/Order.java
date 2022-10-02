@@ -1,7 +1,6 @@
 package com.swp391.ebutler.entities;
 
 import java.sql.Date;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
