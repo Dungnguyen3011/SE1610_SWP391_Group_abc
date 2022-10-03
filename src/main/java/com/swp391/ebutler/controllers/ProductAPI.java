@@ -70,14 +70,4 @@ public class ProductAPI {
 		return ResponseEntity.ok(pService.save(product));
 	}
 	
-	
-	@GetMapping("/list/count/{id}")
-	public ResponseEntity<?> count(@PathVariable("id") Integer id){
-		return ResponseEntity.ok(pService.countByManuId(id));
-	}
-	
-	@GetMapping("/list/countgroupby")
-	public ResponseEntity<?> countGroupBy(){
-		return ResponseEntity.ok(pService.countGroupBy());
-	}
 }

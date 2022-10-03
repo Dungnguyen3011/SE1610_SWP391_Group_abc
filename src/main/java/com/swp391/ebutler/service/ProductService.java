@@ -3,7 +3,6 @@ package com.swp391.ebutler.service;
 import java.util.List;
 
 import com.swp391.ebutler.entities.Product;
-import com.swp391.ebutler.model.dto.CountDTO;
 import com.swp391.ebutler.model.dto.ProductDTO;
 
 
@@ -25,7 +24,5 @@ public interface ProductService {
 	
 	public List<ProductDTO> listByManu(int mid);
 
-	public Integer countByManuId(Integer mid);
 	
-	public List<Object[]> countGroupBy();
 }

@@ -21,6 +21,7 @@ import com.swp391.ebutler.model.dto.ProductCategoryDTO;
 import com.swp391.ebutler.model.dto.ProductDTO;
 import com.swp391.ebutler.service.ManufacturerService;
 import com.swp391.ebutler.service.ProductCategoryService;
+import com.swp391.ebutler.service.ProductProviderService;
 import com.swp391.ebutler.service.ProductService;
 
 @RestController
@@ -33,6 +34,8 @@ public class AdminAPI {
 	ProductService pService;
 	@Autowired
 	ProductCategoryService procateService;
+	@Autowired
+	ProductProviderService pproviderService;
 
 	// List all manufacturers
 	@GetMapping("/manufacturer/list")
@@ -132,4 +135,12 @@ public class AdminAPI {
 		product.setProductId(id);
 		return ResponseEntity.ok(pService.save(product));
 	}
+	
+	//
+	//Count provider by product_provider
+	@GetMapping("/product/countprovider/{id}")
+	public ResponseEntity<?> countProductProvider(@PathVariable("id") int id) {
+		return ResponseEntity.ok(pproviderService.countByProductId(id));
+	}
+	
 }

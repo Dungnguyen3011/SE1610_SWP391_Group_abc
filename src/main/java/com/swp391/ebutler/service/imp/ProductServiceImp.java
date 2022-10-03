@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.swp391.ebutler.entities.Manufacturer;
 import com.swp391.ebutler.entities.Product;
 import com.swp391.ebutler.entities.ProductCategory;
-import com.swp391.ebutler.model.dto.CountDTO;
 import com.swp391.ebutler.model.dto.ProductDTO;
 import com.swp391.ebutler.model.mapper.ProductMapper;
 import com.swp391.ebutler.repositories.ManufacturerRepository;
@@ -110,14 +109,5 @@ public class ProductServiceImp implements ProductService{
 		return listDTO;
 	}
 
-	@Override
-	public Integer countByManuId(Integer mid) {
-		return productRepo.countByManufacturerId(mid);
-	}
-
-	@Override
-	public List<Object[]> countGroupBy() {
-		return productRepo.countGroupBy();
-	}
 	
 }
