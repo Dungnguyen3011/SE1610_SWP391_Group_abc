@@ -80,4 +80,9 @@ public class ProductProviderServiceImp implements ProductProviderService {
 	public Provider getProviderById(int id) {
 		return providerRepo.findById(id).get();
 	}
+
+	@Override
+	public Integer countByProductId(int id) {
+		return pProviderRepo.countByProductId(id);
+	}
 }

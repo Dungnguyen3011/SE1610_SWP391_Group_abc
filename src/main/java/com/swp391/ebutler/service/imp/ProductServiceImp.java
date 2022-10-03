@@ -90,5 +90,24 @@ public class ProductServiceImp implements ProductService{
 		result.forEach(v -> listDTO.add(ProductMapper.toProductDTO(v)));
 		return listDTO;
 	}
+
+	@Override
+	public List<ProductDTO> listByCate(int cid) {
+		ProductCategory procate = getProCateId(cid);
+		List<Product> result = productRepo.findByProCategory(procate);
+		List<ProductDTO> listDTO = new ArrayList<>();
+		result.forEach(v -> listDTO.add(ProductMapper.toProductDTO(v)));
+		return listDTO;
+	}
+
+	@Override
+	public List<ProductDTO> listByManu(int mid) {
+		Manufacturer manu = getManuById(mid);
+		List<Product> result = productRepo.findByManu(manu);
+		List<ProductDTO> listDTO = new ArrayList<>();
+		result.forEach(v -> listDTO.add(ProductMapper.toProductDTO(v)));
+		return listDTO;
+	}
+
 	
 }

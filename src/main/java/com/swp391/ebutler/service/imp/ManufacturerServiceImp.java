@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.swp391.ebutler.entities.Manufacturer;
@@ -11,6 +13,7 @@ import com.swp391.ebutler.model.dto.ManufacturerDTO;
 import com.swp391.ebutler.model.mapper.ManufacturerMapper;
 import com.swp391.ebutler.repositories.ManufacturerRepository;
 import com.swp391.ebutler.service.ManufacturerService;
+
 
 
 @Service
@@ -67,6 +70,14 @@ public class ManufacturerServiceImp implements ManufacturerService{
 	@Override
 	public List<ManufacturerDTO> searchByName(String name) {
 		List<Manufacturer> result = repo.findByManufacturerNameContaining(name);
+		List<ManufacturerDTO> listDTO = new ArrayList<>();
+		result.forEach(v -> listDTO.add(ManufacturerMapper.toManufacturerDTO(v)));
+		return listDTO;
+	}
+
+	@Override
+	public List<ManufacturerDTO> sort(String name) {
+		List<Manufacturer> result = repo.findByManufacturerNameContaining(name, Sort.by(Direction.ASC, "manufacturerName") );
 		List<ManufacturerDTO> listDTO = new ArrayList<>();
 		result.forEach(v -> listDTO.add(ManufacturerMapper.toManufacturerDTO(v)));
 		return listDTO;

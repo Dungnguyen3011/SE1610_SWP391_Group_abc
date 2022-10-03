@@ -5,7 +5,6 @@ import java.util.List;
 import com.swp391.ebutler.entities.Manufacturer;
 import com.swp391.ebutler.model.dto.ManufacturerDTO;
 
-
 public interface ManufacturerService {
 	
 	public List<ManufacturerDTO> listAll();
@@ -19,5 +18,7 @@ public interface ManufacturerService {
 	public ManufacturerDTO getByIdDTO(int id);
 	
 	public List<ManufacturerDTO> searchByName(String name);
+	
+	public List<ManufacturerDTO> sort(String name);
 	
 }
