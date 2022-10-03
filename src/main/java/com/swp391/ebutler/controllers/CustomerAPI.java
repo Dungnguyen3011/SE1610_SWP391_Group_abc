@@ -34,27 +34,27 @@ public class CustomerAPI {
 	}
 	
 	// Add a customer
-	@PostMapping("/list")
+	@PostMapping("/add")
 	public ResponseEntity<?> save(@Valid @RequestBody CustomerDTO c) {
 		return ResponseEntity.ok(cs.save(c));
 	}
 	
 	// Update a customer profile 
-	@PutMapping("/list/{id}")
+	@PutMapping("/update/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") int id, @Valid @RequestBody CustomerDTO c) {
 		c.setCustomerId(id);
 		return ResponseEntity.ok(cs.save(c));
 	}
 	
 	// Search by customer name and sort ASC by name
-	@GetMapping("/list/searchByName")
+	@GetMapping("/listbyname")
 	public ResponseEntity<?> searchByName(@Param("name") String name) {
 		List<CustomerDTO> result = cs.searchByName(name);
 		return ResponseEntity.ok(result);
 	}
 	
 	// Search By customer id
-	@GetMapping("/list/searchById")
+	@GetMapping("/search")
 	public ResponseEntity<?> searchById(@Param("id") int id) {
 		CustomerDTO result = cs.searchById(id);
 		return ResponseEntity.ok(result);

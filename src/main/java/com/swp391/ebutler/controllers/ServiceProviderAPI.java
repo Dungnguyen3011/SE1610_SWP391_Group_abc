@@ -34,26 +34,26 @@ public class ServiceProviderAPI {
 	}
 	
 	// Add a service provider
-	@PostMapping("/list")
+	@PostMapping("/add")
 	public ResponseEntity<?> save(@Valid @RequestBody ServiceProviderDTO sp) {
 		return ResponseEntity.ok(sps.save(sp));
 	}
 	
 	// Delete a service provider
-	@DeleteMapping("/list/{id}")
+	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") int id){
 		return ResponseEntity.ok(sps.delete(id));
 	}
 	
 	// Update a service provider
-	@PutMapping("/list/{id}")
+	@PutMapping("/update/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") int id, @Valid @RequestBody ServiceProviderDTO sp) {
 		sp.setServiceproviderId(id);
 		return ResponseEntity.ok(sps.save(sp));
 	}
 	
 	// Search a service provider by id
-	@GetMapping("/list/searchById")
+	@GetMapping("/search")
 	public ResponseEntity<?> searchById(@Param("id") int id) {
 		ServiceProviderDTO result = sps.searchById(id);
 		return ResponseEntity.ok(result);

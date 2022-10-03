@@ -34,33 +34,33 @@ public class ServiceCategoryAPI {
 	}
 	
 	// Add a service category
-	@PostMapping("/list")
+	@PostMapping("/add")
 	public ResponseEntity<?> save(@Valid @RequestBody ServiceCategoryDTO sc) {
 		return ResponseEntity.ok(scs.save(sc));
 	}
 	
 	// Delete a service category
-	@DeleteMapping("/list/{id}")
+	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") int id) {
 		return ResponseEntity.ok(scs.delete(id));
 	}
 	
 	// Update a service category
-	@PutMapping("/list/{id}")
+	@PutMapping("/update/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") int id, @Valid @RequestBody ServiceCategoryDTO sc) {
 		sc.setServicecategoryId(id);
 		return ResponseEntity.ok(scs.save(sc));
 	}
 	
 	// Search service categories by name and sort ASC by name
-	@GetMapping("/list/searchByName")
+	@GetMapping("/listbyname")
 	public ResponseEntity<?> searchbyName(@Param("name") String name) {
 		List<ServiceCategoryDTO> result = scs.searchByName(name);
 		return ResponseEntity.ok(result);
 	}
 	
 	// Search a service category by id
-	@GetMapping("/list/searchById")
+	@GetMapping("/search")
 	public ResponseEntity<?> searchbyId(@Param("id") int id) {
 		ServiceCategoryDTO result = scs.searchById(id);
 		return ResponseEntity.ok(result);

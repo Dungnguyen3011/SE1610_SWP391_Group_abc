@@ -34,33 +34,33 @@ public class ServiceAPI {
 	}
 	
 	// Add a services
-	@PostMapping("/list")
+	@PostMapping("/add")
 	public ResponseEntity<?> save(@Valid @RequestBody ServicesDTO s) {
 		return ResponseEntity.ok(ss.save(s));
 	}
 	
 	// Delete a service
-	@DeleteMapping("/list/{id}")
+	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") int id) {
 		return ResponseEntity.ok(ss.delete(id));
 	}
 	
 	// Update a service
-	@PutMapping("/list/{id}")
+	@PutMapping("/update/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") int id, @Valid @RequestBody ServicesDTO s) {
 		s.setServiceId(id);
 		return ResponseEntity.ok(ss.save(s));
 	}
 	
 	// Search services by name and sort ASC by name
-	@GetMapping("/list/searchByName")
+	@GetMapping("/listbyname")
 	public ResponseEntity<?> searchByName(@Param("name") String name) {
 		List<ServicesDTO> result = ss.searchByName(name);
 		return ResponseEntity.ok(result);
 	}
 	
 	// Search a service by id
-	@GetMapping("/list/searchById")
+	@GetMapping("/search")
 	public ResponseEntity<?> searchById(@Param("id") int id) {
 		ServicesDTO result = ss.searchById(id);
 		return ResponseEntity.ok(result);
