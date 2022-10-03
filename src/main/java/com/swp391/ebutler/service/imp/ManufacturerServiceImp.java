@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.swp391.ebutler.entities.Manufacturer;
 import com.swp391.ebutler.model.dto.ManufacturerDTO;
@@ -17,6 +16,7 @@ import com.swp391.ebutler.service.ManufacturerService;
 
 
 @Service
+@Transactional
 public class ManufacturerServiceImp implements ManufacturerService{
 	@Autowired
 	ManufacturerRepository repo;
@@ -76,8 +76,8 @@ public class ManufacturerServiceImp implements ManufacturerService{
 	}
 
 	@Override
-	public List<ManufacturerDTO> sort(String name) {
-		List<Manufacturer> result = repo.findByManufacturerNameContaining(name, Sort.by(Direction.ASC, "manufacturerName") );
+	public List<ManufacturerDTO> listAllFoCus() {
+		List<Manufacturer> result = repo.findByStatus(true);
 		List<ManufacturerDTO> listDTO = new ArrayList<>();
 		result.forEach(v -> listDTO.add(ManufacturerMapper.toManufacturerDTO(v)));
 		return listDTO;

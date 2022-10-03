@@ -19,6 +19,6 @@ public interface ManufacturerService {
 	
 	public List<ManufacturerDTO> searchByName(String name);
 	
-	public List<ManufacturerDTO> sort(String name);
+	public List<ManufacturerDTO> listAllFoCus();
 	
 }

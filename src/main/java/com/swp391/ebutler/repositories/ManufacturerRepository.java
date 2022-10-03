@@ -13,4 +13,5 @@ public interface ManufacturerRepository extends JpaRepository<Manufacturer, Inte
 	
 	List<Manufacturer> findByManufacturerNameContaining(String manufacturerName, Sort sort);
 	
+	List<Manufacturer> findByStatus(Boolean status);
 }

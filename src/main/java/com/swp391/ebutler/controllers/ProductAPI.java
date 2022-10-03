@@ -26,28 +26,28 @@ public class ProductAPI {
 	//List all products
 	@GetMapping("/list")
 	public ResponseEntity<?> getList(){
-		List<ProductDTO> result = pService.listAll();
+		List<ProductDTO> result = pService.listAllFoCus();
 		return ResponseEntity.ok(result);
 	}
 	
 	//List products by name
 	@GetMapping("/list/getbyname")
 	public ResponseEntity<?> getListByName(@Param("name") String name){
-		List<ProductDTO> result = pService.searchByName(name);
+		List<ProductDTO> result = pService.searchByNameFoCus(name);
 		return ResponseEntity.ok(result);
 	}
 	
 	//List products by {category id}
 	@GetMapping("/list/getbycategory/{cid}")
 	public ResponseEntity<?> getListByCate(@PathVariable("cid") int cid){
-		List<ProductDTO> result = pService.listByCate(cid);
+		List<ProductDTO> result = pService.listByCateFoCus(cid);
 		return ResponseEntity.ok(result);
 	}
 	
 	//List products by {manufacturer id}
 	@GetMapping("/list/getbymanu/{mid}")
 	public ResponseEntity<?> getListByManu(@PathVariable("mid") int mid){
-		List<ProductDTO> result = pService.listByManu(mid);
+		List<ProductDTO> result = pService.listByManuFoCus(mid);
 		return ResponseEntity.ok(result);
 	}
 	

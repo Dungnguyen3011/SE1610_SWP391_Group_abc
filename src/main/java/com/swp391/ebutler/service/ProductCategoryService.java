@@ -18,4 +18,6 @@ public interface ProductCategoryService {
 	public ProductCategoryDTO getByIdDTO(int id);
 	
 	public List<ProductCategoryDTO> searchByName(String name);
+	
+	public List<ProductCategoryDTO> listAllFoCus();
 }
