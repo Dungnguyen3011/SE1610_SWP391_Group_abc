@@ -27,11 +27,13 @@ public class ServiceProvider {
 	@Column(name = "rating")
 	private Integer rating;
 	
+	// Foreign key 1 [provider id]
 	@ManyToOne
 	@JoinColumn(name = "provider_id")
 	@JsonBackReference
 	private Provider provider;
 	
+	// Foreign key 2 [service id]
 	@ManyToOne
 	@JoinColumn(name = "service_id")
 	@JsonBackReference
@@ -46,6 +48,7 @@ public class ServiceProvider {
 	@Column(name = "status")
 	private Boolean status;
 
+	// Constructor with parameters
 	public ServiceProvider(Integer serviceproviderId, Integer rating, Provider provider, Services service,
 			Float minPrice, Float maxPrice, Boolean status) {
 		super();

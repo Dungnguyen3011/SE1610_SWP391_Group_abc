@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.swp391.ebutler.entities.ServiceCategory;
@@ -18,6 +20,7 @@ public class ServiceCategoryServiceImp implements ServiceCategoryService {
 	@Autowired
 	ServiceCategoryRepository repo;
 
+	// Show all 
 	@Override
 	public List<ServiceCategoryDTO> listAll() {
 		List<ServiceCategory> result = repo.findAll();
@@ -26,15 +29,17 @@ public class ServiceCategoryServiceImp implements ServiceCategoryService {
 		return listDTO;
 	}
 
+	// Save 
 	@Override
 	public ServiceCategoryDTO save(ServiceCategoryDTO scDTO) {
 		ServiceCategory sc = toServiceCategory(scDTO);
 		return ServiceCategoryMapper.toServiceCategoryDTO(repo.save(sc));
 	}
 
+	// Delete 
 	@Override
 	public ServiceCategoryDTO delete(int id) {
-		ServiceCategory sc = getById(id);
+		ServiceCategory sc = getId(id);
 		if (sc != null) {
 			sc.setStatus(false);
 			return ServiceCategoryMapper.toServiceCategoryDTO(repo.save(sc));
@@ -42,20 +47,30 @@ public class ServiceCategoryServiceImp implements ServiceCategoryService {
 		return null;
 	}
 
-	@Override
-	public ServiceCategory getById(int id) {
+	// Search by id
+	public ServiceCategory getId(int id) {
 		return repo.findById(id).get();
 	}
 
 	@Override
-	public ServiceCategoryDTO getByIdDTO(int id) {
-		ServiceCategory sc = repo.findById(id).get();
+	public ServiceCategoryDTO searchById(int id) {
+		ServiceCategory sc = getId(id);
 		if (sc != null) {
 			return ServiceCategoryMapper.toServiceCategoryDTO(sc);
 		}		
 		return null;
 	}
 	
+	// Search by name
+	public List<ServiceCategoryDTO> searchByName(String name) {
+		List<ServiceCategory> result = repo.findByServicecategoryNameContaining(name, Sort.by(Direction.ASC, "servicecategoryName"));
+		List<ServiceCategoryDTO> lisDtos = new ArrayList<>();
+		result.forEach(v -> lisDtos.add(ServiceCategoryMapper.toServiceCategoryDTO(v)));
+		return lisDtos;
+		
+	}
+	
+	// Type casting
 	public ServiceCategory toServiceCategory(ServiceCategoryDTO scDTO) {
 		ServiceCategory sc = new ServiceCategory();
 		sc.setServicecategoryId(scDTO.getServicecategoryId());

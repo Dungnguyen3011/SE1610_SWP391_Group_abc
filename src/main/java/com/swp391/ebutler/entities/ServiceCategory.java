@@ -32,6 +32,7 @@ public class ServiceCategory {
 	@Column(name = "status")
 	private Boolean status;
 	
+	// Primary key [service category Id]
 	@OneToMany(mappedBy = "sCategory", fetch = FetchType.LAZY)
 	@JsonManagedReference
 	private Set<Services> service;

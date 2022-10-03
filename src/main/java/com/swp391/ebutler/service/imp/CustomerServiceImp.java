@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.swp391.ebutler.entities.Account;
@@ -22,34 +24,49 @@ public class CustomerServiceImp implements CustomerService {
 	@Autowired
 	AccountRepository aRepo;
 
+	// Show all
 	@Override
-	public List<CustomerDTO> listAll() {
+	public List<CustomerDTO> listAll() { 
 		List<Customer> result = cRepo.findAll();
 		List<CustomerDTO> listDTO = new ArrayList<>();
 		result.forEach(v -> listDTO.add(CustomerMapper.toCustomerDTO(v)));
 		return listDTO;
 	}
 
+	
+	// Save 
 	@Override
 	public CustomerDTO save(CustomerDTO cDTO) {
 		Customer c = toCustomer(cDTO);
 		return CustomerMapper.toCustomerDTO(cRepo.save(c));
 	}
 
-	@Override
-	public Customer getById(int id) {
+	
+	// Search By Id
+	public Customer getId(int id) {
 		return cRepo.findById(id).get();
 	}
-
 	@Override
-	public CustomerDTO getByIdDTO(int id) {
-		Customer c = cRepo.findById(id).get();
+	public CustomerDTO searchById(int id) {
+		Customer c = getId(id);
 		if (c != null) {
 			return CustomerMapper.toCustomerDTO(c);
 		}
 		return null;
 	}
+	
+	
+	// Search by Name and sort ASC with name
+	@Override
+	public List<CustomerDTO> searchByName(String name) {
+		List<Customer> result = cRepo.findByFullNameContaining(name, Sort.by(Direction.ASC, "fullName"));
+		List<CustomerDTO> listDTO = new ArrayList<>();
+		result.forEach(v -> listDTO.add(CustomerMapper.toCustomerDTO(v)));
+		return listDTO;
+	}
+	
 
+	// Type casting
 	public Customer toCustomer(CustomerDTO cDTO) {
 		Customer c = new Customer();
 		c.setCustomerId(cDTO.getCustomerId());
@@ -61,6 +78,7 @@ public class CustomerServiceImp implements CustomerService {
 		return c;
 	}
 
+	// Get account by id
 	public Account getAccountById(int id) {
 		return aRepo.findById(id).get();
 	}

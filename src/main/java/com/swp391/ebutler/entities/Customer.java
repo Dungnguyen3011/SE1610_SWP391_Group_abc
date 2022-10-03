@@ -41,15 +41,18 @@ public class Customer {
 	@Column(name = "address")
 	private String address;
 	
+	// Foreign key [account Id]
 	@OneToOne
 	@JsonBackReference
 	@JoinColumn(name = "accountId")
 	private Account account;
 	
+	// Primary key [customer Id]
 	@OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
 	@JsonManagedReference
 	private Set<Order> orders;
 
+	// Constructor with parameters
 	public Customer(Integer customerId, String email, String fullName, String phoneNumber, String address,
 			Account account) {
 		super();

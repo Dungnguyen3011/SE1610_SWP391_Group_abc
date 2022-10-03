@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.swp391.ebutler.entities.ServiceCategory;
@@ -22,6 +24,7 @@ public class ServicesServiceImp implements ServicesService {
 	@Autowired
 	ServiceCategoryRepository scRepo;
 
+	// Show all 
 	@Override
 	public List<ServicesDTO> listAll() {
 		List<Services> result = sRepo.findAll();
@@ -30,15 +33,17 @@ public class ServicesServiceImp implements ServicesService {
 		return listDTO;
 	}
 
+	// Save
 	@Override
 	public ServicesDTO save(ServicesDTO sDTO) {
 		Services s = toServices(sDTO);
 		return ServicesMapper.toServicesDTO(sRepo.save(s));
 	}
 
+	// Delete 
 	@Override
 	public ServicesDTO delete(int id) {
-		Services s = getById(id);
+		Services s = getId(id);
 		if (s != null) {
 			s.setStatus(false);
 			return ServicesMapper.toServicesDTO(sRepo.save(s));
@@ -46,20 +51,29 @@ public class ServicesServiceImp implements ServicesService {
 		return null;
 	}
 
-	@Override
-	public Services getById(int id) {
+	// Search by id
+	public Services getId(int id) {
 		return sRepo.findById(id).get();
 	}
 
 	@Override
-	public ServicesDTO getByIdDTO(int id) {
-		Services s = sRepo.findById(id).get();
+	public ServicesDTO searchById(int id) {
+		Services s = getId(id);
 		if (s != null) {
 			return ServicesMapper.toServicesDTO(s);
 		}
 		return null;
 	}
-
+	
+	// Search by name
+	public List<ServicesDTO> searchByName(String name) {
+		List<Services> result = sRepo.findByServiceNameContaining(name, Sort.by(Direction.ASC, "serviceName"));
+		List<ServicesDTO> listDtos = new ArrayList<>();
+		result.forEach(v -> listDtos.add(ServicesMapper.toServicesDTO(v)));
+		return listDtos;
+	}
+	
+	// Type casting
 	public Services toServices(ServicesDTO sDTO) {
 		Services s = new Services();
 		s.setServiceId(sDTO.getServiceId());
@@ -71,6 +85,7 @@ public class ServicesServiceImp implements ServicesService {
 		return s;
 	}
 
+	// Get service category by id
 	public ServiceCategory getServiceCategoryById(int id) {
 		return scRepo.findById(id).get();
 	}

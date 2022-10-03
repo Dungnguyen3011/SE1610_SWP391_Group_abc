@@ -26,6 +26,7 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 	@Autowired
 	ProviderRepository pRepo;
 	
+	// Show all
 	@Override
 	public List<ServiceProviderDTO> listAll() {
 		List<ServiceProvider> result = spRepo.findAll();
@@ -34,15 +35,17 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 		return listDTO;
 	}
 
+	// Save
 	@Override
 	public ServiceProviderDTO save(ServiceProviderDTO spDTO) {
 		ServiceProvider sp = toServiceProvider(spDTO);
 		return ServiceProviderMapper.toServiceProviderDTO(spRepo.save(sp));	
 	}
 
+	// Delete
 	@Override
 	public ServiceProviderDTO delete(int id) {
-		ServiceProvider sp = getById(id);
+		ServiceProvider sp = getId(id);
 		if(sp != null) {
 			sp.setStatus(false);
 			return ServiceProviderMapper.toServiceProviderDTO(spRepo.save(sp));
@@ -50,20 +53,21 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 		return null;
 	}
 
-	@Override
-	public ServiceProvider getById(int id) {
+	// Search By id
+	public ServiceProvider getId(int id) {
 		return spRepo.findById(id).get();
 	}
 
 	@Override
-	public ServiceProviderDTO getByIdDTO(int id) {
-		ServiceProvider sp = spRepo.findById(id).get();
+	public ServiceProviderDTO searchById(int id) {
+		ServiceProvider sp = getId(id);
 		if(sp != null) {
 			return ServiceProviderMapper.toServiceProviderDTO(sp);
 		}
 		return null;
 	}
 	
+	// Type casting
 	public ServiceProvider toServiceProvider(ServiceProviderDTO spDTO) {
 		ServiceProvider sp = new ServiceProvider();
 		sp.setServiceproviderId(spDTO.getServiceproviderId());
@@ -76,10 +80,12 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 		return sp;
 	}
 	
+	// get service by id
 	public Services getServiceById(int id) {
 		return sRepo.findById(id).get();
 	}
 	
+	// get service provider by id
 	public Provider getProviderById(int id) {
 		return pRepo.findById(id).get();
 	}

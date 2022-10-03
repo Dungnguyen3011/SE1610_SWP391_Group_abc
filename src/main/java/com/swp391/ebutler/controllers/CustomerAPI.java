@@ -1,3 +1,4 @@
+
 package com.swp391.ebutler.controllers;
 
 import java.util.List;
@@ -5,6 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,21 +26,37 @@ public class CustomerAPI {
 	@Autowired
 	CustomerService cs;
 	
+	// Show all customers
 	@GetMapping("/list")
 	public ResponseEntity<?> getList() {
 		List<CustomerDTO> result = cs.listAll();
 		return ResponseEntity.ok(result);
 	}
 	
+	// Add a customer
 	@PostMapping("/list")
 	public ResponseEntity<?> save(@Valid @RequestBody CustomerDTO c) {
 		return ResponseEntity.ok(cs.save(c));
 	}
 	
+	// Update a customer profile 
 	@PutMapping("/list/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") int id, @Valid @RequestBody CustomerDTO c) {
 		c.setCustomerId(id);
 		return ResponseEntity.ok(cs.save(c));
 	}
 	
+	// Search by customer name and sort ASC by name
+	@GetMapping("/list/searchByName")
+	public ResponseEntity<?> searchByName(@Param("name") String name) {
+		List<CustomerDTO> result = cs.searchByName(name);
+		return ResponseEntity.ok(result);
+	}
+	
+	// Search By customer id
+	@GetMapping("/list/searchById")
+	public ResponseEntity<?> searchById(@Param("id") int id) {
+		CustomerDTO result = cs.searchById(id);
+		return ResponseEntity.ok(result);
+	}
 }

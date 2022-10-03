@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,25 +26,43 @@ public class ServiceAPI {
 	@Autowired
 	ServicesService ss;
 	
+	// Show all services
 	@GetMapping("/list")
 	public ResponseEntity<?> getList() {
 		List<ServicesDTO> result = ss.listAll();
 		return ResponseEntity.ok(result);
 	}
 	
+	// Add a services
 	@PostMapping("/list")
 	public ResponseEntity<?> save(@Valid @RequestBody ServicesDTO s) {
 		return ResponseEntity.ok(ss.save(s));
 	}
 	
+	// Delete a service
 	@DeleteMapping("/list/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") int id) {
 		return ResponseEntity.ok(ss.delete(id));
 	}
 	
+	// Update a service
 	@PutMapping("/list/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") int id, @Valid @RequestBody ServicesDTO s) {
 		s.setServiceId(id);
 		return ResponseEntity.ok(ss.save(s));
+	}
+	
+	// Search services by name and sort ASC by name
+	@GetMapping("/list/searchByName")
+	public ResponseEntity<?> searchByName(@Param("name") String name) {
+		List<ServicesDTO> result = ss.searchByName(name);
+		return ResponseEntity.ok(result);
+	}
+	
+	// Search a service by id
+	@GetMapping("/list/searchById")
+	public ResponseEntity<?> searchById(@Param("id") int id) {
+		ServicesDTO result = ss.searchById(id);
+		return ResponseEntity.ok(result);
 	}
 }
