@@ -23,6 +23,13 @@ public interface ProductService {
 	public List<ProductDTO> listByCate(int cid);
 	
 	public List<ProductDTO> listByManu(int mid);
-
+	
+	public List<ProductDTO> listAllFoCus();
+	
+	public List<ProductDTO> searchByNameFoCus(String name);
+	
+	public List<ProductDTO> listByCateFoCus(int cid);
+	
+	public List<ProductDTO> listByManuFoCus(int mid);
 	
 }

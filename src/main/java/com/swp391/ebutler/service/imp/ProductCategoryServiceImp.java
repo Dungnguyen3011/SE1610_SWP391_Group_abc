@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.swp391.ebutler.entities.ProductCategory;
 import com.swp391.ebutler.model.dto.ProductCategoryDTO;
@@ -13,6 +14,7 @@ import com.swp391.ebutler.repositories.ProductCategoryRepository;
 import com.swp391.ebutler.service.ProductCategoryService;
 
 @Service
+@Transactional
 public class ProductCategoryServiceImp implements ProductCategoryService{
 
 	@Autowired
@@ -70,6 +72,15 @@ public class ProductCategoryServiceImp implements ProductCategoryService{
 	@Override
 	public List<ProductCategoryDTO> searchByName(String name) {
 		List<ProductCategory> result = repo.findByProductcategoryNameContaining(name);
+		List<ProductCategoryDTO> listDTO = new ArrayList<>();
+		result.forEach(v -> listDTO.add(ProductCategoryMapper.toProductCategoryDTO(v)));
+		return listDTO;
+	}
+
+
+	@Override
+	public List<ProductCategoryDTO> listAllFoCus() {
+		List<ProductCategory> result = repo.findByStatus(true);
 		List<ProductCategoryDTO> listDTO = new ArrayList<>();
 		result.forEach(v -> listDTO.add(ProductCategoryMapper.toProductCategoryDTO(v)));
 		return listDTO;

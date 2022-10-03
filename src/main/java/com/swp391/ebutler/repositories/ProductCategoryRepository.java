@@ -8,4 +8,6 @@ import com.swp391.ebutler.entities.ProductCategory;
 
 public interface ProductCategoryRepository extends JpaRepository<ProductCategory, Integer>{
 	List<ProductCategory> findByProductcategoryNameContaining(String productcategoryName);
+	
+	List<ProductCategory> findByStatus(Boolean status);
 }

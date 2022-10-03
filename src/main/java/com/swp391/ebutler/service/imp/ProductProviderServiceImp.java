@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.swp391.ebutler.entities.Product;
 import com.swp391.ebutler.entities.ProductProvider;
@@ -17,6 +20,7 @@ import com.swp391.ebutler.repositories.ProviderRepository;
 import com.swp391.ebutler.service.ProductProviderService;
 
 @Service
+@Transactional
 public class ProductProviderServiceImp implements ProductProviderService {
 	@Autowired
 	ProductProviderRepository pProviderRepo;
@@ -30,14 +34,14 @@ public class ProductProviderServiceImp implements ProductProviderService {
 	public List<ProductProviderDTO> listAll(){
 		List<ProductProvider> result = pProviderRepo.findAll();
 		List<ProductProviderDTO> listDTO = new ArrayList<>();
-		result.forEach(v -> listDTO.add(ProductProviderMapper.toProductCategoryDTO(v)) );
+		result.forEach(v -> listDTO.add(ProductProviderMapper.toProductProviderDTO(v)) );
 		return listDTO;
 	}
 
 	@Override
 	public ProductProviderDTO save(ProductProviderDTO pProviderDTO) {
 		ProductProvider pProvider = toProductProvider(pProviderDTO);
-		return ProductProviderMapper.toProductCategoryDTO(pProviderRepo.save(pProvider));	
+		return ProductProviderMapper.toProductProviderDTO(pProviderRepo.save(pProvider));	
 	}
 
 	@Override
@@ -45,7 +49,7 @@ public class ProductProviderServiceImp implements ProductProviderService {
 		ProductProvider pProvider = getById(id);
 		if(pProvider != null) {
 			pProvider.setStatus(false);
-			return ProductProviderMapper.toProductCategoryDTO(pProviderRepo.save(pProvider));
+			return ProductProviderMapper.toProductProviderDTO(pProviderRepo.save(pProvider));
 		}
 		return null;
 	}
@@ -53,7 +57,7 @@ public class ProductProviderServiceImp implements ProductProviderService {
 	@Override
 	public ProductProviderDTO getByIdDTO(int id) {
 		ProductProvider result = pProviderRepo.findById(id).get();
-		return ProductProviderMapper.toProductCategoryDTO(result);
+		return ProductProviderMapper.toProductProviderDTO(result);
 	}
 
 	@Override
@@ -84,5 +88,21 @@ public class ProductProviderServiceImp implements ProductProviderService {
 	@Override
 	public Integer countByProductId(int id) {
 		return pProviderRepo.countByProductId(id);
+	}
+
+	@Override
+	public List<ProductProviderDTO> listAllFoCus() {
+		List<ProductProvider> result = pProviderRepo.findByStatus(true);
+		List<ProductProviderDTO> listDTO = new ArrayList<>();
+		result.forEach(v -> listDTO.add(ProductProviderMapper.toProductProviderDTO(v)) );
+		return listDTO;
+	}
+
+	@Override
+	public List<ProductProviderDTO> sortByPriceAsc() {
+		List<ProductProvider> result = pProviderRepo.findByStatus(true, Sort.by(Direction.ASC, "unitPrice"));
+		List<ProductProviderDTO> listDTO = new ArrayList<>();
+		result.forEach(v -> listDTO.add(ProductProviderMapper.toProductProviderDTO(v)) );
+		return listDTO;
 	}
 }

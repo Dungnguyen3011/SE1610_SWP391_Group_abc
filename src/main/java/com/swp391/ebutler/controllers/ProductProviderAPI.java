@@ -4,12 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,24 +19,14 @@ public class ProductProviderAPI {
 	
 	@GetMapping("/list")
 	public ResponseEntity<?> getList(){
-		List<ProductProviderDTO> result = pproviderService.listAll();
+		List<ProductProviderDTO> result = pproviderService.listAllFoCus();
 		return ResponseEntity.ok(result);
 	}
 	
-	@PostMapping("/list")
-	public ResponseEntity<?> save(@RequestBody ProductProviderDTO pProvider){
-		return ResponseEntity.ok(pproviderService.save(pProvider));
+	@GetMapping("/list/sort")
+	public ResponseEntity<?> sortByPriceAsc(){
+		List<ProductProviderDTO> result = pproviderService.sortByPriceAsc();
+		return ResponseEntity.ok(result);
 	}
 	
-	
-	@DeleteMapping("/list/{id}")
-	public ResponseEntity<?> delete(@PathVariable("id") int id){
-		return ResponseEntity.ok(pproviderService.delete(id));
-	}
-	
-	@PutMapping("/list/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody ProductProviderDTO pProvider) {
-		pProvider.setProductproviderId(id);
-		return ResponseEntity.ok(pproviderService.save(pProvider));
-	}
 }

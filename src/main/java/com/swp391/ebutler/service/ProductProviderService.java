@@ -17,4 +17,8 @@ public interface ProductProviderService {
 	public ProductProvider getById(int id);
 	
 	public Integer countByProductId(int id);
+	
+	public List<ProductProviderDTO> listAllFoCus();
+	
+	public List<ProductProviderDTO> sortByPriceAsc();
 }
