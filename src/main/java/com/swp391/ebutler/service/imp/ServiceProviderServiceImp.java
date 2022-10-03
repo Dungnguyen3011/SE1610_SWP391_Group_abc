@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.swp391.ebutler.entities.Provider;
 import com.swp391.ebutler.entities.ServiceProvider;
@@ -17,6 +18,7 @@ import com.swp391.ebutler.repositories.ServicesRepository;
 import com.swp391.ebutler.service.ServiceProviderService;
 
 @Service
+@Transactional
 public class ServiceProviderServiceImp implements ServiceProviderService {
 
 	@Autowired

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.swp391.ebutler.entities.Account;
 import com.swp391.ebutler.entities.Customer;
@@ -17,6 +18,7 @@ import com.swp391.ebutler.repositories.CustomerRepository;
 import com.swp391.ebutler.service.CustomerService;
 
 @Service
+@Transactional
 public class CustomerServiceImp implements CustomerService {
 
 	@Autowired
