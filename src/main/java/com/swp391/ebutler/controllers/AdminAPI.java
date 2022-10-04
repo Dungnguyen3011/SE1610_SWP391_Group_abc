@@ -163,7 +163,8 @@ public class AdminAPI {
 	}
 
 /*-----------------------------------------------------------------------------------------------------------------------------*/
-	/* product provider */
+	/* PRODUCT PROVIDER */
+	
 	// Count provider by product_provider
 	@GetMapping("/product/countprovider/{id}")
 	public ResponseEntity<?> countProductProvider(@PathVariable("id") int id) {
