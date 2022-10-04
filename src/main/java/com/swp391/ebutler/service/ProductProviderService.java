@@ -20,5 +20,13 @@ public interface ProductProviderService {
 	
 	public List<ProductProviderDTO> listAllFoCus();
 	
-	public List<ProductProviderDTO> sortByPriceAsc();
+	public List<ProductProviderDTO> sortByPrice(String sort);
+	
+	public List<ProductProviderDTO> sortByRating(String sort);
+	
+	public List<ProductProviderDTO> listByProductId(int id);
+	
+	public List<ProductProviderDTO> listByProviderId(int id);
+	
+	public List<ProductProviderDTO> sort(String sort);
 }
