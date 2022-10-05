@@ -36,10 +36,10 @@ public class Order {
 	private Date orderDate;
 	
 	@Column(name = "payment_type")
-	private Boolean paymentType;
+	private String paymentType;
 	
 	@Column(name = "shipping_status")
-	private Boolean shippingStatus;
+	private String shippingStatus;
 	
 	@JsonManagedReference
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
@@ -50,7 +50,7 @@ public class Order {
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 
-	public Order(Integer orderId, Float totalPrice, Date orderDate, Boolean paymentType, Boolean shippingStatus,
+	public Order(Integer orderId, Float totalPrice, Date orderDate, String paymentType, String shippingStatus,
 			Customer customer) {
 		super();
 		this.orderId = orderId;
