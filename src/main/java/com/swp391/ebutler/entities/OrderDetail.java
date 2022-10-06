@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Data;
 
-@Table(name = "tbl_order_details")
+@Table(name = "tbl_order_detail")
 @Entity
 @Data
 public class OrderDetail {

@@ -1,8 +1,7 @@
 package com.swp391.ebutler.entities;
 
 import java.sql.Date;
-import java.util.Set;
-
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,10 +17,12 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Table(name = "tbl_order")
 @Entity
 @Data
+@NoArgsConstructor
 public class Order {
 
 	@Id
@@ -43,13 +44,15 @@ public class Order {
 	
 	@JsonManagedReference
     @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
-	private Set<OrderDetail> orderDetailList;
+	private List<OrderDetail> orderDetailList;
 	
 	@ManyToOne
 	@JsonBackReference
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 
+	
+	
 	public Order(Integer orderId, Float totalPrice, Date orderDate, String paymentType, String shippingStatus,
 			Customer customer) {
 		super();
