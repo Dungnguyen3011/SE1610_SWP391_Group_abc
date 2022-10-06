@@ -13,17 +13,18 @@ import com.swp391.ebutler.repositories.OrderDetailRepository;
 import com.swp391.ebutler.service.OrderDetailService;
 
 @Service
-public class OrderDetailImp implements OrderDetailService {
-	
-	@Autowired
-	OrderDetailRepository oderdetailrepo;
+public class OrderDetailServiceImp implements OrderDetailService {
 
+	@Autowired
+	OrderDetailRepository oderdtrepo;
+	
 	@Override
 	public List<OrderDetailDTO> listOrderDetailByOrderId(int id) {
-		List<OrderDetail> order = oderdetailrepo.ListDetailByOrderId(id);
-		List<OrderDetailDTO> dto = new ArrayList<>();
-		order.forEach(v->dto.add(OrderDetailMapper.toOrderDetailDTO(v)));
+	List<OrderDetail> orderdetail = oderdtrepo.ListDetailByOrderId(id);
+	List<OrderDetailDTO> dto = new ArrayList<>();
+	orderdetail.forEach(v-> dto.add(OrderDetailMapper.toOrderDetailDTO(v)));
 		return dto;
 	}
 
+	
 }
