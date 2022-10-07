@@ -161,5 +161,23 @@ public class ProductProviderServiceImp implements ProductProviderService {
 		result.forEach(v -> listDTO.add(ProductProviderMapper.toProductProviderDTO(v)));
 		return listDTO;
 	}
-	
+
+	@Override
+	public List<ProductProviderDTO> listByProductIdFoCus(int id) {
+		Product product = getProductById(id);
+		List<ProductProvider> result = pProviderRepo.findByProductAndStatus(product, true);
+		List<ProductProviderDTO> listDTO = new ArrayList<>();
+		result.forEach(v -> listDTO.add(ProductProviderMapper.toProductProviderDTO(v)));
+		return listDTO;
+	}
+
+	@Override
+	public List<ProductProviderDTO> listByProviderIdFoCus(int id) {
+		Provider provider = getProviderById(id);
+		List<ProductProvider> result = pProviderRepo.findByProviderAndStatus(provider, true);
+		List<ProductProviderDTO> listDTO = new ArrayList<>();
+		result.forEach(v -> listDTO.add(ProductProviderMapper.toProductProviderDTO(v)));
+		return listDTO;
+	}
+
 }
