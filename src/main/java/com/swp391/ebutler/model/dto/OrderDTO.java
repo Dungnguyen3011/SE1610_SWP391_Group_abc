@@ -18,7 +18,8 @@ public class OrderDTO {
 	private Integer orderId;
 	private Float totalPrice;
 	private Date orderDate;
-	private Boolean paymentType;
-	private Boolean shippingStatus;
+	private String paymentType;
+	private String shippingStatus;
+	private Integer customerId;
 	private List<OrderDetailDTO> orderDetailList;
 }
