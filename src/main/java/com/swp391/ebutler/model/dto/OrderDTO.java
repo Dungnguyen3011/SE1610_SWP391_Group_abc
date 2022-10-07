@@ -20,6 +20,6 @@ public class OrderDTO {
 	private Date orderDate;
 	private String paymentType;
 	private String shippingStatus;
-	private List<OrderDetailDTO> orderDetailList;
 	private Integer customerId;
+	private List<OrderDetailDTO> orderDetailList;
 }
