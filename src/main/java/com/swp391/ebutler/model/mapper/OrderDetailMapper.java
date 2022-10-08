@@ -12,6 +12,7 @@ public class OrderDetailMapper {
 		dto.setQuantity(ord.getQuantity());
 		dto.setOrderId(ord.getOrder().getOrderId());
 		dto.setProductproviderId(ord.getPProvider().getProductproviderId());
+		dto.setProductName(ord.getPProvider().getProduct().getProductName());
 		return dto;
 	}
 }
