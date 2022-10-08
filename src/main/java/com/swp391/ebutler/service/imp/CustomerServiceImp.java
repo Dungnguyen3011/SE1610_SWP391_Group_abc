@@ -44,17 +44,12 @@ public class CustomerServiceImp implements CustomerService {
 	}
 
 	
-	// Search By Id
-	public Customer getId(int id) {
-		return cRepo.findById(id).get();
-	}
+	
+		
+	
 	@Override
 	public CustomerDTO searchById(int id) {
-		Customer c = getId(id);
-		if (c != null) {
-			return CustomerMapper.toCustomerDTO(c);
-		}
-		return null;
+		return CustomerMapper.toCustomerDTO(cRepo.findById(id).get());
 	}
 	
 	

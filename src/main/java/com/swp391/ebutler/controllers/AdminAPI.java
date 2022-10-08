@@ -202,8 +202,8 @@ public class AdminAPI {
 	}
 
 	// Search By customer id
-	@GetMapping("/customer/search")
-	public ResponseEntity<?> searchCustomerById(@Param("id") int id) {
+	@GetMapping("/customer/getbyid/{id}")
+	public ResponseEntity<?> searchCustomerById(@PathVariable("id") int id) {
 		CustomerDTO result = cs.searchById(id);
 		return ResponseEntity.ok(result);
 	}
