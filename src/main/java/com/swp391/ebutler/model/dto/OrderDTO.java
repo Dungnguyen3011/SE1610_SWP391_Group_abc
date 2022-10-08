@@ -21,5 +21,6 @@ public class OrderDTO {
 	private String paymentType;
 	private String shippingStatus;
 	private Integer customerId;
+	private String customerName;
 	private List<OrderDetailDTO> orderDetailList;
 }

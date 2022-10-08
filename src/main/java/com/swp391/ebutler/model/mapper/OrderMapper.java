@@ -18,6 +18,7 @@ public class OrderMapper {
 		dto.setPaymentType(order.getPaymentType());
 		dto.setShippingStatus(order.getShippingStatus());
 		dto.setCustomerId(order.getCustomer().getCustomerId());
+		dto.setCustomerName(order.getCustomer().getFullName());
 		
 		List<OrderDetailDTO> detaildto = new ArrayList<>();
 		List<OrderDetail> detail = new ArrayList<>();
