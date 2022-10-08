@@ -33,4 +33,6 @@ public interface ProductProviderService {
 	public List<ProductProviderDTO> listByProviderIdFoCus(int id);
 
 	public List<ProductProviderDTO> sort(String sort);
+
+	public List<ProductProviderDTO> sortInt(Integer sort);
 }

@@ -163,6 +163,25 @@ public class ProductProviderServiceImp implements ProductProviderService {
 	}
 
 	@Override
+	public List<ProductProviderDTO> sortInt(Integer sort) {
+		List<ProductProvider> result = null;
+		if(sort == 0) {
+			result = pProviderRepo.findByStatus(true, Sort.by(Direction.ASC, "unitPrice"));
+		}else if(sort == 1){
+			result = pProviderRepo.findByStatus(true, Sort.by(Direction.DESC, "unitPrice"));
+		}else if(sort == 2){
+			result = pProviderRepo.findByStatus(true, Sort.by(Direction.ASC, "rating"));
+		}else if(sort == 3){
+			result = pProviderRepo.findByStatus(true, Sort.by(Direction.ASC, "rating"));
+		}else{
+			result = pProviderRepo.findByStatus(true);
+		}
+		List<ProductProviderDTO> listDTO = new ArrayList<>();
+		result.forEach(v -> listDTO.add(ProductProviderMapper.toProductProviderDTO(v)));
+		return listDTO;
+	}
+
+	@Override
 	public List<ProductProviderDTO> listByProductIdFoCus(int id) {
 		Product product = getProductById(id);
 		List<ProductProvider> result = pProviderRepo.findByProductAndStatus(product, true);

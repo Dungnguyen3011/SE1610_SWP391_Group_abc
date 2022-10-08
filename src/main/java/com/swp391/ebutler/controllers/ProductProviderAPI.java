@@ -21,55 +21,44 @@ import com.swp391.ebutler.service.ProductProviderService;
 public class ProductProviderAPI {
 	@Autowired
 	ProductProviderService pproviderService;
-	
+
 	//List all product provider
 	@GetMapping("/list")
 	public ResponseEntity<?> getList(){
 		List<ProductProviderDTO> result = pproviderService.listAllFoCus();
 		return ResponseEntity.ok(result);
 	}
-	
+
 	//List product provider by productId
 	@GetMapping("/listbyproduct/{id}")
 	public ResponseEntity<?> getListByProduct(@PathVariable("id") int id){
 		List<ProductProviderDTO> result = pproviderService.listByProductIdFoCus(id);
 		return ResponseEntity.ok(result);
 	}
-	
+
 	//List product provider by providerId
 	@GetMapping("/listbyprovider/{id}")
 	public ResponseEntity<?> getListByProvider(@PathVariable("id") int id){
 		List<ProductProviderDTO> result = pproviderService.listByProviderIdFoCus(id);
 		return ResponseEntity.ok(result);
 	}
-	
-	//Sort list by price
-	@GetMapping("/list/sortprice")
-	public ResponseEntity<?> sortByPrice(@Param("sort") String sort){
-		List<ProductProviderDTO> result = pproviderService.sortByPrice(sort);
-		return ResponseEntity.ok(result);
-	}
-	
-	//Sort list by rating
-	@GetMapping("/list/sortrating")
-	public ResponseEntity<?> sortByRating(@Param("sort") String sort){
-		List<ProductProviderDTO> result = pproviderService.sortByRating(sort);
-		return ResponseEntity.ok(result);
-	}
-	
-	///Sort gộp vào thành 1 (tham số truyền vào)
-	//sort = [attribute]-[direction]
+
+	//Sort Param: sort = ? (Integer)
+	// 0 - unitPrice - ASC
+	// 1 - unitPrice - DESC
+	// 2 - rating - ASC
+	// 3 - rating - DESC
 	@GetMapping("/list/sort")
-	public ResponseEntity<?> sort(@Param("sort") String sort){
-		List<ProductProviderDTO> result = pproviderService.sort(sort);
+	public ResponseEntity<?> sortInt(@Param("sort") Integer sort){
+		List<ProductProviderDTO> result = pproviderService.sortInt(sort);
 		return ResponseEntity.ok(result);
 	}
-	
+
 	@PostMapping("/list")
 	public ResponseEntity<?> save(@RequestBody ProductProviderDTO pProvider){
 		return ResponseEntity.ok(pproviderService.save(pProvider));
 	}
-	
+
 	@DeleteMapping("/list/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") int id){
 		return ResponseEntity.ok(pproviderService.delete(id));
