@@ -53,7 +53,7 @@ public class AdminAPI {
 
 	// Add new manufacturer
 	@PostMapping("/manufacturer/save")
-	public ResponseEntity<?> saveManu(@RequestBody ManufacturerDTO manu) {
+	public ResponseEntity<?> saveManu(@Valid @RequestBody ManufacturerDTO manu) {
 		return ResponseEntity.ok(manuService.save(manu));
 	}
 
@@ -65,7 +65,7 @@ public class AdminAPI {
 
 	// Update manufacturer
 	@PutMapping("/manufacturer/update/{id}")
-	public ResponseEntity<?> updateManu(@PathVariable("id") int id, @RequestBody ManufacturerDTO manu) {
+	public ResponseEntity<?> updateManu(@PathVariable("id") int id,@Valid @RequestBody ManufacturerDTO manu) {
 		manu.setManufacturerId(id);
 		return ResponseEntity.ok(manuService.save(manu));
 	}
@@ -98,7 +98,7 @@ public class AdminAPI {
 	
 	//Update procate
 	@PutMapping("/pcategory/update/{id}")
-	public ResponseEntity<?> update(@Valid @PathVariable("id") int id, @RequestBody ProductCategoryDTO proCategory) {
+	public ResponseEntity<?> update(@Valid @PathVariable("id") int id,@Valid @RequestBody ProductCategoryDTO proCategory) {
 		proCategory.setProductcategoryId(id);
 		return ResponseEntity.ok(procateService.save(proCategory));
 	}	
@@ -110,6 +110,12 @@ public class AdminAPI {
 		return ResponseEntity.ok(result);
 	}
 
+	//Get product by ID
+	@GetMapping("/product/getbyid/{id}")
+	public ResponseEntity<?> getProductById(@PathVariable("id") int id) {
+		return ResponseEntity.ok(pService.getByIdDTO(id));
+	}
+
 	// List products by name
 	@GetMapping("/product/listbyname")
 	public ResponseEntity<?> getListProductByName(@Param("name") String name) {
@@ -119,7 +125,7 @@ public class AdminAPI {
 
 	//Add new product
 	@PostMapping("/product/save")
-	public ResponseEntity<?> saveProduct(@RequestBody ProductDTO product){
+	public ResponseEntity<?> saveProduct(@Valid @RequestBody ProductDTO product){
 		return ResponseEntity.ok(pService.save(product));
 	}
 
@@ -131,7 +137,7 @@ public class AdminAPI {
 	
 	//Update product
 	@PutMapping("/product/update/{id}")
-	public ResponseEntity<?> updateProduct(@PathVariable("id") int id, @RequestBody ProductDTO product) {
+	public ResponseEntity<?> updateProduct(@PathVariable("id") int id,@Valid @RequestBody ProductDTO product) {
 		product.setProductId(id);
 		return ResponseEntity.ok(pService.save(product));
 	}
