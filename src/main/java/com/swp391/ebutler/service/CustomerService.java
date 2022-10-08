@@ -8,8 +8,6 @@ public interface CustomerService {
 
 	public List<CustomerDTO> listAll();
 	
-	public List<CustomerDTO> listAllByName();
-	
 	public List<CustomerDTO> listAllActiveCustomerAccount();
 
 	public CustomerDTO save(CustomerDTO c);

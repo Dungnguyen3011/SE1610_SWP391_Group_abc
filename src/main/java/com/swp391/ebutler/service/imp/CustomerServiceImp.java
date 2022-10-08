@@ -34,15 +34,7 @@ public class CustomerServiceImp implements CustomerService {
 		result.forEach(v -> listDTO.add(CustomerMapper.toCustomerDTO(v)));
 		return listDTO;
 	}
-	
-	// Show all by name and sort by ASC
-	@Override
-	public List<CustomerDTO> listAllByName() {
-		List<Customer> result = cRepo.findAll(Sort.by(Direction.ASC, "fullName"));
-		List<CustomerDTO> listDTO = new ArrayList<>();
-		result.forEach(v -> listDTO.add(CustomerMapper.toCustomerDTO(v)));
-		return listDTO;
-	}
+
 	
 	// Show all active customer account
 	@Override
@@ -61,19 +53,10 @@ public class CustomerServiceImp implements CustomerService {
 	}
 
 	/*---------------------------------------------SEARCH-------------------------------------------------------*/
-	
-	// Search By Id
-	public Customer getId(int id) {
-		return cRepo.findByCustomerId(id);
-	}
 
 	@Override
 	public CustomerDTO getById(int id) {
-		Customer c = getId(id);
-		if (c != null) {
-			return CustomerMapper.toCustomerDTO(c);
-		}
-		return null;
+			return CustomerMapper.toCustomerDTO(cRepo.findById(id).get());
 	}
 	//---------------------------------------------------------------------------------------------------------
 	
@@ -136,6 +119,7 @@ public class CustomerServiceImp implements CustomerService {
 	
 	//---------------------------------------------------------------------------------------------------------
 	
+	/*
 	// Checking search param is a numeric
 	public Boolean isNumeric(String search) {
 		try {
@@ -145,6 +129,7 @@ public class CustomerServiceImp implements CustomerService {
 			return false;
 		}
 	}
+	*/
 	
 	// Checking 10 digits phone number start with 0
 	public Boolean isPhoneNumber(String search) {
@@ -160,16 +145,12 @@ public class CustomerServiceImp implements CustomerService {
 
 	//---------------------------------------------------------------------------------------------------------
 	
-	// Search by param [name, id, address, email, phoneNumber]
+	// Search by param [name, id, email, phoneNumber]
 	public List<CustomerDTO> searchByParam(String search) {
 		List<CustomerDTO> listDTO = new ArrayList<>();
 		if (isPhoneNumber(search)) { 
 			// search by phone number			
 			listDTO.add(getByPhoneNumber(search));
-			return listDTO;
-		} else if (isNumeric(search)) { 
-			// search by id
-			listDTO.add(getById(Integer.parseInt(search)));
 			return listDTO;
 		} else if (isEmail(search)) { 
 			// search by email

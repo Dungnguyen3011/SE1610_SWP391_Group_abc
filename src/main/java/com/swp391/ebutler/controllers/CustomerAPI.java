@@ -25,7 +25,7 @@ public class CustomerAPI {
 	CustomerService cs;
 
 	// Search By customer id
-	@GetMapping("/customer/info")
+	@GetMapping("/info")
 	public ResponseEntity<?> searchCustomerById(@Param("id") int id) {
 		CustomerDTO result = cs.getById(id);
 		return ResponseEntity.ok(result);

@@ -181,13 +181,6 @@ public class AdminAPI {
 		return ResponseEntity.ok(result);
 	}
 	
-	// Show list customer sort ASC by name
-	@GetMapping("/customer/list/name")
-	public ResponseEntity<?> listCustomerByName() {
-		List<CustomerDTO> result = cs.listAllByName();
-		return ResponseEntity.ok(result);
-	}
-	
 	// Show all active customer
 	@GetMapping("/customer/list/active")
 	public ResponseEntity<?> listAllActiveCustomer() {
@@ -222,15 +215,12 @@ public class AdminAPI {
 		return ResponseEntity.ok(result);
 	}
 	
-	/*
-	
 	// Search By customer id
-	@GetMapping("/customer/search/id")
-	public ResponseEntity<?> searchCustomerById(@Param("id") int id) {
-		CustomerDTO result = cs.searchById(id);
+	@GetMapping("/customer/search/{id}")
+	public ResponseEntity<?> searchCustomerById(@PathVariable("id") int id) {
+		CustomerDTO result = cs.getById(id);
 		return ResponseEntity.ok(result);
 	}
-	*/
 	
 	// Search by parameters (id/name/email/phoneNumber) 
 	@GetMapping("/customer/search")
