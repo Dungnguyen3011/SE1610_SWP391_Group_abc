@@ -28,35 +28,54 @@ public class CustomerServiceImp implements CustomerService {
 
 	// Show all
 	@Override
-	public List<CustomerDTO> listAll() { 
+	public List<CustomerDTO> listAll() {
 		List<Customer> result = cRepo.findAll();
 		List<CustomerDTO> listDTO = new ArrayList<>();
 		result.forEach(v -> listDTO.add(CustomerMapper.toCustomerDTO(v)));
 		return listDTO;
 	}
-
 	
-	// Save 
+	// Show all by name and sort by ASC
+	@Override
+	public List<CustomerDTO> listAllByName() {
+		List<Customer> result = cRepo.findAll(Sort.by(Direction.ASC, "fullName"));
+		List<CustomerDTO> listDTO = new ArrayList<>();
+		result.forEach(v -> listDTO.add(CustomerMapper.toCustomerDTO(v)));
+		return listDTO;
+	}
+	
+	// Show all active customer account
+	@Override
+	public List<CustomerDTO> listAllActiveCustomerAccount() {
+		List<Customer> result = cRepo.listAllActiveCustomerAccount();
+		List<CustomerDTO> listDTO = new ArrayList<>();
+		result.forEach(v -> listDTO.add(CustomerMapper.toCustomerDTO(v)));
+		return listDTO;
+	}
+	
+	// Save
 	@Override
 	public CustomerDTO save(CustomerDTO cDTO) {
 		Customer c = toCustomer(cDTO);
 		return CustomerMapper.toCustomerDTO(cRepo.save(c));
 	}
 
+	/*---------------------------------------------SEARCH-------------------------------------------------------*/
 	
 	// Search By Id
 	public Customer getId(int id) {
-		return cRepo.findById(id).get();
+		return cRepo.findByCustomerId(id);
 	}
+
 	@Override
-	public CustomerDTO searchById(int id) {
+	public CustomerDTO getById(int id) {
 		Customer c = getId(id);
 		if (c != null) {
 			return CustomerMapper.toCustomerDTO(c);
 		}
 		return null;
 	}
-	
+	//---------------------------------------------------------------------------------------------------------
 	
 	// Search by Name and sort ASC with name
 	@Override
@@ -66,8 +85,104 @@ public class CustomerServiceImp implements CustomerService {
 		result.forEach(v -> listDTO.add(CustomerMapper.toCustomerDTO(v)));
 		return listDTO;
 	}
-	
 
+	//---------------------------------------------------------------------------------------------------------
+	
+	// Search by address
+	@Override
+	public List<CustomerDTO> searchByAddress(String address) {
+		List<Customer> result = cRepo.findByAddressContaining(address);
+		List<CustomerDTO> listDTO = new ArrayList<>();
+		result.forEach(v -> listDTO.add(CustomerMapper.toCustomerDTO(v)));
+		return listDTO;
+	}
+	
+	//---------------------------------------------------------------------------------------------------------
+	
+	// Search by email
+	@Override
+	public CustomerDTO getByEmail(String email) {
+		Customer c = cRepo.findByEmail(email);
+		if (c != null) {
+			return CustomerMapper.toCustomerDTO(c); 
+		}
+		return null;
+	}
+	
+	//---------------------------------------------------------------------------------------------------------
+	
+	// Search by phone number
+	@Override
+	public CustomerDTO getByPhoneNumber(String phoneNumber) {
+		Customer c = cRepo.findByPhoneNumber(phoneNumber);
+		if (c != null) {
+			return CustomerMapper.toCustomerDTO(c); 
+		}
+		return null;
+	}
+	
+	
+	//---------------------------------------------------------------------------------------------------------
+	
+	// Search active customer account by name
+	@Override 
+	public List<CustomerDTO> searchActiveCustomerAccountByName(String name) {
+		List<Customer> result = cRepo.findActiveCustomerAccountByName(name);
+		List<CustomerDTO> listDTO = new ArrayList<>();
+		result.forEach(v -> listDTO.add(CustomerMapper.toCustomerDTO(v)));
+		return listDTO;
+	}
+	
+	
+	//---------------------------------------------------------------------------------------------------------
+	
+	// Checking search param is a numeric
+	public Boolean isNumeric(String search) {
+		try {
+			Integer.parseInt(search);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	// Checking 10 digits phone number start with 0
+	public Boolean isPhoneNumber(String search) {
+		String phoneNumberPattern = "^[0][1-9][0-9]{8}$";
+		return search.matches(phoneNumberPattern);
+	}
+	
+	// Checking email
+	public Boolean isEmail(String search) {
+		String emailPattern = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+		return search.matches(emailPattern);
+	}
+
+	//---------------------------------------------------------------------------------------------------------
+	
+	// Search by param [name, id, address, email, phoneNumber]
+	public List<CustomerDTO> searchByParam(String search) {
+		List<CustomerDTO> listDTO = new ArrayList<>();
+		if (isPhoneNumber(search)) { 
+			// search by phone number			
+			listDTO.add(getByPhoneNumber(search));
+			return listDTO;
+		} else if (isNumeric(search)) { 
+			// search by id
+			listDTO.add(getById(Integer.parseInt(search)));
+			return listDTO;
+		} else if (isEmail(search)) { 
+			// search by email
+			listDTO.add(getByEmail(search));
+			return listDTO;
+		} else { 
+			// search by name
+			return searchByName(search);
+		}
+	}
+
+	/*---------------------------------------------END-SEARCH-------------------------------------------------------*/
+	
 	// Type casting
 	public Customer toCustomer(CustomerDTO cDTO) {
 		Customer c = new Customer();

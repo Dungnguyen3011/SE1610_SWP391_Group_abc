@@ -180,6 +180,20 @@ public class AdminAPI {
 		List<CustomerDTO> result = cs.listAll();
 		return ResponseEntity.ok(result);
 	}
+	
+	// Show list customer sort ASC by name
+	@GetMapping("/customer/list/name")
+	public ResponseEntity<?> listCustomerByName() {
+		List<CustomerDTO> result = cs.listAllByName();
+		return ResponseEntity.ok(result);
+	}
+	
+	// Show all active customer
+	@GetMapping("/customer/list/active")
+	public ResponseEntity<?> listAllActiveCustomer() {
+		List<CustomerDTO> result = cs.listAllActiveCustomerAccount();
+		return ResponseEntity.ok(result);
+	}
 
 	// Add a customer
 	@PostMapping("/customer/add")
@@ -193,18 +207,35 @@ public class AdminAPI {
 		c.setCustomerId(id);
 		return ResponseEntity.ok(cs.save(c));
 	}
-
-	// Search by customer name and sort ASC by name
-	@GetMapping("/customer/listbyname")
-	public ResponseEntity<?> searchCustomerByName(@Param("name") String name) {
-		List<CustomerDTO> result = cs.searchByName(name);
+	
+	// Search by customer address
+	@GetMapping("/customer/search/address")
+	public ResponseEntity<?> listCustomerByAddress(@Param("address") String address) {
+		List<CustomerDTO> result = cs.searchByAddress(address);
 		return ResponseEntity.ok(result);
 	}
-
+	
+	// Search active customer account by name
+	@GetMapping("/customer/search/active")
+	public ResponseEntity<?> listActiveCustomerAccountByName(@Param("name") String name) {
+		List<CustomerDTO> result = cs.searchActiveCustomerAccountByName(name);
+		return ResponseEntity.ok(result);
+	}
+	
+	/*
+	
 	// Search By customer id
-	@GetMapping("/customer/search")
+	@GetMapping("/customer/search/id")
 	public ResponseEntity<?> searchCustomerById(@Param("id") int id) {
 		CustomerDTO result = cs.searchById(id);
+		return ResponseEntity.ok(result);
+	}
+	*/
+	
+	// Search by parameters (id/name/email/phoneNumber) 
+	@GetMapping("/customer/search")
+	public ResponseEntity<?> searchCustomer(@Param("search") String search) {
+		List<CustomerDTO> result = cs.searchByParam(search);
 		return ResponseEntity.ok(result);
 	}
 	
