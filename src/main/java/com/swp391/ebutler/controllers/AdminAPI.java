@@ -59,13 +59,13 @@ public class AdminAPI {
 
 	// Update manufacturer status to false
 	@DeleteMapping("/manufacturer/delete/{id}")
-	public ResponseEntity<?> deleteManu(@PathVariable("id") int id) {
+	public ResponseEntity<?> deleteManu(@PathVariable("id") Integer id) {
 		return ResponseEntity.ok(manuService.delete(id));
 	}
 
 	// Update manufacturer
 	@PutMapping("/manufacturer/update/{id}")
-	public ResponseEntity<?> updateManu(@PathVariable("id") int id,@Valid @RequestBody ManufacturerDTO manu) {
+	public ResponseEntity<?> updateManu(@PathVariable("id") Integer id,@Valid @RequestBody ManufacturerDTO manu) {
 		manu.setManufacturerId(id);
 		return ResponseEntity.ok(manuService.save(manu));
 	}
@@ -92,13 +92,13 @@ public class AdminAPI {
 	
 	//Update status procate to false
 	@DeleteMapping("/pcategory/delete/{id}")
-	public ResponseEntity<?> delete(@PathVariable("id") int id){
+	public ResponseEntity<?> delete(@PathVariable("id") Integer id){
 		return ResponseEntity.ok(procateService.delete(id));
 	}
 	
 	//Update procate
 	@PutMapping("/pcategory/update/{id}")
-	public ResponseEntity<?> update(@Valid @PathVariable("id") int id,@Valid @RequestBody ProductCategoryDTO proCategory) {
+	public ResponseEntity<?> update(@Valid @PathVariable("id") Integer id,@Valid @RequestBody ProductCategoryDTO proCategory) {
 		proCategory.setProductcategoryId(id);
 		return ResponseEntity.ok(procateService.save(proCategory));
 	}	
@@ -112,7 +112,7 @@ public class AdminAPI {
 
 	//Get product by ID
 	@GetMapping("/product/getbyid/{id}")
-	public ResponseEntity<?> getProductById(@PathVariable("id") int id) {
+	public ResponseEntity<?> getProductById(@PathVariable("id") Integer id) {
 		return ResponseEntity.ok(pService.getByIdDTO(id));
 	}
 
@@ -131,13 +131,13 @@ public class AdminAPI {
 
 	//Set status product to false
 	@DeleteMapping("/product/delete/{id}")
-	public ResponseEntity<?> deleteProduct(@PathVariable("id") int id){
+	public ResponseEntity<?> deleteProduct(@PathVariable("id") Integer id){
 		return ResponseEntity.ok(pService.delete(id));
 	}
 	
 	//Update product
 	@PutMapping("/product/update/{id}")
-	public ResponseEntity<?> updateProduct(@PathVariable("id") int id,@Valid @RequestBody ProductDTO product) {
+	public ResponseEntity<?> updateProduct(@PathVariable("id") Integer id,@Valid @RequestBody ProductDTO product) {
 		product.setProductId(id);
 		return ResponseEntity.ok(pService.save(product));
 	}
@@ -145,7 +145,7 @@ public class AdminAPI {
 	//
 	//Count provider by product_provider
 	@GetMapping("/product/countprovider/{id}")
-	public ResponseEntity<?> countProductProvider(@PathVariable("id") int id) {
+	public ResponseEntity<?> countProductProvider(@PathVariable("id") Integer id) {
 		return ResponseEntity.ok(pproviderService.countByProductId(id));
 	}
 	

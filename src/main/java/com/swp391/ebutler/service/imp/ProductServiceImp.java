@@ -42,7 +42,7 @@ public class ProductServiceImp implements ProductService {
 	}
 
 	@Override
-	public ProductDTO delete(int id) {
+	public ProductDTO delete(Integer id) {
 		Product product = getById(id);
 		if (product != null) {
 			product.setStatus(false);
@@ -52,12 +52,12 @@ public class ProductServiceImp implements ProductService {
 	}
 
 	@Override
-	public Product getById(int id) {
+	public Product getById(Integer id) {
 		return productRepo.findById(id).get();
 	}
 
 	@Override
-	public ProductDTO getByIdDTO(int id) {
+	public ProductDTO getByIdDTO(Integer id) {
 		Product product = productRepo.findById(id).get();
 		if (product != null) {
 			return ProductMapper.toProductDTO(product);
@@ -94,7 +94,7 @@ public class ProductServiceImp implements ProductService {
 	}
 
 	@Override
-	public List<ProductDTO> listByCate(int cid) {
+	public List<ProductDTO> listByCate(Integer cid) {
 		ProductCategory procate = getProCateId(cid);
 		List<Product> result = productRepo.findByProCategory(procate);
 		List<ProductDTO> listDTO = new ArrayList<>();
@@ -103,7 +103,7 @@ public class ProductServiceImp implements ProductService {
 	}
 
 	@Override
-	public List<ProductDTO> listByManu(int mid) {
+	public List<ProductDTO> listByManu(Integer mid) {
 		Manufacturer manu = getManuById(mid);
 		List<Product> result = productRepo.findByManu(manu);
 		List<ProductDTO> listDTO = new ArrayList<>();
@@ -128,7 +128,7 @@ public class ProductServiceImp implements ProductService {
 	}
 
 	@Override
-	public List<ProductDTO> listByCateFoCus(int cid) {
+	public List<ProductDTO> listByCateFoCus(Integer cid) {
 		ProductCategory procate = getProCateId(cid);
 		List<Product> result = productRepo.findByProCategoryAndStatus(procate, true);
 		List<ProductDTO> listDTO = new ArrayList<>();
@@ -137,7 +137,7 @@ public class ProductServiceImp implements ProductService {
 	}
 
 	@Override
-	public List<ProductDTO> listByManuFoCus(int mid) {
+	public List<ProductDTO> listByManuFoCus(Integer mid) {
 		Manufacturer manu = getManuById(mid);
 		List<Product> result = productRepo.findByManuAndStatus(manu,true);
 		List<ProductDTO> listDTO = new ArrayList<>();

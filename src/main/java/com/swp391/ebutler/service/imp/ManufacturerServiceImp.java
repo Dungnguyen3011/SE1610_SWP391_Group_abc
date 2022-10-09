@@ -36,7 +36,7 @@ public class ManufacturerServiceImp implements ManufacturerService{
 	}
 
 	@Override
-	public ManufacturerDTO delete(int id) {
+	public ManufacturerDTO delete(Integer id) {
 		Manufacturer manu = getById(id);
 		if(manu != null) {
 			manu.setStatus(false);
@@ -46,12 +46,12 @@ public class ManufacturerServiceImp implements ManufacturerService{
 	}
 	
 	@Override
-	public Manufacturer getById(int id) {
+	public Manufacturer getById(Integer id) {
 		return repo.findById(id).get();
 	}
 
 	@Override
-	public ManufacturerDTO getByIdDTO(int id) {
+	public ManufacturerDTO getByIdDTO(Integer id) {
 		Manufacturer manu = repo.findById(id).get();
 		if(manu != null ) {
 			return ManufacturerMapper.toManufacturerDTO(manu);

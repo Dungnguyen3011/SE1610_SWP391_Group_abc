@@ -36,7 +36,7 @@ public class ProductCategoryServiceImp implements ProductCategoryService{
 	}
 
 	@Override
-	public ProductCategoryDTO delete(int id) {
+	public ProductCategoryDTO delete(Integer id) {
 		ProductCategory proCategory = getById(id);
 		if(proCategory != null) {
 			proCategory.setStatus(false);
@@ -46,13 +46,13 @@ public class ProductCategoryServiceImp implements ProductCategoryService{
 	}
 
 	@Override
-	public ProductCategory getById(int id) {
+	public ProductCategory getById(Integer id) {
 		return repo.findById(id).get();
 	}
 
 
 	@Override
-	public ProductCategoryDTO getByIdDTO(int id) {
+	public ProductCategoryDTO getByIdDTO(Integer id) {
 		ProductCategory procate = repo.findById(id).get();
 		if(procate != null) {
 			return ProductCategoryMapper.toProductCategoryDTO(procate);

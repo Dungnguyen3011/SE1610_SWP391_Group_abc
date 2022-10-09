@@ -39,14 +39,14 @@ public class ProductAPI {
 	
 	//List products by {category id}
 	@GetMapping("/list/getbycategory/{cid}")
-	public ResponseEntity<?> getListByCate(@PathVariable("cid") int cid){
+	public ResponseEntity<?> getListByCate(@PathVariable("cid") Integer cid){
 		List<ProductDTO> result = pService.listByCateFoCus(cid);
 		return ResponseEntity.ok(result);
 	}
 	
 	//List products by {manufacturer id}
 	@GetMapping("/list/getbymanu/{mid}")
-	public ResponseEntity<?> getListByManu(@PathVariable("mid") int mid){
+	public ResponseEntity<?> getListByManu(@PathVariable("mid") Integer mid){
 		List<ProductDTO> result = pService.listByManuFoCus(mid);
 		return ResponseEntity.ok(result);
 	}
@@ -59,13 +59,13 @@ public class ProductAPI {
 	
 	//Set status product to false
 	@DeleteMapping("/list/{id}")
-	public ResponseEntity<?> delete(@PathVariable("id") int id){
+	public ResponseEntity<?> delete(@PathVariable("id") Integer id){
 		return ResponseEntity.ok(pService.delete(id));
 	}
 	
 	//Update product
 	@PutMapping("/list/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody ProductDTO product) {
+	public ResponseEntity<?> update(@PathVariable("id") Integer id, @RequestBody ProductDTO product) {
 		product.setProductId(id);
 		return ResponseEntity.ok(pService.save(product));
 	}
