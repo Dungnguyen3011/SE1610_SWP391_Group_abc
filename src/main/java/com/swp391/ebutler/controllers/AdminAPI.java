@@ -216,7 +216,7 @@ public class AdminAPI {
 	}
 	
 	// Search By customer id
-	@GetMapping("/customer/search/{id}")
+	@GetMapping("/customer/{id}")
 	public ResponseEntity<?> searchCustomerById(@PathVariable("id") int id) {
 		CustomerDTO result = cs.getById(id);
 		return ResponseEntity.ok(result);
@@ -258,17 +258,17 @@ public class AdminAPI {
 		return ResponseEntity.ok(ss.save(s));
 	}
 
-	// Search services by name and sort ASC by name
+	// Search services by name 
 	@GetMapping("/service/listbyname")
 	public ResponseEntity<?> searchServiceByName(@Param("name") String name) {
-		List<ServicesDTO> result = ss.searchByName(name);
+		List<ServicesDTO> result = ss.searchByServiceName(name);
 		return ResponseEntity.ok(result);
 	}
 
 	// Search a service by id
 	@GetMapping("/service/search")
 	public ResponseEntity<?> searchServiceById(@Param("id") int id) {
-		ServicesDTO result = ss.searchById(id);
+		ServicesDTO result = ss.getById(id);
 		return ResponseEntity.ok(result);
 	}
 	
@@ -301,7 +301,7 @@ public class AdminAPI {
 		return ResponseEntity.ok(scs.save(sc));
 	}
 
-	// Search service categories by name and sort ASC by name
+	// Search service categories by name
 	@GetMapping("/scategory/listbyname")
 	public ResponseEntity<?> searchServiceCategorybyName(@Param("name") String name) {
 		List<ServiceCategoryDTO> result = scs.searchByName(name);
@@ -311,7 +311,7 @@ public class AdminAPI {
 	// Search a service category by id
 	@GetMapping("/scategory/search")
 	public ResponseEntity<?> searchServiceCategorybyId(@Param("id") int id) {
-		ServiceCategoryDTO result = scs.searchById(id);
+		ServiceCategoryDTO result = scs.getById(id);
 		return ResponseEntity.ok(result);
 	}
 	
@@ -347,7 +347,7 @@ public class AdminAPI {
 	// Search a service provider by id
 	@GetMapping("/sprovider/search")
 	public ResponseEntity<?> searchServiceProviderById(@Param("id") int id) {
-		ServiceProviderDTO result = sps.searchById(id);
+		ServiceProviderDTO result = sps.getById(id);
 		return ResponseEntity.ok(result);
 	}
 }

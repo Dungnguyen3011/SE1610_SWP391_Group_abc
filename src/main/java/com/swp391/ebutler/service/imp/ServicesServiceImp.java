@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,7 +32,36 @@ public class ServicesServiceImp implements ServicesService {
 		result.forEach(v -> listDTO.add(ServicesMapper.toServicesDTO(v)));
 		return listDTO;
 	}
+	
+	// Show all by status true
+	@Override
+	public List<ServicesDTO> listAllByStatus(){
+		List<Services> result = sRepo.findByStatus(true);
+		List<ServicesDTO> listDTO = new ArrayList<>();
+		result.forEach(v -> listDTO.add(ServicesMapper.toServicesDTO(v)));
+		return listDTO;
+	}
+	
+	// Show all by category 
+	@Override
+	public List<ServicesDTO> listAllByCategoryId(int id) {
+		ServiceCategory cate = getServiceCategoryById(id) ;
+		List<Services> result = sRepo.findBySCategory(cate);
+		List<ServicesDTO> listDTO = new ArrayList<>();
+		result.forEach(v -> listDTO.add(ServicesMapper.toServicesDTO(v)));
+		return listDTO;
+	}
 
+	// Show all by category and status true
+	@Override
+	public List<ServicesDTO> listAllByCategoryIdAndStatus(int id) {
+		ServiceCategory cate = getServiceCategoryById(id) ;
+		List<Services> result = sRepo.findBySCategoryAndStatus(cate, true);
+		List<ServicesDTO> listDTO = new ArrayList<>();
+		result.forEach(v -> listDTO.add(ServicesMapper.toServicesDTO(v)));
+		return listDTO;
+	}
+	
 	// Save
 	@Override
 	public ServicesDTO save(ServicesDTO sDTO) {
@@ -53,26 +80,65 @@ public class ServicesServiceImp implements ServicesService {
 		return null;
 	}
 
-	// Search by id
+	// Get by id
 	public Services getId(int id) {
 		return sRepo.findById(id).get();
 	}
 
 	@Override
-	public ServicesDTO searchById(int id) {
-		Services s = getId(id);
-		if (s != null) {
-			return ServicesMapper.toServicesDTO(s);
-		}
-		return null;
+	public ServicesDTO getById(int id) {
+		return ServicesMapper.toServicesDTO(getId(id));
 	}
 	
-	// Search by name
-	public List<ServicesDTO> searchByName(String name) {
-		List<Services> result = sRepo.findByServiceNameContaining(name, Sort.by(Direction.ASC, "serviceName"));
+	// Search by service name
+	public List<ServicesDTO> searchByServiceName(String name) {
+		List<Services> result = sRepo.findByServiceNameContaining(name);
 		List<ServicesDTO> listDtos = new ArrayList<>();
 		result.forEach(v -> listDtos.add(ServicesMapper.toServicesDTO(v)));
 		return listDtos;
+	}
+	
+	// Search by service name and status true
+	@Override
+	public List<ServicesDTO> searchByServiceNameAndStatus(String name){
+		List<Services> result = sRepo.findByStatusAndServiceNameContaining(true, name);
+		List<ServicesDTO> listDtos = new ArrayList<>();
+		result.forEach(v -> listDtos.add(ServicesMapper.toServicesDTO(v)));
+		return listDtos;
+	}
+	
+	// search by provider name
+	@Override
+	public List<ServicesDTO> searchByProviderName(String name) {
+		List<Services> result = sRepo.findByProviderName(name);
+		List<ServicesDTO> listDtos = new ArrayList<>();
+		result.forEach(v -> listDtos.add(ServicesMapper.toServicesDTO(v)));
+		return listDtos;
+	}
+
+	// search by provider name and status
+	@Override
+	public List<ServicesDTO> searchByProviderNameAndStatus(String name) {
+		List<Services> result = sRepo.findByActiveProviderName(name);
+		List<ServicesDTO> listDtos = new ArrayList<>();
+		result.forEach(v -> listDtos.add(ServicesMapper.toServicesDTO(v)));
+		return listDtos;
+	}
+	
+	// Search by param [providerName || serviceName]
+	public List<ServicesDTO> searchByParam(String search) {
+		if (searchByServiceName(search) == null) {
+			return searchByProviderName(search);
+		}
+		return searchByServiceName(search);		
+	}
+	
+	// Search by param [providerName || serviceName] and status true
+	public List<ServicesDTO> searchByParamAndStatus(String search) {
+		if (searchByServiceNameAndStatus(search) == null) {
+			return searchByProviderNameAndStatus(search);
+		} 
+		return searchByServiceNameAndStatus(search);
 	}
 	
 	// Type casting
@@ -91,4 +157,7 @@ public class ServicesServiceImp implements ServicesService {
 	public ServiceCategory getServiceCategoryById(int id) {
 		return scRepo.findById(id).get();
 	}
+
+
+	
 }

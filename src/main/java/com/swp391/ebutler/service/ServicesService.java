@@ -8,17 +8,28 @@ public interface ServicesService {
 	
 	public List<ServicesDTO> listAll();
 	
-	//public List<ServicesDTO> listAllByName();
+	public List<ServicesDTO> listAllByStatus();
 	
-	//public List<ServicesDTO> listAllByStatus();
+	public List<ServicesDTO> listAllByCategoryId(int id);
+	
+	public List<ServicesDTO> listAllByCategoryIdAndStatus(int id);
 	
 	public ServicesDTO save(ServicesDTO s);
 	
 	public ServicesDTO delete(int id);
 	
-	public ServicesDTO searchById(int id);
+	public ServicesDTO getById(int id);
 	
-	public List<ServicesDTO> searchByName(String name);
+	public List<ServicesDTO> searchByServiceName(String name);
 	
-	//public List<ServicesDTO> searchByCategory(String Category);
+	public List<ServicesDTO> searchByServiceNameAndStatus(String name);
+	
+	public List<ServicesDTO> searchByProviderName(String name);
+	
+	public List<ServicesDTO> searchByProviderNameAndStatus(String name);
+	
+	public List<ServicesDTO> searchByParam(String search);
+	
+	public List<ServicesDTO> searchByParamAndStatus(String search);
+
 }

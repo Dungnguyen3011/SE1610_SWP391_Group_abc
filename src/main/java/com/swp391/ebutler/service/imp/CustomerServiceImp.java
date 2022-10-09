@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -53,7 +51,8 @@ public class CustomerServiceImp implements CustomerService {
 	}
 
 	/*---------------------------------------------SEARCH-------------------------------------------------------*/
-
+	
+	// Get by id
 	@Override
 	public CustomerDTO getById(int id) {
 			return CustomerMapper.toCustomerDTO(cRepo.findById(id).get());
@@ -63,7 +62,7 @@ public class CustomerServiceImp implements CustomerService {
 	// Search by Name and sort ASC with name
 	@Override
 	public List<CustomerDTO> searchByName(String name) {
-		List<Customer> result = cRepo.findByFullNameContaining(name, Sort.by(Direction.ASC, "fullName"));
+		List<Customer> result = cRepo.findByFullNameContaining(name);
 		List<CustomerDTO> listDTO = new ArrayList<>();
 		result.forEach(v -> listDTO.add(CustomerMapper.toCustomerDTO(v)));
 		return listDTO;
@@ -71,7 +70,7 @@ public class CustomerServiceImp implements CustomerService {
 
 	//---------------------------------------------------------------------------------------------------------
 	
-	// Search by address
+	// Get by address
 	@Override
 	public List<CustomerDTO> searchByAddress(String address) {
 		List<Customer> result = cRepo.findByAddressContaining(address);
@@ -82,7 +81,7 @@ public class CustomerServiceImp implements CustomerService {
 	
 	//---------------------------------------------------------------------------------------------------------
 	
-	// Search by email
+	// Get by email
 	@Override
 	public CustomerDTO getByEmail(String email) {
 		Customer c = cRepo.findByEmail(email);
@@ -94,7 +93,7 @@ public class CustomerServiceImp implements CustomerService {
 	
 	//---------------------------------------------------------------------------------------------------------
 	
-	// Search by phone number
+	// Get by phone number
 	@Override
 	public CustomerDTO getByPhoneNumber(String phoneNumber) {
 		Customer c = cRepo.findByPhoneNumber(phoneNumber);
@@ -145,7 +144,7 @@ public class CustomerServiceImp implements CustomerService {
 
 	//---------------------------------------------------------------------------------------------------------
 	
-	// Search by param [name, id, email, phoneNumber]
+	// Search by param [name, email, phoneNumber]
 	public List<CustomerDTO> searchByParam(String search) {
 		List<CustomerDTO> listDTO = new ArrayList<>();
 		if (isPhoneNumber(search)) { 
