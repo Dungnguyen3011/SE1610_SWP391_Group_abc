@@ -22,4 +22,5 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 	List<Product> findByProCategoryAndStatus(ProductCategory proCategory, Boolean status);
 
 	List<Product> findByManuAndStatus(Manufacturer manu, Boolean status);
+	
 }

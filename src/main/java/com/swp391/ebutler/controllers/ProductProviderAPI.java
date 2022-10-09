@@ -53,7 +53,7 @@ public class ProductProviderAPI {
 		List<ProductProviderDTO> result = pproviderService.sortInt(sort);
 		return ResponseEntity.ok(result);
 	}
-	//Add new manufacturer
+	//Add new ProductProvider
 	@PostMapping("/list")
 	public ResponseEntity<?> save(@RequestBody ProductProviderDTO pProvider){
 		return ResponseEntity.ok(pproviderService.save(pProvider));
@@ -76,6 +76,13 @@ public class ProductProviderAPI {
 	@GetMapping("/listbycate/{id}")
 	public ResponseEntity<?> listByCateId(@PathVariable("id") Integer id){
 		List<ProductProviderDTO> result = pproviderService.listByCateId(id);
+		return ResponseEntity.ok(result);
+	}
+	
+	//List product provider id
+	@GetMapping("/list/{id}")
+	public ResponseEntity<?> listById(@PathVariable("id") Integer id){
+		ProductProviderDTO result = pproviderService.getByIdDTO(id);
 		return ResponseEntity.ok(result);
 	}
 }
