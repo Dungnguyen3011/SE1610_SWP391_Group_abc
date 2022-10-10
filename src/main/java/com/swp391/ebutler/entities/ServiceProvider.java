@@ -39,6 +39,9 @@ public class ServiceProvider {
 	@JsonBackReference
 	private Services service;
 	
+	@Column(name = "personal_description")
+	private String description;
+	
 	@Column(name = "min_price")
 	private Float minPrice;
 	
@@ -50,12 +53,13 @@ public class ServiceProvider {
 
 	// Constructor with parameters
 	public ServiceProvider(Integer serviceproviderId, Integer rating, Provider provider, Services service,
-			Float minPrice, Float maxPrice, Boolean status) {
+			String description, Float minPrice, Float maxPrice, Boolean status) {
 		super();
 		this.serviceproviderId = serviceproviderId;
 		this.rating = rating;
 		this.provider = provider;
 		this.service = service;
+		this.description = description;
 		this.minPrice = minPrice;
 		this.maxPrice = maxPrice;
 		this.status = status;

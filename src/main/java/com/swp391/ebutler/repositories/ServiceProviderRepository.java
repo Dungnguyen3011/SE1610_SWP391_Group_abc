@@ -33,8 +33,6 @@ public interface ServiceProviderRepository extends JpaRepository<ServiceProvider
 	@Query("Select sp "
 			+ "from ServiceProvider sp inner join Services s "
 			+ "on sp.service.serviceId = s.serviceId "
-			+ "inner join ServiceCategory sc "
-			+ "on s.sCategory.servicecategoryId = sc.servicecategoryId "
-			+ "where sc.servicecategoryId = ?1 ")
+			+ "and s.sCategory.servicecategoryId = ?1 ")
 	List<ServiceProvider> findByServiceCategoryId(int id);
 }

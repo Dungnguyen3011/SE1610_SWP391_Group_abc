@@ -59,7 +59,7 @@ public class CustomerServiceImp implements CustomerService {
 	}
 	//---------------------------------------------------------------------------------------------------------
 	
-	// Search by Name and sort ASC with name
+	// Search by Name 
 	@Override
 	public List<CustomerDTO> searchByName(String name) {
 		List<Customer> result = cRepo.findByFullNameContaining(name);

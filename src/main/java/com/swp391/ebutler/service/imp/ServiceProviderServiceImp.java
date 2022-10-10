@@ -183,6 +183,7 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 		sp.setRating(spDTO.getRating());
 		sp.setService(getServiceById(spDTO.getServiceId()));
 		sp.setProvider(getProviderById(spDTO.getProviderId()));
+		sp.setDescription(spDTO.getDescription());
 		sp.setMinPrice(spDTO.getMinPrice());
 		sp.setMaxPrice(spDTO.getMaxPrice());
 		sp.setStatus(spDTO.getStatus());
@@ -198,6 +199,7 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 	public Provider getProviderById(int id) {
 		return pRepo.findById(id).get();
 	}
+	
 
 	
 }

@@ -56,18 +56,14 @@ public class ServiceCategoryServiceImp implements ServiceCategoryService {
 		return null;
 	}
 
-	// Search by id
+	// Get by id
 	public ServiceCategory getId(int id) {
 		return repo.findById(id).get();
 	}
 
 	@Override
 	public ServiceCategoryDTO getById(int id) {
-		ServiceCategory sc = getId(id);
-		if (sc != null) {
-			return ServiceCategoryMapper.toServiceCategoryDTO(sc);
-		}		
-		return null;
+		return ServiceCategoryMapper.toServiceCategoryDTO(getId(id));
 	}
 	
 	// Search by name

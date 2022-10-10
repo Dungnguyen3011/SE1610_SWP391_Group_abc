@@ -26,10 +26,10 @@ public class ServiceAPI {
 		return ResponseEntity.ok(result);
 	}
 	
-	// Search services by name and sort ASC by name
+	// Search services by name 
 	@GetMapping("/listbyname")
 	public ResponseEntity<?> searchByName(@Param("name") String name) {
-		List<ServicesDTO> result = ss.searchByName(name);
+		List<ServicesDTO> result = ss.searchByServiceName(name);
 		return ResponseEntity.ok(result);
 	}
 	

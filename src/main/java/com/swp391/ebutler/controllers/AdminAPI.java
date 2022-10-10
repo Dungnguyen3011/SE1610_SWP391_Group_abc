@@ -181,7 +181,7 @@ public class AdminAPI {
 		return ResponseEntity.ok(result);
 	}
 	
-	// Show all active customer
+	// Show all ACTIVE customer [status true]
 	@GetMapping("/customer/list/active")
 	public ResponseEntity<?> listAllActiveCustomer() {
 		List<CustomerDTO> result = cs.listAllActiveCustomerAccount();
@@ -215,14 +215,14 @@ public class AdminAPI {
 		return ResponseEntity.ok(result);
 	}
 	
-	// Search By customer id
+	// get customer by id
 	@GetMapping("/customer/{id}")
 	public ResponseEntity<?> searchCustomerById(@PathVariable("id") int id) {
 		CustomerDTO result = cs.getById(id);
 		return ResponseEntity.ok(result);
 	}
 	
-	// Search by parameters (id/name/email/phoneNumber) 
+	// Search by parameters (name/email/phoneNumber) 
 	@GetMapping("/customer/search")
 	public ResponseEntity<?> searchCustomer(@Param("search") String search) {
 		List<CustomerDTO> result = cs.searchByParam(search);
@@ -236,6 +236,27 @@ public class AdminAPI {
 	@GetMapping("/service/list")
 	public ResponseEntity<?> getListService() {
 		List<ServicesDTO> result = ss.listAll();
+		return ResponseEntity.ok(result);
+	}
+	
+	// Show all ACTIVE services [status true]
+	@GetMapping("/service/list/active")
+	public ResponseEntity<?> getListActiveService() {
+		List<ServicesDTO> result = ss.listAllByStatus();
+		return ResponseEntity.ok(result);
+	}
+	
+	// Show all services by category
+	@GetMapping("/service/list/{categoryName}")
+	public ResponseEntity<?> getListServiceByCategory(@Param("id") int id) {
+		List<ServicesDTO> result = ss.listAllByCategoryId(id);
+		return ResponseEntity.ok(result);
+	}	
+	
+	// Show all ACTIVE services by category [status true]
+	@GetMapping("/service/list/{categoryName}")
+	public ResponseEntity<?> getListActiveServiceByCategory(@Param("id") int id) {
+		List<ServicesDTO> result = ss.listAllByCategoryIdAndStatus(id);
 		return ResponseEntity.ok(result);
 	}
 	
@@ -265,7 +286,7 @@ public class AdminAPI {
 		return ResponseEntity.ok(result);
 	}
 
-	// Search a service by id
+	// get service by id
 	@GetMapping("/service/search")
 	public ResponseEntity<?> searchServiceById(@Param("id") int id) {
 		ServicesDTO result = ss.getById(id);
