@@ -16,27 +16,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.swp391.ebutler.model.dto.CustomerDTO;
 import com.swp391.ebutler.model.dto.ManufacturerDTO;
 import com.swp391.ebutler.model.dto.ProductCategoryDTO;
 import com.swp391.ebutler.model.dto.ProductDTO;
+import com.swp391.ebutler.model.dto.ServiceCategoryDTO;
+import com.swp391.ebutler.model.dto.ServiceProviderDTO;
+import com.swp391.ebutler.model.dto.ServicesDTO;
+import com.swp391.ebutler.service.CustomerService;
 import com.swp391.ebutler.service.ManufacturerService;
 import com.swp391.ebutler.service.ProductCategoryService;
 import com.swp391.ebutler.service.ProductProviderService;
 import com.swp391.ebutler.service.ProductService;
+import com.swp391.ebutler.service.ServiceCategoryService;
+import com.swp391.ebutler.service.ServiceProviderService;
+import com.swp391.ebutler.service.ServicesService;
 
 @RestController
 @RequestMapping("/api/admin")
 public class AdminAPI {
 
 	@Autowired
-	ManufacturerService manuService;
-	@Autowired
-	ProductService pService;
-	@Autowired
-	ProductCategoryService procateService;
-	@Autowired
-	ProductProviderService pproviderService;
-
+    ManufacturerService manuService;
+    @Autowired
+    ProductService pService;
+    @Autowired
+    ProductCategoryService procateService;
+    @Autowired
+    ProductProviderService pproviderService;
+    @Autowired
+    CustomerService cs;
+    @Autowired
+    ServicesService ss;
+    @Autowired
+    ServiceCategoryService scs;
+    @Autowired
+    ServiceProviderService sps;
+    
 	// List all manufacturers
 	@GetMapping("/manufacturer/list")
 	public ResponseEntity<?> getListManu() {
@@ -222,14 +238,14 @@ public class AdminAPI {
 	}
 	
 	// Show all services by category
-	@GetMapping("/service/list/{categoryName}")
+	@GetMapping("/service/list/{id}")
 	public ResponseEntity<?> getListServiceByCategory(@Param("id") int id) {
 		List<ServicesDTO> result = ss.listAllByCategoryId(id);
 		return ResponseEntity.ok(result);
 	}	
 	
 	// Show all ACTIVE services by category [status true]
-	@GetMapping("/service/list/{categoryName}")
+	@GetMapping("/service/list/{id}")
 	public ResponseEntity<?> getListActiveServiceByCategory(@Param("id") int id) {
 		List<ServicesDTO> result = ss.listAllByCategoryIdAndStatus(id);
 		return ResponseEntity.ok(result);
