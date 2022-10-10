@@ -11,11 +11,11 @@ public interface ManufacturerService {
 	
 	public ManufacturerDTO save(ManufacturerDTO manu);
 	
-	public ManufacturerDTO delete(int id);
+	public ManufacturerDTO delete(Integer id);
 	
-	public Manufacturer getById(int id);
+	public Manufacturer getById(Integer id);
 	
-	public ManufacturerDTO getByIdDTO(int id);
+	public ManufacturerDTO getByIdDTO(Integer id);
 	
 	public List<ManufacturerDTO> searchByName(String name);
 	

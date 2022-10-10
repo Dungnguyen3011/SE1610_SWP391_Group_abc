@@ -12,24 +12,24 @@ public interface ProductService {
 
 	public ProductDTO save(ProductDTO product);
 
-	public ProductDTO delete(int id);
+	public ProductDTO delete(Integer id);
 
-	public Product getById(int id);
+	public Product getById(Integer id);
 	
-	public ProductDTO getByIdDTO(int id);
+	public ProductDTO getByIdDTO(Integer id);
 
 	public List<ProductDTO> searchByName(String name);
 	
-	public List<ProductDTO> listByCate(int cid);
+	public List<ProductDTO> listByCate(Integer cid);
 	
-	public List<ProductDTO> listByManu(int mid);
+	public List<ProductDTO> listByManu(Integer mid);
 	
 	public List<ProductDTO> listAllFoCus();
 	
 	public List<ProductDTO> searchByNameFoCus(String name);
 	
-	public List<ProductDTO> listByCateFoCus(int cid);
+	public List<ProductDTO> listByCateFoCus(Integer cid);
 	
-	public List<ProductDTO> listByManuFoCus(int mid);
+	public List<ProductDTO> listByManuFoCus(Integer mid);
 	
 }

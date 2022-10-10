@@ -34,4 +34,6 @@ public class ProductProviderDTO {
 	@NotNull(message = "Please select provider")
 	private Integer provider_id;
 	
+	private String productName;
+	
 }

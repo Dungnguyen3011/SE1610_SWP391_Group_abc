@@ -12,7 +12,7 @@ import com.swp391.ebutler.entities.Provider;
 
 public interface ProductProviderRepository extends JpaRepository<ProductProvider, Integer>{
 	@Query("Select Count(*) from ProductProvider p where p.product.productId = ?1")
-	Integer countByProductId(int id);
+	Integer countByProductId(Integer id);
 	
 	List<ProductProvider> findByStatus(Boolean status);
 	
@@ -25,5 +25,18 @@ public interface ProductProviderRepository extends JpaRepository<ProductProvider
 	List<ProductProvider> findByProductAndStatus(Product product, Boolean status);
 	
 	List<ProductProvider> findByProviderAndStatus(Provider provider, Boolean status);
+	
+	@Query("SELECT pp FROM "
+			+ "ProductProvider pp INNER JOIN Product p "
+			+ "ON pp.product.productId = p.productId "
+			+ "WHERE p.manu.manufacturerId = ?1 ")
+	List<ProductProvider> listByManuId(Integer id);
+	
+	@Query("SELECT pp FROM "
+			+ "ProductProvider pp INNER JOIN Product p "
+			+ "ON pp.product.productId = p.productId "
+			+ "WHERE p.proCategory.productcategoryId = ?1 ")
+	List<ProductProvider> listByCateId(Integer id);
 
+	
 }

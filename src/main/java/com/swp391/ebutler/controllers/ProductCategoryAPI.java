@@ -17,6 +17,7 @@ public class ProductCategoryAPI {
 	@Autowired
 	ProductCategoryService procateService;
 	
+	//List all Product Category
 	@GetMapping("/list")
 	public ResponseEntity<?> getList(){
 		List<ProductCategoryDTO> result = procateService.listAllFoCus();
