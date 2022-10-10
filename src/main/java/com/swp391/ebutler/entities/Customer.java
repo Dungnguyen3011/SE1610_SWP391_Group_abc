@@ -44,7 +44,7 @@ public class Customer {
 	// Foreign key [account Id]
 	@OneToOne
 	@JsonBackReference
-	@JoinColumn(name = "accountId")
+	@JoinColumn(name = "account_id")
 	private Account account;
 	
 	// Primary key [customer Id]

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +28,15 @@ public class ServiceCategoryServiceImp implements ServiceCategoryService {
 		result.forEach(v -> listDTO.add(ServiceCategoryMapper.toServiceCategoryDTO(v)));
 		return listDTO;
 	}
+	
+	// Show all by status true
+	@Override
+	public List<ServiceCategoryDTO> listAllByStatus() {
+		List<ServiceCategory> result = repo.findByStatus(true);
+		List<ServiceCategoryDTO> listDTO = new ArrayList<>();
+		result.forEach(v -> listDTO.add(ServiceCategoryMapper.toServiceCategoryDTO(v)));
+		return listDTO;
+	}
 
 	// Save 
 	@Override
@@ -49,23 +56,19 @@ public class ServiceCategoryServiceImp implements ServiceCategoryService {
 		return null;
 	}
 
-	// Search by id
+	// Get by id
 	public ServiceCategory getId(int id) {
 		return repo.findById(id).get();
 	}
 
 	@Override
-	public ServiceCategoryDTO searchById(int id) {
-		ServiceCategory sc = getId(id);
-		if (sc != null) {
-			return ServiceCategoryMapper.toServiceCategoryDTO(sc);
-		}		
-		return null;
+	public ServiceCategoryDTO getById(int id) {
+		return ServiceCategoryMapper.toServiceCategoryDTO(getId(id));
 	}
 	
 	// Search by name
 	public List<ServiceCategoryDTO> searchByName(String name) {
-		List<ServiceCategory> result = repo.findByServicecategoryNameContaining(name, Sort.by(Direction.ASC, "servicecategoryName"));
+		List<ServiceCategory> result = repo.findByServicecategoryNameContaining(name);
 		List<ServiceCategoryDTO> lisDtos = new ArrayList<>();
 		result.forEach(v -> lisDtos.add(ServiceCategoryMapper.toServiceCategoryDTO(v)));
 		return lisDtos;
