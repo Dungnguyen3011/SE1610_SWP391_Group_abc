@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.swp391.ebutler.entities.ServiceCategory;
 import com.swp391.ebutler.entities.Services;
 
 public interface ServicesRepository extends JpaRepository<Services, Integer> {
@@ -23,7 +22,7 @@ public interface ServicesRepository extends JpaRepository<Services, Integer> {
 	//List<Services> findBySCategory(ServiceCategory sCategory);
 	
 	// find services by category and status
-	List<Services> findBySCategoryAndStatus(ServiceCategory sCategory, Boolean status);
+	//List<Services> findBySCategoryAndStatus(ServiceCategory sCategory, Boolean status);
 	
 	// find services by provider name
 	@Query("Select s "
