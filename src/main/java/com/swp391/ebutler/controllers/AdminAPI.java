@@ -238,11 +238,11 @@ public class AdminAPI {
 	}
 	
 	// Show all services by category
-	@GetMapping("/service/list/{id}")
-	public ResponseEntity<?> getListServiceByCategory(@Param("id") int id) {
-		List<ServicesDTO> result = ss.listAllByCategoryId(id);
-		return ResponseEntity.ok(result);
-	}	
+	/*
+	 * @GetMapping("/service/list/{id}") public ResponseEntity<?>
+	 * getListServiceByCategory(@Param("id") int id) { List<ServicesDTO> result =
+	 * ss.listAllByCategoryId(id); return ResponseEntity.ok(result); }
+	 */
 	
 	// Show all ACTIVE services by category [status true]
 	@GetMapping("/service/list/{id}")

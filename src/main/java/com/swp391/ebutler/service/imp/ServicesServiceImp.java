@@ -43,14 +43,13 @@ public class ServicesServiceImp implements ServicesService {
 	}
 	
 	// Show all by category 
-	@Override
-	public List<ServicesDTO> listAllByCategoryId(int id) {
-		ServiceCategory cate = getServiceCategoryById(id) ;
-		List<Services> result = sRepo.findBySCategory(cate);
-		List<ServicesDTO> listDTO = new ArrayList<>();
-		result.forEach(v -> listDTO.add(ServicesMapper.toServicesDTO(v)));
-		return listDTO;
-	}
+	/*
+	 * @Override public List<ServicesDTO> listAllByCategoryId(int id) {
+	 * ServiceCategory cate = getServiceCategoryById(id) ; List<Services> result =
+	 * sRepo.findBySCategory(cate); List<ServicesDTO> listDTO = new ArrayList<>();
+	 * result.forEach(v -> listDTO.add(ServicesMapper.toServicesDTO(v))); return
+	 * listDTO; }
+	 */
 
 	// Show all by category and status true
 	@Override
