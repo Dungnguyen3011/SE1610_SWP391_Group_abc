@@ -35,6 +35,9 @@ public class ProductProvider {
 	@Column(name="quantity")
 	private Integer quantity;
 	
+	@Column(name="personal_description")
+	private String personalDescription;
+	
 	@Column(name="rating")
 	private Integer rating;
 	
