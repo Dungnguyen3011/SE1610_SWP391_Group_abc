@@ -40,7 +40,7 @@ public class ServiceProvider {
 	private Services service;
 	
 	@Column(name = "personal_description")
-	private String description;
+	private String personalDescription;
 	
 	@Column(name = "min_price")
 	private Float minPrice;
