@@ -23,6 +23,9 @@ public class ProductProviderDTO {
 	@Min(value = 0, message = "Quantity must greater than 0")
 	private Integer quantity;
 	
+	@NotNull(message = "Description can not be empty")
+	private String personalDescription;
+	
 	@Size(min=0 , max=5 , message = "Ranting must between 0 and 5")
 	private Integer rating;
 	

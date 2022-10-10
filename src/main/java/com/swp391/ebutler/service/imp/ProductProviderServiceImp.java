@@ -69,6 +69,7 @@ public class ProductProviderServiceImp implements ProductProviderService {
 		pProvider.setProductproviderId(pProviderDTO.getProductproviderId());
 		pProvider.setRating(pProviderDTO.getRating());
 		pProvider.setUnitPrice(pProviderDTO.getUnitPrice());
+		pProvider.setPersonalDescription(pProviderDTO.getPersonalDescription());
 		pProvider.setQuantity(pProviderDTO.getQuantity());
 		pProvider.setStatus(pProviderDTO.getStatus());
 		pProvider.setProduct(getProductById(pProviderDTO.getProduct_id()));
