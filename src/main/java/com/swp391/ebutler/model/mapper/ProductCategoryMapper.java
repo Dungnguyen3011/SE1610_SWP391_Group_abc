@@ -9,6 +9,7 @@ public class ProductCategoryMapper {
 		procateDTO.setProductcategoryId(proCategory.getProductcategoryId());
 		procateDTO.setProductcategoryName(proCategory.getProductcategoryName());
 		procateDTO.setStatus(proCategory.getStatus());
+		
 		return procateDTO;
 	}
 }

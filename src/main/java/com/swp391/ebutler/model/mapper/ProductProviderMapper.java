@@ -13,6 +13,7 @@ public class ProductProviderMapper {
 		pProviderDTO.setStatus(pProvider.getStatus());
 		pProviderDTO.setProduct_id(pProvider.getProduct().getProductId());
 		pProviderDTO.setProvider_id(pProvider.getProvider().getProviderId());
+		pProviderDTO.setProductName(pProvider.getProduct().getProductName());
 		return pProviderDTO;
 	}
 }

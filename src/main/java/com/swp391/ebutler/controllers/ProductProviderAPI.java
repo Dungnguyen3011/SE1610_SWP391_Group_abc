@@ -79,7 +79,7 @@ public class ProductProviderAPI {
 		return ResponseEntity.ok(result);
 	}
 	
-	//List product provider id
+	//List product provider by id
 	@GetMapping("/list/{id}")
 	public ResponseEntity<?> listById(@PathVariable("id") Integer id){
 		ProductProviderDTO result = pproviderService.getByIdDTO(id);
