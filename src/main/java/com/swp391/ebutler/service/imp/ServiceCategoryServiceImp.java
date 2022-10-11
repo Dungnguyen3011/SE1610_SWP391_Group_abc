@@ -67,13 +67,22 @@ public class ServiceCategoryServiceImp implements ServiceCategoryService {
 	}
 	
 	// Search by name
+	@Override
 	public List<ServiceCategoryDTO> searchByName(String name) {
 		List<ServiceCategory> result = repo.findByServicecategoryNameContaining(name);
 		List<ServiceCategoryDTO> lisDtos = new ArrayList<>();
 		result.forEach(v -> lisDtos.add(ServiceCategoryMapper.toServiceCategoryDTO(v)));
-		return lisDtos;
-		
+		return lisDtos;		
 	}
+	
+	// Search by name and status
+	@Override
+	public List<ServiceCategoryDTO> searchByNameAndStatus(String name) {
+		List<ServiceCategory> result = repo.findByStatusAndServicecategoryNameContaining(true, name);
+		List<ServiceCategoryDTO> lisDtos = new ArrayList<>();
+		result.forEach(v -> lisDtos.add(ServiceCategoryMapper.toServiceCategoryDTO(v)));
+		return lisDtos;		
+	}	
 	
 	// Type casting
 	public ServiceCategory toServiceCategory(ServiceCategoryDTO scDTO) {

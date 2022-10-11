@@ -20,10 +20,10 @@ public interface ServicesRepository extends JpaRepository<Services, Integer> {
 	List<Services> findByStatus(Boolean status);
 	
 	// find services by category
-	List<Services> findBySCategory(ServiceCategory sCategory);
-	
+	List<Services> findBySerCategory(ServiceCategory serCategory);
+
 	// find services by category and status
-	List<Services> findBySCategoryAndStatus(ServiceCategory sCategory, Boolean status);
+	List<Services> findBySerCategoryAndStatus(ServiceCategory serCategory, Boolean status);
 	
 	// find services by provider name
 	@Query("Select s "

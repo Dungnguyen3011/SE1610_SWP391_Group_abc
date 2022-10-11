@@ -32,11 +32,11 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer>{
 	List<Customer> listAllActiveCustomerAccount();
 	
 	// find active customer account by name
-	@Query("SELECT c "
-			+ "FROM Customer c INNER JOIN Account a "
-			+ "ON c.account.accountId = a.accountId "
-			+ "AND a.status = 1"
-			+ "WHERE c.fullName like %?1%")
-	List<Customer> findActiveCustomerAccountByName(String name);
+	/*
+	 * @Query("SELECT c " + "FROM Customer c INNER JOIN Account a " +
+	 * "ON c.account.accountId = a.accountId " + "AND a.status = 1" +
+	 * "WHERE c.fullName like %?1%") List<Customer>
+	 * findActiveCustomerAccountByName(String name);
+	 */
 	
 }

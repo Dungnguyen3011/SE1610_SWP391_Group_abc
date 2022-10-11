@@ -20,7 +20,7 @@ public interface ServiceProviderRepository extends JpaRepository<ServiceProvider
 	
 	List<ServiceProvider> findByStatus(Boolean status);
 	
-	List<ServiceProvider> findByStatus(Boolean status, Sort sort);
+	List<ServiceProvider> findByServiceAndStatus(Services service, Boolean status, Sort sort);
 	
 	List<ServiceProvider> findByProvider(Provider provider);
 	
@@ -33,6 +33,20 @@ public interface ServiceProviderRepository extends JpaRepository<ServiceProvider
 	@Query("Select sp "
 			+ "from ServiceProvider sp inner join Services s "
 			+ "on sp.service.serviceId = s.serviceId "
-			+ "and s.sCategory.servicecategoryId = ?1 ")
+			+ "where s.serCategory.servicecategoryId = ?1 ")
 	List<ServiceProvider> findByServiceCategoryId(int id);
+	
+	@Query("Select s "
+			+ "from ServiceProvider s "
+			+ "where s.status = 1 "
+			+ "and s.service.serviceId = ?1 "
+			+ "order by (s.minPrice + s.maxPrice)/2 ASC")
+	List<ServiceProvider> sortAscByAvgPriceAndStatusTrue(int id);
+
+	@Query("Select s "
+			+ "from ServiceProvider s "
+			+ "where s.status = 1 "
+			+ "and s.service.serviceId = ?1 "
+			+ "order by (s.minPrice + s.maxPrice)/2 DESC")
+	List<ServiceProvider> sortDescByAvgPriceAndStatusTrue(int id);
 }

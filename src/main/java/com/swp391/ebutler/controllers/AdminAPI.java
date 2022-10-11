@@ -182,7 +182,7 @@ public class AdminAPI {
 	}
 	
 	// Show all ACTIVE customer [status true]
-	@GetMapping("/customer/list/active")
+	@GetMapping("/customer/active/list")
 	public ResponseEntity<?> listAllActiveCustomer() {
 		List<CustomerDTO> result = cs.listAllActiveCustomerAccount();
 		return ResponseEntity.ok(result);
@@ -202,16 +202,9 @@ public class AdminAPI {
 	}
 	
 	// Search by customer address
-	@GetMapping("/customer/search/address")
+	@GetMapping("/customer/address/search")
 	public ResponseEntity<?> listCustomerByAddress(@Param("address") String address) {
 		List<CustomerDTO> result = cs.searchByAddress(address);
-		return ResponseEntity.ok(result);
-	}
-	
-	// Search active customer account by name
-	@GetMapping("/customer/search/active")
-	public ResponseEntity<?> listActiveCustomerAccountByName(@Param("name") String name) {
-		List<CustomerDTO> result = cs.searchActiveCustomerAccountByName(name);
 		return ResponseEntity.ok(result);
 	}
 	
@@ -240,22 +233,22 @@ public class AdminAPI {
 	}
 	
 	// Show all ACTIVE services [status true]
-	@GetMapping("/service/list/active")
+	@GetMapping("/service/active/list")
 	public ResponseEntity<?> getListActiveService() {
 		List<ServicesDTO> result = ss.listAllByStatus();
 		return ResponseEntity.ok(result);
 	}
 	
 	// Show all services by category
-	@GetMapping("/service/list/{categoryName}")
-	public ResponseEntity<?> getListServiceByCategory(@Param("id") int id) {
+	@GetMapping("/service/listbycategory/{id}")
+	public ResponseEntity<?> getListServiceByCategory(@PathVariable("id") int id) {
 		List<ServicesDTO> result = ss.listAllByCategoryId(id);
 		return ResponseEntity.ok(result);
 	}	
 	
 	// Show all ACTIVE services by category [status true]
-	@GetMapping("/service/list/{categoryName}")
-	public ResponseEntity<?> getListActiveServiceByCategory(@Param("id") int id) {
+	@GetMapping("/service/active/listbycategory/{id}")
+	public ResponseEntity<?> getListActiveServiceByCategory(@PathVariable("id") int id) {
 		List<ServicesDTO> result = ss.listAllByCategoryIdAndStatus(id);
 		return ResponseEntity.ok(result);
 	}
@@ -279,16 +272,23 @@ public class AdminAPI {
 		return ResponseEntity.ok(ss.save(s));
 	}
 
-	// Search services by name 
-	@GetMapping("/service/listbyname")
-	public ResponseEntity<?> searchServiceByName(@Param("name") String name) {
-		List<ServicesDTO> result = ss.searchByServiceName(name);
+	// Search services by param [provider name, service name] 
+	@GetMapping("/service/search")
+	public ResponseEntity<?> searchServiceByName(@Param("search") String search) {
+		List<ServicesDTO> result = ss.searchByParam(search);
 		return ResponseEntity.ok(result);
 	}
 
-	// get service by id
-	@GetMapping("/service/search")
-	public ResponseEntity<?> searchServiceById(@Param("id") int id) {
+	// Search ACTIVE services by param [provider name, service name] [status true]
+	@GetMapping("/service/active/search")
+	public ResponseEntity<?> searchActiveServiceByName(@Param("search") String search) {
+		List<ServicesDTO> result = ss.searchByParamAndStatus(search);
+		return ResponseEntity.ok(result);
+	}
+	
+	// Get service by id
+	@GetMapping("/service/{id}")
+	public ResponseEntity<?> searchServiceById(@PathVariable("id") int id) {
 		ServicesDTO result = ss.getById(id);
 		return ResponseEntity.ok(result);
 	}
@@ -300,6 +300,13 @@ public class AdminAPI {
 	@GetMapping("/scategory/list")
 	public ResponseEntity<?> getListServiceCategory() {
 		List<ServiceCategoryDTO> result = scs.listAll();
+		return ResponseEntity.ok(result);
+	}
+	
+	// Show all ACTIVE service category [status true]
+	@GetMapping("/scategory/active/list")
+	public ResponseEntity<?> getListActiveServiceCategory() {
+		List<ServiceCategoryDTO> result = scs.listAllByStatus();
 		return ResponseEntity.ok(result);
 	}
 
@@ -323,15 +330,22 @@ public class AdminAPI {
 	}
 
 	// Search service categories by name
-	@GetMapping("/scategory/listbyname")
+	@GetMapping("/scategory/search")
 	public ResponseEntity<?> searchServiceCategorybyName(@Param("name") String name) {
 		List<ServiceCategoryDTO> result = scs.searchByName(name);
 		return ResponseEntity.ok(result);
 	}
 
-	// Search a service category by id
-	@GetMapping("/scategory/search")
-	public ResponseEntity<?> searchServiceCategorybyId(@Param("id") int id) {
+	// Search ACTIVE service categories by name [status true]
+	@GetMapping("/scategory/active/search")
+	public ResponseEntity<?> searchActiveServiceCategorybyName(@Param("name") String name) {
+		List<ServiceCategoryDTO> result = scs.searchByNameAndStatus(name);
+		return ResponseEntity.ok(result);
+	}
+	
+	// Get service category by id
+	@GetMapping("/scategory/{id}")
+	public ResponseEntity<?> searchServiceCategorybyId(@PathVariable("id") int id) {
 		ServiceCategoryDTO result = scs.getById(id);
 		return ResponseEntity.ok(result);
 	}
@@ -346,6 +360,41 @@ public class AdminAPI {
 		return ResponseEntity.ok(result);
 	}
 
+	// Show all ACTIVE service providers [status true]
+	@GetMapping("/sprovider/active/list")
+	public ResponseEntity<?> getListActiveServiceProvider() {
+		List<ServiceProviderDTO> result = sps.listAllByStatus();
+		return ResponseEntity.ok(result);
+	}
+	
+	// Show all service providers by service
+	@GetMapping("/sprovider/listbyservice/{id}")
+	public ResponseEntity<?> getListServiceProviderByService(@PathVariable("id") int id) {
+		List<ServiceProviderDTO> result = sps.listAllByServiceId(id);
+		return ResponseEntity.ok(result);
+	}
+	
+	// Show all ACTIVE service providers by service [status true]
+	@GetMapping("/sprovider/active/listbyservice/{id}")
+	public ResponseEntity<?> getListActiveServiceProviderByService(@PathVariable("id") int id) {
+		List<ServiceProviderDTO> result = sps.listAllByServiceIdAndStatus(id);
+		return ResponseEntity.ok(result);
+	}
+	
+	// Show all service providers by provider
+	@GetMapping("/sprovider/listbyprovider/{id}")
+	public ResponseEntity<?> getListServiceProviderByProvider(@PathVariable("id") int id) {
+		List<ServiceProviderDTO> result = sps.listAllByProviderId(id);
+		return ResponseEntity.ok(result);
+	}
+
+	// Show all ACTIVE service providers by provider [status true]
+	@GetMapping("/sprovider/active/listbyprovider/{id}")
+	public ResponseEntity<?> getListActiveServiceProviderByProvider(@PathVariable("id") int id) {
+		List<ServiceProviderDTO> result = sps.listAllByProviderIdAndStatus(id);
+		return ResponseEntity.ok(result);
+	}
+		
 	// Add a service provider
 	@PostMapping("/sprovider/add")
 	public ResponseEntity<?> saveServiceProvider(@Valid @RequestBody ServiceProviderDTO sp) {
@@ -364,10 +413,36 @@ public class AdminAPI {
 		sp.setServiceproviderId(id);
 		return ResponseEntity.ok(sps.save(sp));
 	}
-
-	// Search a service provider by id
-	@GetMapping("/sprovider/search")
-	public ResponseEntity<?> searchServiceProviderById(@Param("id") int id) {
+	
+	// Count providers by service providers 
+	@GetMapping("/sprovider/countprovider/{id}")
+	public ResponseEntity<?> countProviderByServiceProvider(@PathVariable("id") int id) {
+		return ResponseEntity.ok(sps.countByServiceId(id));
+	}
+	
+	// Count services of one provider by service providers
+	@GetMapping("/sprovider/countservice/{id}")
+	public ResponseEntity<?> countServiceByServiceProvider(@PathVariable("id") int id) {
+		return ResponseEntity.ok(sps.countByProviderId(id));
+	}
+	
+	// Sort service providers by param [price, rating] order by [type] ASC or DESC  [int type = {1, 2, 3, 4}]
+	@GetMapping("sprovider/list/sort/{serviceId}")
+	public ResponseEntity<?> sortListServiceProvider(@PathVariable("serviceId") int serviceId, @Param("type") int type) {
+		List<ServiceProviderDTO> result = sps.sort(serviceId, type);
+		return ResponseEntity.ok(result);
+	}
+	
+	// Get List Filter by service category 
+	@GetMapping("sprovider/getbycategory/{id}")//
+	public ResponseEntity<?> getListFilterByCategory(@PathVariable("id") int id) {
+		List<ServiceProviderDTO> result = sps.getByServicecategoryId(id);
+		return ResponseEntity.ok(result);
+	}
+	
+	// Get service provider by id
+	@GetMapping("/sprovider/{id}")
+	public ResponseEntity<?> searchServiceProviderById(@PathVariable("id") int id) {
 		ServiceProviderDTO result = sps.getById(id);
 		return ResponseEntity.ok(result);
 	}

@@ -25,7 +25,7 @@ public class ServiceProviderDTO {
 	private Integer serviceId;
 	
 	@NotNull
-	private String description;
+	private String personalDescription;
 
 	@NotNull(message = "Specify price range for the service")
 	private Float minPrice;

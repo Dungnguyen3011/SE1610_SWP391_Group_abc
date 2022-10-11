@@ -11,7 +11,7 @@ public class ServicesMapper {
 		sDTO.setDescription(s.getDescription());
 		sDTO.setImage(s.getImage());
 		sDTO.setStatus(s.getStatus());
-		sDTO.setServicecategoryId(s.getSCategory().getServicecategoryId());
+		sDTO.setServicecategoryId(s.getSerCategory().getServicecategoryId());
 		return sDTO;
 	}
 }

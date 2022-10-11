@@ -45,7 +45,7 @@ public class Services {
 	@ManyToOne
 	@JsonBackReference
 	@JoinColumn(name = "service_category_id")
-	private ServiceCategory sCategory;
+	private ServiceCategory serCategory;
 	
 	// Primary key [service id]
 	@OneToMany(mappedBy = "service", fetch = FetchType.LAZY)
@@ -54,14 +54,14 @@ public class Services {
 
 	// Constructor with parameters
 	public Services(Integer serviceId, String serviceName, String description, String image, Boolean status,
-			ServiceCategory sCategory) {
+			ServiceCategory serCategory) {
 		super();
 		this.serviceId = serviceId;
 		this.serviceName = serviceName;
 		this.description = description;
 		this.image = image;
 		this.status = status;
-		this.sCategory = sCategory;
+		this.serCategory = serCategory;
 	}
 	
 	

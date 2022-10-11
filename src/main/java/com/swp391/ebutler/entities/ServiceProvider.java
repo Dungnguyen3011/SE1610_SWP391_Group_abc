@@ -40,7 +40,7 @@ public class ServiceProvider {
 	private Services service;
 	
 	@Column(name = "personal_description")
-	private String description;
+	private String personalDescription;
 	
 	@Column(name = "min_price")
 	private Float minPrice;
@@ -53,13 +53,13 @@ public class ServiceProvider {
 
 	// Constructor with parameters
 	public ServiceProvider(Integer serviceproviderId, Integer rating, Provider provider, Services service,
-			String description, Float minPrice, Float maxPrice, Boolean status) {
+			String personalDescription, Float minPrice, Float maxPrice, Boolean status) {
 		super();
 		this.serviceproviderId = serviceproviderId;
 		this.rating = rating;
 		this.provider = provider;
 		this.service = service;
-		this.description = description;
+		this.personalDescription = personalDescription;
 		this.minPrice = minPrice;
 		this.maxPrice = maxPrice;
 		this.status = status;

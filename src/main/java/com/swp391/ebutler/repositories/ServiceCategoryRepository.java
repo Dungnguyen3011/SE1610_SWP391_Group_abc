@@ -13,4 +13,8 @@ public interface ServiceCategoryRepository extends JpaRepository<ServiceCategory
 
 	// find by status
 	List<ServiceCategory> findByStatus(Boolean status);
+	
+	// find by name and status
+	List<ServiceCategory> findByStatusAndServicecategoryNameContaining(Boolean status, String servicecategoryName);
+	
 }
