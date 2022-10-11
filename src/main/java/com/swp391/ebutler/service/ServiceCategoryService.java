@@ -18,4 +18,6 @@ public interface ServiceCategoryService {
 	public ServiceCategoryDTO getById(int id);
 	
 	public List<ServiceCategoryDTO> searchByName(String name);
+	
+	public List<ServiceCategoryDTO> searchByNameAndStatus(String name);
 }

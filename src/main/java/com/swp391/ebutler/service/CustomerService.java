@@ -20,7 +20,7 @@ public interface CustomerService {
 
 	public List<CustomerDTO> searchByName(String name);
 	
-	public List<CustomerDTO> searchActiveCustomerAccountByName(String name);
+	// public List<CustomerDTO> searchActiveCustomerAccountByName(String name);
 	
 	public List<CustomerDTO> searchByAddress(String address);
 	

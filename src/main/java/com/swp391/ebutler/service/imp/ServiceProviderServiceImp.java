@@ -116,8 +116,8 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 		return ServiceProviderMapper.toServiceProviderDTO(getId(id));
 	}
 	
-	// Search by service category id
-	public List<ServiceProviderDTO> searchByServicecategoryId(int id){
+	// Get list filter by service category id
+	public List<ServiceProviderDTO> getByServicecategoryId(int id){
 		List<ServiceProvider> result = spRepo.findByServiceCategoryId(id);
 		List<ServiceProviderDTO> listDTO = new ArrayList<>();
 		result.forEach(v -> listDTO.add(ServiceProviderMapper.toServiceProviderDTO(v)));
@@ -138,20 +138,31 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 
 	// sort
 	@Override
-	public List<ServiceProviderDTO> sort(String sort) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ServiceProviderDTO> sort(int serviceId, int type) {
+		String ASC = "ASC";
+		String DESC = "DESC";
+		switch (type) {
+		case 1:
+			return sortByPrice(serviceId, ASC);
+		case 2:
+			return sortByPrice(serviceId, DESC);
+		case 3:
+			return sortByRating(serviceId, ASC);
+		case 4:
+			return sortByRating(serviceId, DESC);
+		default:
+			return listAllByStatus();
+		}
 	}
 
 	// sort by price
 	@Override
-	public List<ServiceProviderDTO> sortByPrice(String sort) {
+	public List<ServiceProviderDTO> sortByPrice(int serviceId, String type) {
 		List<ServiceProvider> result = null;
-		String avgPrice = "(minPrice + maxPrice)/2";
-		if (sort.equals("asc") || sort.equals("ASC")) {
-			result = spRepo.findByStatus(true, Sort.by(Direction.ASC, avgPrice));
-		} else if (sort.equals("desc") || sort.equals("DESC")) {
-			result = spRepo.findByStatus(true, Sort.by(Direction.DESC, avgPrice));
+		if (type.equals("ASC")) {
+			result = spRepo.sortAscByAvgPriceAndStatusTrue(serviceId);
+		} else if (type.equals("DESC")) {
+			result = spRepo.sortDescByAvgPriceAndStatusTrue(serviceId);
 		} else {
 			result = spRepo.findByStatus(true);
 		}
@@ -162,12 +173,13 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 
 	// sort by rating
 	@Override
-	public List<ServiceProviderDTO> sortByRating(String sort) {
+	public List<ServiceProviderDTO> sortByRating(int serviceId, String type) {
 		List<ServiceProvider> result = null;
-		if (sort.equals("asc") || sort.equals("ASC")) {
-			result = spRepo.findByStatus(true, Sort.by(Direction.ASC, "rating"));
-		} else if (sort.equals("desc") || sort.equals("DESC")) {
-			result = spRepo.findByStatus(true, Sort.by(Direction.DESC, "rating"));
+		Services s = getServiceById(serviceId);
+		if (type.equals("ASC")) {
+			result = spRepo.findByServiceAndStatus(s, true, Sort.by(Direction.ASC, "rating"));
+		} else if (type.equals("DESC")) {
+			result = spRepo.findByServiceAndStatus(s, true, Sort.by(Direction.DESC, "rating"));
 		} else {
 			result = spRepo.findByStatus(true);
 		}

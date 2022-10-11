@@ -107,13 +107,12 @@ public class CustomerServiceImp implements CustomerService {
 	//---------------------------------------------------------------------------------------------------------
 	
 	// Search active customer account by name
-	@Override 
-	public List<CustomerDTO> searchActiveCustomerAccountByName(String name) {
-		List<Customer> result = cRepo.findActiveCustomerAccountByName(name);
-		List<CustomerDTO> listDTO = new ArrayList<>();
-		result.forEach(v -> listDTO.add(CustomerMapper.toCustomerDTO(v)));
-		return listDTO;
-	}
+	/*
+	 * @Override public List<CustomerDTO> searchActiveCustomerAccountByName(String
+	 * name) { List<Customer> result = cRepo.findActiveCustomerAccountByName(name);
+	 * List<CustomerDTO> listDTO = new ArrayList<>(); result.forEach(v ->
+	 * listDTO.add(CustomerMapper.toCustomerDTO(v))); return listDTO; }
+	 */
 	
 	
 	//---------------------------------------------------------------------------------------------------------
