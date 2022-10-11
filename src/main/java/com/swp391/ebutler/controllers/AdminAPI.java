@@ -435,6 +435,8 @@ public class AdminAPI {
 	@GetMapping("/sprovider/{id}")
 	public ResponseEntity<?> searchServiceProviderById(@PathVariable("id") int id) {
 		ServiceProviderDTO result = sps.getById(id);
+		return ResponseEntity.ok(result);
+	}
 
 	// List products by {category id}
 	@GetMapping("/product/getbycategory/{cid}")
