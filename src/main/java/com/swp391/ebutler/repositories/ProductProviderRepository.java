@@ -16,7 +16,7 @@ public interface ProductProviderRepository extends JpaRepository<ProductProvider
 	
 	List<ProductProvider> findByStatus(Boolean status);
 	
-	List<ProductProvider> findByStatus(Boolean status, Sort sort);
+	List<ProductProvider> findByStatusAndProduct(Boolean status,Product product, Sort sort);
 	
 	List<ProductProvider> findByProduct(Product product);
 	

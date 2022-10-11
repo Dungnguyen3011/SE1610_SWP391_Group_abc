@@ -99,36 +99,6 @@ public class ProductProviderServiceImp implements ProductProviderService {
 	}
 
 	@Override
-	public List<ProductProviderDTO> sortByPrice(String sort) {
-		List<ProductProvider> result = null;
-		if (sort.equals("asc")) {
-			result = pProviderRepo.findByStatus(true, Sort.by(Direction.ASC, "unitPrice"));
-		} else if (sort.equals("desc")) {
-			result = pProviderRepo.findByStatus(true, Sort.by(Direction.DESC, "unitPrice"));
-		} else {
-			result = pProviderRepo.findByStatus(true);
-		}
-		List<ProductProviderDTO> listDTO = new ArrayList<>();
-		result.forEach(v -> listDTO.add(ProductProviderMapper.toProductProviderDTO(v)));
-		return listDTO;
-	}
-
-	@Override
-	public List<ProductProviderDTO> sortByRating(String sort) {
-		List<ProductProvider> result = null;
-		if (sort.equals("asc")) {
-			result = pProviderRepo.findByStatus(true, Sort.by(Direction.ASC, "rating"));
-		} else if (sort.equals("desc")) {
-			result = pProviderRepo.findByStatus(true, Sort.by(Direction.DESC, "rating"));
-		} else {
-			result = pProviderRepo.findByStatus(true);
-		}
-		List<ProductProviderDTO> listDTO = new ArrayList<>();
-		result.forEach(v -> listDTO.add(ProductProviderMapper.toProductProviderDTO(v)));
-		return listDTO;
-	}
-
-	@Override
 	public List<ProductProviderDTO> listByProductId(Integer id) {
 		Product product = getProductById(id);
 		List<ProductProvider> result = pProviderRepo.findByProduct(product);
@@ -147,33 +117,17 @@ public class ProductProviderServiceImp implements ProductProviderService {
 	}
 
 	@Override
-	public List<ProductProviderDTO> sort(String sort) {
-		String attribute = sort.split("-")[0];
-		String direction = sort.split("-")[1];
+	public List<ProductProviderDTO> sortInt(Integer sort, Integer pid) {
 		List<ProductProvider> result = null;
-		if (direction.equals("asc")) {
-			result = pProviderRepo.findByStatus(true, Sort.by(Direction.ASC, attribute));
-		} else if (direction.equals("desc")) {
-			result = pProviderRepo.findByStatus(true, Sort.by(Direction.DESC, attribute));
-		} else {
-			result = pProviderRepo.findByStatus(true);
-		}
-		List<ProductProviderDTO> listDTO = new ArrayList<>();
-		result.forEach(v -> listDTO.add(ProductProviderMapper.toProductProviderDTO(v)));
-		return listDTO;
-	}
-
-	@Override
-	public List<ProductProviderDTO> sortInt(Integer sort) {
-		List<ProductProvider> result = null;
+		Product product = getProductById(pid);
 		if(sort == 0) {
-			result = pProviderRepo.findByStatus(true, Sort.by(Direction.ASC, "unitPrice"));
+			result = pProviderRepo.findByStatusAndProduct(true, product, Sort.by(Direction.ASC, "unitPrice"));
 		}else if(sort == 1){
-			result = pProviderRepo.findByStatus(true, Sort.by(Direction.DESC, "unitPrice"));
+			result = pProviderRepo.findByStatusAndProduct(true, product,Sort.by(Direction.DESC, "unitPrice"));
 		}else if(sort == 2){
-			result = pProviderRepo.findByStatus(true, Sort.by(Direction.ASC, "rating"));
+			result = pProviderRepo.findByStatusAndProduct(true, product, Sort.by(Direction.ASC, "rating"));
 		}else if(sort == 3){
-			result = pProviderRepo.findByStatus(true, Sort.by(Direction.ASC, "rating"));
+			result = pProviderRepo.findByStatusAndProduct(true, product,Sort.by(Direction.ASC, "rating"));
 		}else{
 			result = pProviderRepo.findByStatus(true);
 		}
