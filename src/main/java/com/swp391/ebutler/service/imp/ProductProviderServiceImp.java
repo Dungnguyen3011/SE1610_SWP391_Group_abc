@@ -183,7 +183,7 @@ public class ProductProviderServiceImp implements ProductProviderService {
 	}
 
 	@Override
-	public List<ProductProviderDTO> listByProductIdFoCus(int id) {
+	public List<ProductProviderDTO> listByProductIdFoCus(Integer id) {
 		Product product = getProductById(id);
 		List<ProductProvider> result = pProviderRepo.findByProductAndStatus(product, true);
 		List<ProductProviderDTO> listDTO = new ArrayList<>();
@@ -192,7 +192,7 @@ public class ProductProviderServiceImp implements ProductProviderService {
 	}
 
 	@Override
-	public List<ProductProviderDTO> listByProviderIdFoCus(int id) {
+	public List<ProductProviderDTO> listByProviderIdFoCus(Integer id) {
 		Provider provider = getProviderById(id);
 		List<ProductProvider> result = pProviderRepo.findByProviderAndStatus(provider, true);
 		List<ProductProviderDTO> listDTO = new ArrayList<>();

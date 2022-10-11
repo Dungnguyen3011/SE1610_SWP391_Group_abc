@@ -148,5 +148,18 @@ public class AdminAPI {
 	public ResponseEntity<?> countProductProvider(@PathVariable("id") Integer id) {
 		return ResponseEntity.ok(pproviderService.countByProductId(id));
 	}
-	
+
+	// List products by {category id}
+	@GetMapping("/product/getbycategory/{cid}")
+	public ResponseEntity<?> getListByCate(@PathVariable("cid") Integer cid) {
+		List<ProductDTO> result = pService.listByCate(cid);
+		return ResponseEntity.ok(result);
+	}
+
+	// List products by {manufacturer id}
+	@GetMapping("/product/getbymanu/{mid}")
+	public ResponseEntity<?> getListByManu(@PathVariable("mid") Integer mid) {
+		List<ProductDTO> result = pService.listByManu(mid);
+		return ResponseEntity.ok(result);
+	}
 }

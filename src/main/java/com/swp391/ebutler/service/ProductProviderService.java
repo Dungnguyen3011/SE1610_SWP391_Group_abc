@@ -28,9 +28,9 @@ public interface ProductProviderService {
 
 	public List<ProductProviderDTO> sortByRating(String sort);
 
-	public List<ProductProviderDTO> listByProductIdFoCus(int id);
+	public List<ProductProviderDTO> listByProductIdFoCus(Integer id);
 
-	public List<ProductProviderDTO> listByProviderIdFoCus(int id);
+	public List<ProductProviderDTO> listByProviderIdFoCus(Integer id);
 
 	public List<ProductProviderDTO> sort(String sort);
 
