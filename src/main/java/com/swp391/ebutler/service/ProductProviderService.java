@@ -24,17 +24,11 @@ public interface ProductProviderService {
 
 	public List<ProductProviderDTO> listAllFoCus();
 
-	public List<ProductProviderDTO> sortByPrice(String sort);
+	public List<ProductProviderDTO> listByProductIdFoCus(Integer id);
 
-	public List<ProductProviderDTO> sortByRating(String sort);
+	public List<ProductProviderDTO> listByProviderIdFoCus(Integer id);
 
-	public List<ProductProviderDTO> listByProductIdFoCus(int id);
-
-	public List<ProductProviderDTO> listByProviderIdFoCus(int id);
-
-	public List<ProductProviderDTO> sort(String sort);
-
-	public List<ProductProviderDTO> sortInt(Integer sort);
+	public List<ProductProviderDTO> sortInt(Integer sort, Integer pid);
 	
 	public List<ProductProviderDTO> listByManuId(Integer id);
 	

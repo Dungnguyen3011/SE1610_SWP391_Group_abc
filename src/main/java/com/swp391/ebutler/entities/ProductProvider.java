@@ -39,7 +39,7 @@ public class ProductProvider {
 	private String personalDescription;
 	
 	@Column(name="rating")
-	private Integer rating;
+	private Float rating;
 	
 	@Column(name="status")
 	private Boolean status;
@@ -59,7 +59,7 @@ public class ProductProvider {
 	private Set<OrderDetail> orderDetails;
 
 	public ProductProvider(Integer productproviderId, Float unitPrice, Integer quantity, String personalDescription,
-			Integer rating, Boolean status, Provider provider, Product product) {
+			Float rating, Boolean status, Provider provider, Product product) {
 		super();
 		this.productproviderId = productproviderId;
 		this.unitPrice = unitPrice;

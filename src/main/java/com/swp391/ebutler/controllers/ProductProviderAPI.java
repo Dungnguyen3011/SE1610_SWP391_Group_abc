@@ -48,9 +48,9 @@ public class ProductProviderAPI {
 	// 1 - unitPrice - DESC
 	// 2 - rating - ASC
 	// 3 - rating - DESC
-	@GetMapping("/list/sort")
-	public ResponseEntity<?> sortInt(@Param("sort") Integer sort){
-		List<ProductProviderDTO> result = pproviderService.sortInt(sort);
+	@GetMapping("/list/sort/{pid}")
+	public ResponseEntity<?> sortInt(@Param("sort") Integer sort, @PathVariable("pid") Integer pid){
+		List<ProductProviderDTO> result = pproviderService.sortInt(sort, pid);
 		return ResponseEntity.ok(result);
 	}
 	//Add new ProductProvider

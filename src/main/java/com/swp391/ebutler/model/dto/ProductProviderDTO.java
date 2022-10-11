@@ -27,7 +27,7 @@ public class ProductProviderDTO {
 	private String personalDescription;
 	
 	@Size(min=0 , max=5 , message = "Ranting must between 0 and 5")
-	private Integer rating;
+	private Float rating;
 	
 	private Boolean status;
 	
