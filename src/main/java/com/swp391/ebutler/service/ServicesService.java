@@ -10,9 +10,9 @@ public interface ServicesService {
 	
 	public List<ServicesDTO> listAllByStatus();
 	
-	//public List<ServicesDTO> listAllByCategoryId(int id);
+	public List<ServicesDTO> listAllByCategoryId(int id);
 	
-	//public List<ServicesDTO> listAllByCategoryIdAndStatus(int id);
+	public List<ServicesDTO> listAllByCategoryIdAndStatus(int id);
 	
 	public ServicesDTO save(ServicesDTO s);
 	
