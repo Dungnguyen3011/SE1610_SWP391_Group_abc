@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import com.swp391.ebutler.entities.ServiceCategory;
 import com.swp391.ebutler.entities.Services;
 
 public interface ServicesRepository extends JpaRepository<Services, Integer> {
