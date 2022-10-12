@@ -51,7 +51,7 @@ public class ProductProviderAPI {
 	}
 	//Add new ProductProvider
 	@PostMapping("/list")
-	public ResponseEntity<?> save(@RequestBody ProductProviderDTO pProvider){
+	public ResponseEntity<?> save(@Valid @RequestBody ProductProviderDTO pProvider){
 		return ResponseEntity.ok(pproviderService.save(pProvider));
 	}
 	
@@ -63,7 +63,7 @@ public class ProductProviderAPI {
 
 	@PutMapping("/list/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") Integer id ,@Valid @RequestBody ProductProviderDTO pProvider){
-		pProvider.setProvider_id(id);
+		pProvider.setProductproviderId(id);
 		return ResponseEntity.ok(pproviderService.save(pProvider));
 	}
 	
