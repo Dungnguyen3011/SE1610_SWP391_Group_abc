@@ -24,7 +24,7 @@ public class ServiceProviderDTO {
 	@NotNull
 	private Integer serviceId;
 	
-	@NotNull
+	@NotNull(message = "Description can not be empty")
 	private String personalDescription;
 
 	@NotNull(message = "Specify price range for the service")
