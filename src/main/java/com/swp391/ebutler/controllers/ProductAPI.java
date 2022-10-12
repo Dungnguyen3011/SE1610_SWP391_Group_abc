@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.swp391.ebutler.model.dto.ProductDTO;
 import com.swp391.ebutler.service.ProductService;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/product")
 public class ProductAPI {
@@ -53,7 +55,7 @@ public class ProductAPI {
 
 	// Add new product to db
 	@PostMapping("/list")
-	public ResponseEntity<?> save(@RequestBody ProductDTO product) {
+	public ResponseEntity<?> save(@Valid @RequestBody ProductDTO product) {
 		return ResponseEntity.ok(pService.save(product));
 	}
 
@@ -65,7 +67,7 @@ public class ProductAPI {
 
 	// Update product
 	@PutMapping("/list/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") Integer id, @RequestBody ProductDTO product) {
+	public ResponseEntity<?> update(@PathVariable("id") Integer id,@Valid @RequestBody ProductDTO product) {
 		product.setProductId(id);
 		return ResponseEntity.ok(pService.save(product));
 	}

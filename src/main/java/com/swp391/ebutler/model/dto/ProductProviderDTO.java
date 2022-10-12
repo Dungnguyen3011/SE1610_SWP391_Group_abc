@@ -1,5 +1,6 @@
 package com.swp391.ebutler.model.dto;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -26,7 +27,8 @@ public class ProductProviderDTO {
 	@NotNull(message = "Description can not be empty")
 	private String personalDescription;
 	
-	@Size(min=0 , max=5 , message = "Ranting must between 0 and 5")
+	@Min(0)
+	@Max(5)
 	private Float rating;
 	
 	private Boolean status;
