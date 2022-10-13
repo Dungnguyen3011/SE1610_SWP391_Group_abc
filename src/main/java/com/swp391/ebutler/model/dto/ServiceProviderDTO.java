@@ -35,6 +35,8 @@ public class ServiceProviderDTO {
 	
 	private String serviceName;
 	
+	private String image;
+	
 	@NotNull
 	private Boolean status;
 }
