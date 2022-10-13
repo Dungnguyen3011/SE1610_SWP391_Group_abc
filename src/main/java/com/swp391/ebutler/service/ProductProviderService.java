@@ -8,29 +8,29 @@ import com.swp391.ebutler.model.dto.ProductProviderDTO;
 public interface ProductProviderService {
 	public List<ProductProviderDTO> listAll();
 
-	public List<ProductProviderDTO> listByProductId(int id);
+	public List<ProductProviderDTO> listByProductId(Integer id);
 
-	public List<ProductProviderDTO> listByProviderId(int id);
+	public List<ProductProviderDTO> listByProviderId(Integer id);
 
 	public ProductProviderDTO save(ProductProviderDTO pProvider);
 
-	public ProductProviderDTO delete(int id);
+	public ProductProviderDTO delete(Integer id);
 
-	public ProductProviderDTO getByIdDTO(int id);
+	public ProductProviderDTO getByIdDTO(Integer id);
 
-	public ProductProvider getById(int id);
+	public ProductProvider getById(Integer id);
 
-	public Integer countByProductId(int id);
+	public Integer countByProductId(Integer id);
 
 	public List<ProductProviderDTO> listAllFoCus();
 
-	public List<ProductProviderDTO> sortByPrice(String sort);
+	public List<ProductProviderDTO> listByProductIdFoCus(Integer id);
 
-	public List<ProductProviderDTO> sortByRating(String sort);
+	public List<ProductProviderDTO> listByProviderIdFoCus(Integer id);
 
-	public List<ProductProviderDTO> listByProductIdFoCus(int id);
-
-	public List<ProductProviderDTO> listByProviderIdFoCus(int id);
-
-	public List<ProductProviderDTO> sort(String sort);
+	public List<ProductProviderDTO> sortInt(Integer sort, Integer pid);
+	
+	public List<ProductProviderDTO> listByManuId(Integer id);
+	
+	public List<ProductProviderDTO> listByCateId(Integer id);
 }

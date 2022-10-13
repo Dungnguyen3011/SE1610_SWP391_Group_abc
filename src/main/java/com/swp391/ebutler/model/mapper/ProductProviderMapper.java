@@ -9,10 +9,12 @@ public class ProductProviderMapper {
 		pProviderDTO.setProductproviderId(pProvider.getProductproviderId());
 		pProviderDTO.setUnitPrice(pProvider.getUnitPrice());
 		pProviderDTO.setRating(pProvider.getRating());
+		pProviderDTO.setPersonalDescription(pProvider.getPersonalDescription());
 		pProviderDTO.setQuantity(pProvider.getQuantity());
 		pProviderDTO.setStatus(pProvider.getStatus());
 		pProviderDTO.setProduct_id(pProvider.getProduct().getProductId());
 		pProviderDTO.setProvider_id(pProvider.getProvider().getProviderId());
+		pProviderDTO.setProductName(pProvider.getProduct().getProductName());
 		return pProviderDTO;
 	}
 }

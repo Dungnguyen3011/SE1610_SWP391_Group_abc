@@ -35,8 +35,11 @@ public class ProductProvider {
 	@Column(name="quantity")
 	private Integer quantity;
 	
+	@Column(name="personal_description")
+	private String personalDescription;
+	
 	@Column(name="rating")
-	private Integer rating;
+	private Float rating;
 	
 	@Column(name="status")
 	private Boolean status;
@@ -55,16 +58,19 @@ public class ProductProvider {
 	@JsonManagedReference
 	private Set<OrderDetail> orderDetails;
 
-	public ProductProvider(Integer productproviderId, Float unitPrice, Integer quantity, Integer rating, Boolean status,
-			Product product, Provider provider) {
+	public ProductProvider(Integer productproviderId, Float unitPrice, Integer quantity, String personalDescription,
+			Float rating, Boolean status, Provider provider, Product product) {
 		super();
 		this.productproviderId = productproviderId;
 		this.unitPrice = unitPrice;
 		this.quantity = quantity;
+		this.personalDescription = personalDescription;
 		this.rating = rating;
 		this.status = status;
-		this.product = product;
 		this.provider = provider;
+		this.product = product;
 	}
+
+	
 
 }
