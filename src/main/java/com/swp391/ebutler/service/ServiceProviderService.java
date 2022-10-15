@@ -18,7 +18,7 @@ public interface ServiceProviderService {
 	
 	public List<ServiceProviderDTO> listAllByProviderIdAndStatus(int id);
 	
-	public ServiceProviderDTO save(ServiceProviderDTO sp);
+	public Integer save(ServiceProviderDTO sp);
 	
 	public ServiceProviderDTO delete(int id);
 	
