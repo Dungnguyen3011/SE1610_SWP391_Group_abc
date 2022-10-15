@@ -38,12 +38,13 @@ public class ProductProviderServiceImp implements ProductProviderService {
 	}
 
 	@Override
-	public ProductProviderDTO save(ProductProviderDTO pProviderDTO) {
-		if (!isExist(pProviderDTO)) {
+	public Integer save(ProductProviderDTO pProviderDTO) {
+		if (getIdByDTO(pProviderDTO) == -1) {
 			ProductProvider pProvider = toProductProvider(pProviderDTO);
-			return ProductProviderMapper.toProductProviderDTO(pProviderRepo.save(pProvider));
-		} else
-			return null;
+			ProductProviderMapper.toProductProviderDTO(pProviderRepo.save(pProvider));
+			return -1;
+		}
+		return getIdByDTO(pProviderDTO);
 	}
 
 	@Override
@@ -180,10 +181,15 @@ public class ProductProviderServiceImp implements ProductProviderService {
 	}
 
 	@Override
-	public Boolean isExist(ProductProviderDTO pProvider) {
-		Product product = getProductById(pProvider.getProduct_id());
-		Provider provider = getProviderById(pProvider.getProvider_id());
-		return (pProviderRepo.findByProductAndProvider(product, provider) != null);
+	public Integer getIdByDTO(ProductProviderDTO pProviderDTO) {
+		Integer id = -1;
+		Product product = getProductById(pProviderDTO.getProduct_id());
+		Provider provider = getProviderById(pProviderDTO.getProvider_id());
+		ProductProvider pProvider = pProviderRepo.findByProductAndProvider(product, provider);
+		if ( pProvider != null) {
+			id = pProvider.getProductproviderId();
+		}
+		return id;
 	}
 
 }

@@ -12,7 +12,7 @@ public interface ProductProviderService {
 
 	public List<ProductProviderDTO> listByProviderId(Integer id);
 
-	public ProductProviderDTO save(ProductProviderDTO pProvider);
+	public Integer save(ProductProviderDTO pProvider);
 	
 	public ProductProviderDTO update(ProductProviderDTO pProvider);
 
@@ -36,5 +36,5 @@ public interface ProductProviderService {
 	
 	public List<ProductProviderDTO> listByCateId(Integer id);
 	
-	public Boolean isExist(ProductProviderDTO pProvider);
+	public Integer getIdByDTO(ProductProviderDTO pProviderDTO);
 }
