@@ -30,6 +30,8 @@ public interface ServiceProviderRepository extends JpaRepository<ServiceProvider
 	
 	List<ServiceProvider> findByServiceAndStatus(Services service, Boolean status);
 	
+	ServiceProvider findByProviderAndService(Provider provider, Services service);
+	
 	@Query("Select sp "
 			+ "from ServiceProvider sp inner join Services s "
 			+ "on sp.service.serviceId = s.serviceId "

@@ -92,7 +92,12 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 	@Override
 	public ServiceProviderDTO save(ServiceProviderDTO spDTO) {
 		ServiceProvider sp = toServiceProvider(spDTO);
-		return ServiceProviderMapper.toServiceProviderDTO(spRepo.save(sp));
+		Services s = getServiceById(sp.getService().getServiceId());
+		Provider p = getProviderById(sp.getProvider().getProviderId());
+		if (spRepo.findByProviderAndService(p, s) == null) {
+			return ServiceProviderMapper.toServiceProviderDTO(spRepo.save(sp));
+		}
+		return null;
 	}
 
 	// Delete
@@ -115,9 +120,9 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 	public ServiceProviderDTO getById(int id) {
 		return ServiceProviderMapper.toServiceProviderDTO(getId(id));
 	}
-	
+
 	// Get list filter by service category id
-	public List<ServiceProviderDTO> getByServicecategoryId(int id){
+	public List<ServiceProviderDTO> getByServicecategoryId(int id) {
 		List<ServiceProvider> result = spRepo.findByServiceCategoryId(id);
 		List<ServiceProviderDTO> listDTO = new ArrayList<>();
 		result.forEach(v -> listDTO.add(ServiceProviderMapper.toServiceProviderDTO(v)));
@@ -129,7 +134,7 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 	public Integer countByServiceId(int id) {
 		return spRepo.countByServiceId(id);
 	}
-	
+
 	// Count by provider id
 	@Override
 	public Integer countByProviderId(int id) {
@@ -211,7 +216,5 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 	public Provider getProviderById(int id) {
 		return pRepo.findById(id).get();
 	}
-	
 
-	
 }
