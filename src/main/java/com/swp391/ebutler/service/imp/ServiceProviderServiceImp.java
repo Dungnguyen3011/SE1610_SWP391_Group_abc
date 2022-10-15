@@ -90,14 +90,26 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 
 	// Save
 	@Override
-	public ServiceProviderDTO save(ServiceProviderDTO spDTO) {
-		ServiceProvider sp = toServiceProvider(spDTO);
-		Services s = getServiceById(sp.getService().getServiceId());
-		Provider p = getProviderById(sp.getProvider().getProviderId());
-		if (spRepo.findByProviderAndService(p, s) == null) {
-			return ServiceProviderMapper.toServiceProviderDTO(spRepo.save(sp));
+	public Integer save(ServiceProviderDTO spDTO) {
+		if (getIdByDTO(spDTO) == -1) {
+			ServiceProvider sp = toServiceProvider(spDTO);
+			ServiceProviderMapper.toServiceProviderDTO(spRepo.save(sp));
+			return -1;
+		} 
+		return getIdByDTO(spDTO);
+	}
+	
+	// Get Id by DTO [check duplicate service by a provider]
+	public Integer getIdByDTO(ServiceProviderDTO spDTO) {
+		int id = -1;
+		Services s = getServiceById(spDTO.getServiceId());
+		Provider p = getProviderById(spDTO.getProviderId());
+		ServiceProvider sp = spRepo.findByProviderAndService(p, s);
+		if ( sp != null) {
+			id = sp.getServiceproviderId();
 		}
-		return null;
+		return id;
+		
 	}
 
 	// Delete
@@ -111,7 +123,7 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 		return null;
 	}
 
-	// Search By id
+	// Get By id
 	public ServiceProvider getId(int id) {
 		return spRepo.findById(id).get();
 	}
