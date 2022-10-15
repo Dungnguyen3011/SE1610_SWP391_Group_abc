@@ -83,10 +83,11 @@ public class ProductProviderAPI {
 		return ResponseEntity.ok(pproviderService.delete(id));
 	}
 
+	// Update ProductProvider
 	@PutMapping("/list/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") Integer id, @Valid @RequestBody ProductProviderDTO pProvider) {
 		pProvider.setProductproviderId(id);
-		return ResponseEntity.ok(pproviderService.save(pProvider));
+		return ResponseEntity.ok(pproviderService.update(pProvider));
 	}
 
 	// List product provider by ManuId
