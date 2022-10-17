@@ -19,12 +19,12 @@ public class AccountAPI {
 	@Autowired
 	AccountService accsv;
 	
-	@PostMapping("/account/save")
+	@PostMapping("/account/register")
 	public ResponseEntity<?> Register(@Valid @RequestBody RegisterAccountDTO acc) {
 		return ResponseEntity.ok(accsv.registAcc(acc));
 	}
 	
-	@GetMapping("/account/save")
+	@GetMapping("/account/login")
 	public ResponseEntity<?> Login(@Valid @RequestBody LoginAccDTO acc) {
 		return ResponseEntity.ok(accsv.login(acc));
 	}
