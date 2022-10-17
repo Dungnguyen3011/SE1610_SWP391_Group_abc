@@ -80,6 +80,7 @@ public class AccountServiceImp implements AccountService {
 				accdto.setAddress(cusacc.getAddress());
 				accdto.setPhoneNumber(cusacc.getPhoneNumber());
 				accdto.setRole(true);
+				accdto.setId(cusacc.getCustomerId());
 			}else {
 				Provider proacc = providerrepo.findByAccountId(account.getAccountId());
 				accdto.setLoginMail(account.getLoginMail());
@@ -87,6 +88,7 @@ public class AccountServiceImp implements AccountService {
 				accdto.setAddress(proacc.getAddress());
 				accdto.setPhoneNumber(proacc.getPhoneNumber());
 				accdto.setRole(false);
+				accdto.setId(proacc.getProviderId());
 			}
 			return accdto;
 		}

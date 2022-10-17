@@ -34,4 +34,6 @@ public class RegisterAccountDTO {
 	private String address;
 	
 	private Boolean role;
+	
+	private Integer Id;
 }
