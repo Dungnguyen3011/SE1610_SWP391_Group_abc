@@ -6,4 +6,5 @@ import com.swp391.ebutler.entities.Account;
 
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 
+	Account findByLoginMailAndPassword(String loginMail, String password);
 }

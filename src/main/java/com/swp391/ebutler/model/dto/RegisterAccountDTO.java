@@ -20,6 +20,7 @@ public class RegisterAccountDTO {
 	private String loginMail;
 	
 	@NotNull
+	@Size(min = 6, message = "Password must has atleast 6 characters")
 	private String password;
 	
 	@NotNull(message = "Name is required")
