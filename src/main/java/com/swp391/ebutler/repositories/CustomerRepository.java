@@ -31,6 +31,10 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer>{
 			+ "AND a.status = 1")
 	List<Customer> listAllActiveCustomerAccount();
 	
+	// find customer by account id
+	@Query("SELECT c FROM Customer c Where c.account.accountId= :id")
+	Customer findByAccountId(Integer id);
+	
 	// find active customer account by name
 	/*
 	 * @Query("SELECT c " + "FROM Customer c INNER JOIN Account a " +
