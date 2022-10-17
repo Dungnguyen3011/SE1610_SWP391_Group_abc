@@ -8,5 +8,4 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     
     Account findByLoginMailAndPassword(String loginMail, String password);
 
-	Account findByLoginMailAndPassword(String loginMail, String password);
 }

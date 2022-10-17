@@ -10,7 +10,6 @@ import com.swp391.ebutler.model.dto.LoginAccDTO;
 import com.swp391.ebutler.entities.Account;
 import com.swp391.ebutler.entities.Customer;
 import com.swp391.ebutler.entities.Provider;
-import com.swp391.ebutler.model.dto.LoginAccDTO;
 import com.swp391.ebutler.model.dto.RegisterAccountDTO;
 import com.swp391.ebutler.repositories.AccountRepository;
 import com.swp391.ebutler.repositories.CustomerRepository;
