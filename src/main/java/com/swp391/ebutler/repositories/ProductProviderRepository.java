@@ -38,5 +38,5 @@ public interface ProductProviderRepository extends JpaRepository<ProductProvider
 			+ "WHERE p.proCategory.productcategoryId = ?1 ")
 	List<ProductProvider> listByCateId(Integer id);
 
-	
+	ProductProvider findByProductAndProvider(Product product, Provider provider);
 }

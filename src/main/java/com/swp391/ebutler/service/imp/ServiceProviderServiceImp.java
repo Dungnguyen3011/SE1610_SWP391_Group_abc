@@ -90,9 +90,26 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 
 	// Save
 	@Override
-	public ServiceProviderDTO save(ServiceProviderDTO spDTO) {
-		ServiceProvider sp = toServiceProvider(spDTO);
-		return ServiceProviderMapper.toServiceProviderDTO(spRepo.save(sp));
+	public Integer save(ServiceProviderDTO spDTO) {
+		if (getIdByDTO(spDTO) == -1) {
+			ServiceProvider sp = toServiceProvider(spDTO);
+			ServiceProviderMapper.toServiceProviderDTO(spRepo.save(sp));
+			return -1;
+		} 
+		return getIdByDTO(spDTO);
+	}
+	
+	// Get Id by DTO [check duplicate service by a provider]
+	public Integer getIdByDTO(ServiceProviderDTO spDTO) {
+		int id = -1;
+		Services s = getServiceById(spDTO.getServiceId());
+		Provider p = getProviderById(spDTO.getProviderId());
+		ServiceProvider sp = spRepo.findByProviderAndService(p, s);
+		if ( sp != null) {
+			id = sp.getServiceproviderId();
+		}
+		return id;
+		
 	}
 
 	// Delete
@@ -106,7 +123,7 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 		return null;
 	}
 
-	// Search By id
+	// Get By id
 	public ServiceProvider getId(int id) {
 		return spRepo.findById(id).get();
 	}
@@ -115,9 +132,9 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 	public ServiceProviderDTO getById(int id) {
 		return ServiceProviderMapper.toServiceProviderDTO(getId(id));
 	}
-	
+
 	// Get list filter by service category id
-	public List<ServiceProviderDTO> getByServicecategoryId(int id){
+	public List<ServiceProviderDTO> getByServicecategoryId(int id) {
 		List<ServiceProvider> result = spRepo.findByServiceCategoryId(id);
 		List<ServiceProviderDTO> listDTO = new ArrayList<>();
 		result.forEach(v -> listDTO.add(ServiceProviderMapper.toServiceProviderDTO(v)));
@@ -129,7 +146,7 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 	public Integer countByServiceId(int id) {
 		return spRepo.countByServiceId(id);
 	}
-	
+
 	// Count by provider id
 	@Override
 	public Integer countByProviderId(int id) {
@@ -211,7 +228,5 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 	public Provider getProviderById(int id) {
 		return pRepo.findById(id).get();
 	}
-	
 
-	
 }
