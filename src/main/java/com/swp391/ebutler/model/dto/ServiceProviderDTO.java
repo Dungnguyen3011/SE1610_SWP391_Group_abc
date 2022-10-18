@@ -23,12 +23,19 @@ public class ServiceProviderDTO {
 	
 	@NotNull
 	private Integer serviceId;
+	
+	@NotNull(message = "Description can not be empty")
+	private String personalDescription;
 
 	@NotNull(message = "Specify price range for the service")
 	private Float minPrice;
 	
 	@NotNull(message = "Specify price range for the service")
 	private Float maxPrice;
+	
+	private String serviceName;
+	
+	private String image;
 	
 	@NotNull
 	private Boolean status;

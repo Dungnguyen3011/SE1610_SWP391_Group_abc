@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.swp391.ebutler.entities.Manufacturer;
 import com.swp391.ebutler.model.dto.ManufacturerDTO;
@@ -13,7 +14,9 @@ import com.swp391.ebutler.repositories.ManufacturerRepository;
 import com.swp391.ebutler.service.ManufacturerService;
 
 
+
 @Service
+@Transactional
 public class ManufacturerServiceImp implements ManufacturerService{
 	@Autowired
 	ManufacturerRepository repo;
@@ -33,7 +36,7 @@ public class ManufacturerServiceImp implements ManufacturerService{
 	}
 
 	@Override
-	public ManufacturerDTO delete(int id) {
+	public ManufacturerDTO delete(Integer id) {
 		Manufacturer manu = getById(id);
 		if(manu != null) {
 			manu.setStatus(false);
@@ -43,12 +46,12 @@ public class ManufacturerServiceImp implements ManufacturerService{
 	}
 	
 	@Override
-	public Manufacturer getById(int id) {
+	public Manufacturer getById(Integer id) {
 		return repo.findById(id).get();
 	}
 
 	@Override
-	public ManufacturerDTO getByIdDTO(int id) {
+	public ManufacturerDTO getByIdDTO(Integer id) {
 		Manufacturer manu = repo.findById(id).get();
 		if(manu != null ) {
 			return ManufacturerMapper.toManufacturerDTO(manu);
@@ -66,7 +69,15 @@ public class ManufacturerServiceImp implements ManufacturerService{
 
 	@Override
 	public List<ManufacturerDTO> searchByName(String name) {
-		List<Manufacturer> result = repo.findByManufacturerName(name);
+		List<Manufacturer> result = repo.findByManufacturerNameContaining(name);
+		List<ManufacturerDTO> listDTO = new ArrayList<>();
+		result.forEach(v -> listDTO.add(ManufacturerMapper.toManufacturerDTO(v)));
+		return listDTO;
+	}
+
+	@Override
+	public List<ManufacturerDTO> listAllFoCus() {
+		List<Manufacturer> result = repo.findByStatus(true);
 		List<ManufacturerDTO> listDTO = new ArrayList<>();
 		result.forEach(v -> listDTO.add(ManufacturerMapper.toManufacturerDTO(v)));
 		return listDTO;

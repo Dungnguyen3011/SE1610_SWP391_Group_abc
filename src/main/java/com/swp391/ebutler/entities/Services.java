@@ -41,24 +41,27 @@ public class Services {
 	@Column(name = "status")
 	private Boolean status;
 	
+	// Foreign key [service category id]
 	@ManyToOne
 	@JsonBackReference
 	@JoinColumn(name = "service_category_id")
-	private ServiceCategory sCategory;
+	private ServiceCategory serCategory;
 	
+	// Primary key [service id]
 	@OneToMany(mappedBy = "service", fetch = FetchType.LAZY)
 	@JsonManagedReference
 	private Set<ServiceProvider> sProvider;
 
+	// Constructor with parameters
 	public Services(Integer serviceId, String serviceName, String description, String image, Boolean status,
-			ServiceCategory sCategory) {
+			ServiceCategory serCategory) {
 		super();
 		this.serviceId = serviceId;
 		this.serviceName = serviceName;
 		this.description = description;
 		this.image = image;
 		this.status = status;
-		this.sCategory = sCategory;
+		this.serCategory = serCategory;
 	}
 	
 	

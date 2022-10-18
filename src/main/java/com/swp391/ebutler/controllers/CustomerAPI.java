@@ -1,8 +1,10 @@
+
 package com.swp391.ebutler.controllers;
 
-import java.util.List;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,22 +23,25 @@ public class CustomerAPI {
 
 	@Autowired
 	CustomerService cs;
-	
-	@GetMapping("/list")
-	public ResponseEntity<?> getList() {
-		List<CustomerDTO> result = cs.listAll();
+
+	// Search By customer id
+	@GetMapping("/info")
+	public ResponseEntity<?> searchCustomerById(@Param("id") int id) {
+		CustomerDTO result = cs.getById(id);
 		return ResponseEntity.ok(result);
 	}
-	
-	@PostMapping("/list")
-	public ResponseEntity<?> save(@RequestBody CustomerDTO c) {
+
+	// Add a customer
+	@PostMapping("/add")
+	public ResponseEntity<?> save(@Valid @RequestBody CustomerDTO c) {
 		return ResponseEntity.ok(cs.save(c));
 	}
-	
-	@PutMapping("/list/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody CustomerDTO c) {
+
+	// Update a customer profile
+	@PutMapping("/update/{id}")
+	public ResponseEntity<?> update(@PathVariable("id") int id, @Valid @RequestBody CustomerDTO c) {
 		c.setCustomerId(id);
 		return ResponseEntity.ok(cs.save(c));
 	}
-	
+
 }

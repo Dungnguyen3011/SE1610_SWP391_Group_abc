@@ -1,9 +1,8 @@
 package com.swp391.ebutler.model.dto;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,15 +22,23 @@ public class ProductProviderDTO {
 	@Min(value = 0, message = "Quantity must greater than 0")
 	private Integer quantity;
 	
-	@Size(min=0 , max=5 , message = "Ranting must between 0 and 5")
-	private Integer rating;
+	@NotNull(message = "Description can not be empty")
+	private String personalDescription;
+	
+	@Min(0)
+	@Max(5)
+	private Float rating;
 	
 	private Boolean status;
+	
+	private String image;
 	
 	@NotNull(message = "Please select product")
 	private Integer product_id;
 	
 	@NotNull(message = "Please select provider")
 	private Integer provider_id;
+	
+	private String productName;
 	
 }

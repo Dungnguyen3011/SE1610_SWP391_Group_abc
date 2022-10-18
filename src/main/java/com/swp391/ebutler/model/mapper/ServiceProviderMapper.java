@@ -10,9 +10,12 @@ public class ServiceProviderMapper {
 		spDTO.setRating(sp.getRating());
 		spDTO.setServiceId(sp.getService().getServiceId());
 		spDTO.setProviderId(sp.getProvider().getProviderId());
+		spDTO.setServiceName(sp.getService().getServiceName());
+		spDTO.setPersonalDescription(sp.getPersonalDescription());
 		spDTO.setMinPrice(sp.getMinPrice());
 		spDTO.setMaxPrice(sp.getMaxPrice());
 		spDTO.setStatus(sp.getStatus());
+		spDTO.setImage(sp.getService().getImage());
 		return spDTO;
 	}
 }

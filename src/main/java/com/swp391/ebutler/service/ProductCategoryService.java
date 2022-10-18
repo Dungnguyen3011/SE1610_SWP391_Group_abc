@@ -11,10 +11,13 @@ public interface ProductCategoryService {
 	
 	public ProductCategoryDTO save(ProductCategoryDTO procate);
 	
-	public ProductCategoryDTO delete(int id);
+	public ProductCategoryDTO delete(Integer id);
 	
-	public ProductCategory getById(int id);
+	public ProductCategory getById(Integer id);
 	
-	public ProductCategoryDTO getByIdDTO(int id);
+	public ProductCategoryDTO getByIdDTO(Integer id);
 	
+	public List<ProductCategoryDTO> searchByName(String name);
+	
+	public List<ProductCategoryDTO> listAllFoCus();
 }

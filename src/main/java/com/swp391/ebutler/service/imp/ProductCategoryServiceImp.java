@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.swp391.ebutler.entities.ProductCategory;
 import com.swp391.ebutler.model.dto.ProductCategoryDTO;
@@ -13,6 +14,7 @@ import com.swp391.ebutler.repositories.ProductCategoryRepository;
 import com.swp391.ebutler.service.ProductCategoryService;
 
 @Service
+@Transactional
 public class ProductCategoryServiceImp implements ProductCategoryService{
 
 	@Autowired
@@ -34,7 +36,7 @@ public class ProductCategoryServiceImp implements ProductCategoryService{
 	}
 
 	@Override
-	public ProductCategoryDTO delete(int id) {
+	public ProductCategoryDTO delete(Integer id) {
 		ProductCategory proCategory = getById(id);
 		if(proCategory != null) {
 			proCategory.setStatus(false);
@@ -44,13 +46,13 @@ public class ProductCategoryServiceImp implements ProductCategoryService{
 	}
 
 	@Override
-	public ProductCategory getById(int id) {
+	public ProductCategory getById(Integer id) {
 		return repo.findById(id).get();
 	}
 
 
 	@Override
-	public ProductCategoryDTO getByIdDTO(int id) {
+	public ProductCategoryDTO getByIdDTO(Integer id) {
 		ProductCategory procate = repo.findById(id).get();
 		if(procate != null) {
 			return ProductCategoryMapper.toProductCategoryDTO(procate);
@@ -64,6 +66,24 @@ public class ProductCategoryServiceImp implements ProductCategoryService{
 		procate.setProductcategoryName(procateDTO.getProductcategoryName());
 		procate.setStatus(procateDTO.getStatus());
 		return procate;
+	}
+
+
+	@Override
+	public List<ProductCategoryDTO> searchByName(String name) {
+		List<ProductCategory> result = repo.findByProductcategoryNameContaining(name);
+		List<ProductCategoryDTO> listDTO = new ArrayList<>();
+		result.forEach(v -> listDTO.add(ProductCategoryMapper.toProductCategoryDTO(v)));
+		return listDTO;
+	}
+
+
+	@Override
+	public List<ProductCategoryDTO> listAllFoCus() {
+		List<ProductCategory> result = repo.findByStatus(true);
+		List<ProductCategoryDTO> listDTO = new ArrayList<>();
+		result.forEach(v -> listDTO.add(ProductCategoryMapper.toProductCategoryDTO(v)));
+		return listDTO;
 	}
 	
 }
