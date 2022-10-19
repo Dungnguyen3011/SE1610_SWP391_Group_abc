@@ -3,6 +3,7 @@ package com.swp391.ebutler.service;
 import java.util.List;
 
 import com.swp391.ebutler.model.dto.ServiceProviderDTO;
+import com.swp391.ebutler.model.dto.SubServiceProviderDTO;
 
 public interface ServiceProviderService {
 	
@@ -18,7 +19,7 @@ public interface ServiceProviderService {
 	
 	public List<ServiceProviderDTO> listAllByProviderIdAndStatus(int id);
 	
-	public Integer save(ServiceProviderDTO sp);
+	public SubServiceProviderDTO save(ServiceProviderDTO sp); //
 	
 	public ServiceProviderDTO delete(int id);
 	
