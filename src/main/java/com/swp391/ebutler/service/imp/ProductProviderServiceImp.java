@@ -13,6 +13,7 @@ import com.swp391.ebutler.entities.Product;
 import com.swp391.ebutler.entities.ProductProvider;
 import com.swp391.ebutler.entities.Provider;
 import com.swp391.ebutler.model.dto.ProductProviderDTO;
+import com.swp391.ebutler.model.dto.SubProductProviderDTO;
 import com.swp391.ebutler.model.mapper.ProductProviderMapper;
 import com.swp391.ebutler.repositories.ProductProviderRepository;
 import com.swp391.ebutler.repositories.ProductRepository;
@@ -38,13 +39,20 @@ public class ProductProviderServiceImp implements ProductProviderService {
 	}
 
 	@Override
-	public Integer save(ProductProviderDTO pProviderDTO) {
+	public SubProductProviderDTO save(ProductProviderDTO pProviderDTO) {
 		if (getIdByDTO(pProviderDTO) == -1) {
 			ProductProvider pProvider = toProductProvider(pProviderDTO);
 			ProductProviderMapper.toProductProviderDTO(pProviderRepo.save(pProvider));
-			return -1;
+			return new SubProductProviderDTO(-1, true);
 		}
-		return getIdByDTO(pProviderDTO);
+		return toSubProductProvider(getById(getIdByDTO(pProviderDTO)));
+	}
+	
+	public SubProductProviderDTO toSubProductProvider(ProductProvider pProvider) {
+		SubProductProviderDTO sub = new SubProductProviderDTO();
+		sub.setProductproviderId(pProvider.getProductproviderId());
+		sub.setStatus(pProvider.getStatus());
+		return sub;
 	}
 
 	@Override

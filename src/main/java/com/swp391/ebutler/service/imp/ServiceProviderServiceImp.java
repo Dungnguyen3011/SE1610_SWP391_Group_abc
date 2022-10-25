@@ -13,6 +13,7 @@ import com.swp391.ebutler.entities.Provider;
 import com.swp391.ebutler.entities.ServiceProvider;
 import com.swp391.ebutler.entities.Services;
 import com.swp391.ebutler.model.dto.ServiceProviderDTO;
+import com.swp391.ebutler.model.dto.SubServiceProviderDTO;
 import com.swp391.ebutler.model.mapper.ServiceProviderMapper;
 import com.swp391.ebutler.repositories.ProviderRepository;
 import com.swp391.ebutler.repositories.ServiceProviderRepository;
@@ -87,31 +88,27 @@ public class ServiceProviderServiceImp implements ServiceProviderService {
 		result.forEach(v -> listDTO.add(ServiceProviderMapper.toServiceProviderDTO(v)));
 		return listDTO;
 	}
-
-	// Save
-	@Override
-	public Integer save(ServiceProviderDTO spDTO) {
-		if (getIdByDTO(spDTO) == -1) {
-			ServiceProvider sp = toServiceProvider(spDTO);
-			ServiceProviderMapper.toServiceProviderDTO(spRepo.save(sp));
-			return -1;
-		} 
-		return getIdByDTO(spDTO);
-	}
 	
-	// Get Id by DTO [check duplicate service by a provider]
-	public Integer getIdByDTO(ServiceProviderDTO spDTO) {
-		int id = -1;
+	
+	// Save 
+	@Override
+	public SubServiceProviderDTO save(ServiceProviderDTO spDTO) {
+		SubServiceProviderDTO sspDTO = null;
 		Services s = getServiceById(spDTO.getServiceId());
 		Provider p = getProviderById(spDTO.getProviderId());
 		ServiceProvider sp = spRepo.findByProviderAndService(p, s);
-		if ( sp != null) {
-			id = sp.getServiceproviderId();
+		if (sp == null) {
+			sp = toServiceProvider(spDTO);
+			ServiceProviderMapper.toServiceProviderDTO(spRepo.save(sp));
+			sspDTO = new SubServiceProviderDTO(-1, true);
+		} else {
+			sspDTO = new SubServiceProviderDTO(sp.getServiceproviderId(), sp.getStatus());
 		}
-		return id;
-		
+		return sspDTO;
 	}
+	
 
+	
 	// Delete
 	@Override
 	public ServiceProviderDTO delete(int id) {

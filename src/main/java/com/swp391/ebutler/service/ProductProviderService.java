@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.swp391.ebutler.entities.ProductProvider;
 import com.swp391.ebutler.model.dto.ProductProviderDTO;
+import com.swp391.ebutler.model.dto.SubProductProviderDTO;
 
 public interface ProductProviderService {
 	public List<ProductProviderDTO> listAll();
@@ -12,7 +13,7 @@ public interface ProductProviderService {
 
 	public List<ProductProviderDTO> listByProviderId(Integer id);
 
-	public Integer save(ProductProviderDTO pProvider);
+	public SubProductProviderDTO save(ProductProviderDTO pProvider);
 	
 	public ProductProviderDTO update(ProductProviderDTO pProvider);
 

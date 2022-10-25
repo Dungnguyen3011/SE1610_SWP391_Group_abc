@@ -17,4 +17,6 @@ public class OrderDetailDTO {
 	private Integer orderId;
 	private Integer productproviderId;
 	private String productName;
+	private Integer providerId;
+	private String providerName;
 }
