@@ -12,8 +12,8 @@ public class ProductProviderMapper {
 		pProviderDTO.setPersonalDescription(pProvider.getPersonalDescription());
 		pProviderDTO.setQuantity(pProvider.getQuantity());
 		pProviderDTO.setStatus(pProvider.getStatus());
-		pProviderDTO.setProduct_id(pProvider.getProduct().getProductId());
-		pProviderDTO.setProvider_id(pProvider.getProvider().getProviderId());
+		pProviderDTO.setProductId(pProvider.getProduct().getProductId());
+		pProviderDTO.setProviderId(pProvider.getProvider().getProviderId());
 		pProviderDTO.setProductName(pProvider.getProduct().getProductName());
 		return pProviderDTO;
 	}

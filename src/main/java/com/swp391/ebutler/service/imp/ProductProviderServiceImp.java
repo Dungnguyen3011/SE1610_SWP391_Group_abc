@@ -90,8 +90,8 @@ public class ProductProviderServiceImp implements ProductProviderService {
 		pProvider.setPersonalDescription(pProviderDTO.getPersonalDescription());
 		pProvider.setQuantity(pProviderDTO.getQuantity());
 		pProvider.setStatus(pProviderDTO.getStatus());
-		pProvider.setProduct(getProductById(pProviderDTO.getProduct_id()));
-		pProvider.setProvider(getProviderById(pProviderDTO.getProvider_id()));
+		pProvider.setProduct(getProductById(pProviderDTO.getProductId()));
+		pProvider.setProvider(getProviderById(pProviderDTO.getProviderId()));
 		return pProvider;
 	}
 
@@ -191,8 +191,8 @@ public class ProductProviderServiceImp implements ProductProviderService {
 	@Override
 	public Integer getIdByDTO(ProductProviderDTO pProviderDTO) {
 		Integer id = -1;
-		Product product = getProductById(pProviderDTO.getProduct_id());
-		Provider provider = getProviderById(pProviderDTO.getProvider_id());
+		Product product = getProductById(pProviderDTO.getProductId());
+		Provider provider = getProviderById(pProviderDTO.getProviderId());
 		ProductProvider pProvider = pProviderRepo.findByProductAndProvider(product, provider);
 		if ( pProvider != null) {
 			id = pProvider.getProductproviderId();

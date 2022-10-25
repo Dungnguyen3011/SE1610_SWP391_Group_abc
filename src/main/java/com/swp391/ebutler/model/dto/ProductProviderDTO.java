@@ -33,10 +33,10 @@ public class ProductProviderDTO {
 	private Boolean status;
 	
 	@NotNull(message = "Please select product")
-	private Integer product_id;
+	private Integer productId;
 	
 	@NotNull(message = "Please select provider")
-	private Integer provider_id;
+	private Integer providerId;
 	
 	private String productName;
 	
