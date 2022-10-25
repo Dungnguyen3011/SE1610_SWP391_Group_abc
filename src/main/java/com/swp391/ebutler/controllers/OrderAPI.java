@@ -1,13 +1,17 @@
 package com.swp391.ebutler.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.swp391.ebutler.model.dto.OrderDTO;
 import com.swp391.ebutler.service.OrderService;
 
 @RestController
@@ -44,5 +48,10 @@ public class OrderAPI {
 	@GetMapping("/api/order/listbystatus/{id}")
 	public ResponseEntity<?>getOrderByStatus(@PathVariable("id") int id){
 		return ResponseEntity.ok(odsv.getOrderByStatus(id));
+	}
+	
+	@PostMapping("/api/order/new")
+	public ResponseEntity<?>saveNewOrder(@Valid @RequestBody OrderDTO order){
+		return ResponseEntity.ok(odsv.saveNewOrder(order));
 	}
 }

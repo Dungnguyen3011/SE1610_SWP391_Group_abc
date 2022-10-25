@@ -20,4 +20,6 @@ public interface OrderService {
 	public OrderDTO changeOrderStatus(int id, int status);
 	
 	public List<OrderDTO> getOrderByStatus(int status);
+	
+	public Boolean saveNewOrder(OrderDTO orderdto);
 }
