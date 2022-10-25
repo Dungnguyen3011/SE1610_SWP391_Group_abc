@@ -12,4 +12,6 @@ public interface AccountService {
 	public RegisterAccountDTO registAcc( RegisterAccountDTO registacc);
 	
 	public RegisterAccountDTO login( LoginAccDTO acc);
+	
+	public Account find( String email);
 }
