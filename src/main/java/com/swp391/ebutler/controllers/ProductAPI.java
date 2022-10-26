@@ -77,4 +77,9 @@ public class ProductAPI {
 	public ResponseEntity<?> getById(@PathVariable("id") Integer id) {
 		return ResponseEntity.ok(pService.getByIdDTO(id));
 	}
+	
+	@GetMapping("/listex")
+	public ResponseEntity<?> listEx(){
+		return ResponseEntity.ok(pService.listExProduct());
+	}
 }

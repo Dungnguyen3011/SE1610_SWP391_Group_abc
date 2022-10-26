@@ -32,4 +32,5 @@ public interface ProductService {
 	
 	public List<ProductDTO> listByManuFoCus(Integer mid);
 	
+	public List<ProductDTO> listExProduct();
 }

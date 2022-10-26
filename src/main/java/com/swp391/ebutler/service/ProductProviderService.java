@@ -38,4 +38,6 @@ public interface ProductProviderService {
 	public List<ProductProviderDTO> listByCateId(Integer id);
 	
 	public Integer getIdByDTO(ProductProviderDTO pProviderDTO);
+	
+	
 }

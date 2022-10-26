@@ -34,4 +34,6 @@ public class ProductDTO {
 	@NotNull(message = "Please select manufacturer")
 	private Integer manufacturerId;
 	
+	
+	
 }

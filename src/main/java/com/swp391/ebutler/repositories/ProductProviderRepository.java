@@ -39,4 +39,7 @@ public interface ProductProviderRepository extends JpaRepository<ProductProvider
 	List<ProductProvider> listByCateId(Integer id);
 
 	ProductProvider findByProductAndProvider(Product product, Provider provider);
+	
+	@Query("SELECT MIN(pp.unitPrice) FROM ProductProvider pp WHERE pp.product.productId = ?1")
+	Double minPrice(Integer pId);
 }

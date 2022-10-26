@@ -10,10 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import com.swp391.ebutler.entities.Manufacturer;
 import com.swp391.ebutler.entities.Product;
 import com.swp391.ebutler.entities.ProductCategory;
+import com.swp391.ebutler.model.dto.ExProductDTO;
 import com.swp391.ebutler.model.dto.ProductDTO;
 import com.swp391.ebutler.model.mapper.ProductMapper;
 import com.swp391.ebutler.repositories.ManufacturerRepository;
 import com.swp391.ebutler.repositories.ProductCategoryRepository;
+import com.swp391.ebutler.repositories.ProductProviderRepository;
 import com.swp391.ebutler.repositories.ProductRepository;
 import com.swp391.ebutler.service.ProductService;
 
@@ -26,6 +28,8 @@ public class ProductServiceImp implements ProductService {
 	ProductCategoryRepository procateRepo;
 	@Autowired
 	ManufacturerRepository manuRepo;
+	@Autowired
+	ProductProviderRepository pProviderRepo;
 
 	@Override
 	public List<ProductDTO> listAll() {
@@ -143,6 +147,20 @@ public class ProductServiceImp implements ProductService {
 		List<ProductDTO> listDTO = new ArrayList<>();
 		result.forEach(v -> listDTO.add(ProductMapper.toProductDTO(v)));
 		return listDTO;
+	}
+
+	@Override
+	public List<ProductDTO> listExProduct() {
+		List<ProductDTO> listDTO = listAllFoCus();
+		List<ProductDTO> listEx = new ArrayList<>();
+		listDTO.forEach(v->{
+			Integer id = v.getProductId();
+			Double minPrice = pProviderRepo.minPrice(id);
+			Integer count = pProviderRepo.countByProductId(id);
+			listEx.add(new ExProductDTO(v.getProductId(), v.getProductName(), v.getDescription(),
+					v.getImage(), v.getStatus(), v.getProductcategoryId(), v.getManufacturerId(), count, minPrice));
+		});
+		return listEx;
 	}
 
 }
